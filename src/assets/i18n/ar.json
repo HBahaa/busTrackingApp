@@ -1,0 +1,26 @@
+{
+	"BUTTONS" : {
+		"btn_eng" : "اﻷنجليزيه",
+		"btn_ar" : "العربيه",
+		"alreadyHaveAccount": "لدي حساب",
+		"dontHaveAccount" 	: "ليس لدي حساب"
+	},
+	"PAGES": {
+		"login": "تسجيل الدخول",
+		"register1"	   : "تسجيل الدخول",
+		"register2"	   : "Register2",
+		"children" 	   : "My Children",
+		"notifications": "الاشعارات"
+	},
+	"FORM":{
+		"name" 	  	 : "الاسم",
+		"email"	   	 : "الايميل",
+		"password" 	 : "كلمة السر",
+		"location" 	 : "العنوان",
+		"secertKey"	 : "Secert Key",
+		"nationalID" : "الرقم القومي",
+		"send"		 : "ارسال",
+		"login"		 : "تسجيل الدخول"
+	}
+
+}

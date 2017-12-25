@@ -1,0 +1,82 @@
+{
+	"BUTTONS" : {
+		"btn_eng" : "English",
+		"btn_ar" : "Arabic",
+		"alreadyHaveAccount": "Already Have Account",
+		"dontHaveAccount" 	: "Don't Have Account"
+	},
+	"FORM":{
+		"name" 	  	 : "Name",
+		"email"	   	 : "Email",
+		"password" 	 : "Password",
+		"address" 	 : "Address",
+		"secertKey"	 : "Secert Key",
+		"idNumber"	 : "ID Number",
+		"send"		 : "Send",
+		"login"		 : "Login",
+		"register"	 : "Register",
+		"phone"		 : "Phone Number",
+		"locateMe"	 : "Change My Address"
+	}, 
+	"ERROR_MESSAGES":{
+		"register1": {
+			"id":{
+				"required": "ID Number is required.",
+				"pattern" : "Please enter valid ID Number."
+			},
+			"skey": {
+				"required" : "Secert key is required.",
+				"min"      : "Please enter valid Secert key.",
+				"max"	   : "Please enter valid Secert key."
+			}
+		},
+		"register2" : {
+			"email": {
+				"required": "Email is required.",
+				"pattern" : "Please enter valid email."
+			},
+			"password": {
+				"required" : "Password is required.",
+				"minlength": "Password must be at least 5 characters long.",
+				"pattern"  : "Your password must contain at least one uppercase, one lowercase, and one number."
+			},
+			"mobile": {
+				"required": "Mobile no. is required",
+				"pattern" : "Please enter valid mobile number"
+			}
+		}
+	},
+	"CHILDREN_PAGE": {
+		"title"		: "My Children",
+		"name"  	: "Name",
+		"status" 	: "Status",
+		"details" 	: "Details"
+	},
+	"HOME_PAGE":  	 {
+		"title"		: "Your Bus School",
+		"or" 		: "OR",
+		"login" 	: "Login",
+		"register"	: "Register"
+	},
+	"LOGIN_PAGE"	: {
+		"title"		: "Login"
+	},
+	"REGISTER1_PAGE"	: {
+		"title"		: "Registration"
+	},
+	"REGISTER2_PAGE"	: {
+		"title"		: "Registration"
+	},
+	"DETAILS_PAGE" : {
+		"title"			: "Details",
+		"childID"		: "Child ID",
+		"status"		: "Status",
+		"busNumber"		: "Bus Number",
+		"driverName"	: "Driver Name",
+		"driverPhone"	: "Driver Phone"
+	},
+	"NOTIFICATION_PAGE" : {
+		"title" : "Notification"
+	}
+
+}

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="navbarColor">
+    <ion-title>
+      Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card>
+		<img [src]="childData.image" onError="this.src='assets/imgs/1.png'">
+		<ion-card-content>
+			<ion-card-title color="mainColor">{{childData.name}}</ion-card-title>
+			<ion-row>
+	        	<ion-col col-12><br /></ion-col>
+	        	<ion-col col-5><h2>Child ID:</h2></ion-col>
+	        	<ion-col col-7><h2>{{childData.tag}}</h2></ion-col>
+
+	        	<ion-col col-5><h2>Child Status:</h2></ion-col>
+	        	<ion-col col-7>
+	        		<h2 *ngIf="child.childLastMsg != undefined">{{childData["childLastMsg"]["status"]}}</h2>
+	        		<h2 *ngIf="child.childLastMsg == undefined">No Status</h2>
+	        	</ion-col>
+	        	<ion-col col-12><hr /></ion-col>
+
+	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>{{childData.bus}}</h2></ion-col>
+	        	<ion-col col-5><h2>Bus ID:</h2></ion-col><ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
+	        	<ion-col col-12><hr /></ion-col>
+
+	        	<ion-col col-5><h2>Driver Name:</h2></ion-col>
+	        	<ion-col col-7>
+	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverName"]}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverName"]}}</h2>
+	        	</ion-col>
+
+	        	<ion-col col-5><h2>Driver Phone:</h2></ion-col>
+	        	<ion-col col-7>
+	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverPhone"]}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverPhone"]}}</h2>
+	        	</ion-col>
+
+	        </ion-row>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-list *ngIf="messages.length > 0">
+		<h2>Notifications</h2>
+	    <button ion-item *ngFor="let message of messages">
+	      <p>{{message.time | date:'short'}}</p>
+	      <h3>Bus Speed : {{message.speed}}</h3>
+	      <h3>{{message.msg}}</h3>
+	    </button>
+	</ion-list>
+</ion-content>

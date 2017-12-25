@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select your home</ion-title>
+    <ion-buttons end>
+      <button ion-button color="light" (click)="goToRegister()">
+        Next
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+ 
+<ion-content>
+  <div id="over_map">
+    <!-- <ion-item>
+      
+      <ion-input type="text" placeholder="enter your address" name="nationalID" [(ngModel)]="inpt" (keyup)="codeAddress()"></ion-input>
+      <ion-label><ion-icon name="search"></ion-icon></ion-label>
+    </ion-item> -->
+    <!-- (keyup)="updateList($event)" -->
+
+    <ion-searchbar primary [(ngModel)]="searchQuery" show-cancel="true" placeholder="Search"></ion-searchbar>
+    <button ion-button icon-only block (click)="codeAddress()"><ion-icon name="redo"></ion-icon></button>
+  </div>
+  <div id="map"></div>
+</ion-content>

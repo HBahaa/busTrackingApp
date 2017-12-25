@@ -1,0 +1,43 @@
+<ion-content padding class="register1-content">
+  <form novalidate (ngSubmit)="onSubmit(validations_form)" [formGroup]="validations_form">
+    <h3>{{ 'REGISTER1_PAGE.title' | translate }}</h3>
+    <ion-item>
+      <ion-label ><ion-icon name="person"></ion-icon></ion-label>
+      <ion-input type="text" placeholder="{{ 'FORM.idNumber' | translate }}" formControlName="id"></ion-input>
+    </ion-item>
+
+    <div class="error-container" no-lines *ngIf="( validations_form.get('id').hasError('required') || validations_form.get('id').hasError('pattern'))&& validations_form.get('id').touched">
+
+      <div class="error" *ngIf="validations_form.get('id').hasError('required') && validations_form.get('id').touched">
+        {{ 'ERROR_MESSAGES.register1.id.required' | translate }}
+      </div>
+      <div class="error" *ngIf="validations_form.get('id').hasError('pattern') && validations_form.get('id').touched">
+        {{ 'ERROR_MESSAGES.register1.id.pattern' | translate }}
+      </div>
+
+    </div>
+
+    <ion-item>
+      <ion-label ><ion-icon name="key"></ion-icon></ion-label>
+      <ion-input type="text" placeholder="{{ 'FORM.secertKey' | translate }}" formControlName="skey"></ion-input>
+    </ion-item>
+
+    <div class="error-container" no-lines *ngIf="( validations_form.get('skey').hasError('required') || validations_form.get('skey').hasError('min') || validations_form.get('skey').hasError('max'))&& validations_form.get('skey').touched">
+
+      <div class="error" *ngIf="validations_form.get('skey').hasError('required') && validations_form.get('skey').touched">
+        {{ 'ERROR_MESSAGES.register1.skey.required' | translate }}
+      </div>
+      <div class="error" *ngIf="validations_form.get('skey').hasError('min') && validations_form.get('skey').touched">
+        {{ 'ERROR_MESSAGES.register1.skey.min' | translate }}
+      </div>
+
+      <div class="error" *ngIf="validations_form.get('skey').hasError('max') && validations_form.get('skey').touched">
+        {{ 'ERROR_MESSAGES.register1.skey.max' | translate }}
+      </div>
+
+    </div>
+
+    <button ion-button block round color="mainColor" [disabled]="validations_form.invalid"><ion-icon name="log-in"></ion-icon>Sign up</button>
+  </form>
+    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>{{ 'BUTTONS.alreadyHaveAccount' | translate }}</button>
+</ion-content>

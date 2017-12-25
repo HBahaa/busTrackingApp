@@ -1,0 +1,91 @@
+page-register1 {
+  
+  .register1-content {
+    background-image: url(../assets/imgs/8.jpg);
+    background-size: cover;
+
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+    
+    ion-col ion-label{
+      padding-top: 0px !important;
+     }
+     .error-container{
+      color: #f00;
+      margin-bottom: 5px;
+      text-align: left;
+      padding-left: 30px;
+     }
+
+     .scroll-content{
+      padding-bottom:0!important;
+       text-align: center;
+       justify-content: center;
+       align-content: center;
+       display: flex;
+       flex-direction: column;
+       box-shadow: none;
+       background-color: rgba(0, 0, 0, 0.7);
+     }
+     .list-md .item-block .item-inner {
+       border-bottom: 0px solid #dedede;
+     }
+     .list-md .item-block .item-inner:focus {
+       border-bottom: 0px solid #dedede;
+     }
+     ion-item.item.item-block.item-input{
+       border-bottom-width: 0px;
+       border-radius: 30px;
+     }
+     .item{
+       background: rgba(225, 225, 225, 0.2);
+       margin-bottom: 10px;
+       border-radius: 5px;
+       border-bottom-width: 0;
+
+       .text-input{
+         color: #fff;
+       }
+       input::-moz-placeholder{
+         color: #fff!important;
+       }
+       input:-moz-placeholder{
+         color: #fff!important;
+       }
+       *::-webkit-input-placeholder{
+         color: #fff!important;
+       }
+     }
+
+     ion-item {
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+     }
+     h3{
+        color: #fff;
+        font-size: 26px;
+        text-decoration: underline;
+        font-family: arail;
+        padding-bottom: 10px;
+     }
+     ion-col ion-label{
+       font-size: 18px;
+       padding-top: 10px;
+       color: #fff;
+     }
+
+     .btn{
+       margin-top: 30px;
+       margin-bottom: 40px;
+     }
+     ion-icon{
+       margin-right: 5px;
+       color: #fff;
+     }
+
+  }
+
+}

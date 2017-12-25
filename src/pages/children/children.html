@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'CHILDREN_PAGE.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="std" *ngFor="let child of children">
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="child.image" onError="this.src='assets/imgs/1.png'">
+      </ion-avatar>
+      
+      <ion-row>
+        <ion-col col-4><span>{{ 'CHILDREN_PAGE.name' | translate }}:</span></ion-col>
+        <ion-col col-8><span class="chData">{{child.name}}</span></ion-col>
+        <ion-col col-4><span>{{ 'CHILDREN_PAGE.status' | translate }}:</span></ion-col>
+        <ion-col col-8>
+          <span class="chData" *ngIf="child.childLastMsg != undefined">{{child.childLastMsg?.status}}</span>
+          <span class="chData" *ngIf="child.childLastMsg == undefined">No Status</span>
+        </ion-col>
+      </ion-row>
+      <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ 'CHILDREN_PAGE.details' | translate }}</button>
+    </ion-item>
+  </ion-card>
+</ion-content>

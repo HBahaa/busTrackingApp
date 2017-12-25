@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <!-- <form #profileForm="ngForm" (ngSubmit)="presentToast()">
+    <ion-row> 
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>
+            <ion-input type="text" name="phone" [(ngModel)]="phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <button ion-button type="submit" color="mainColor" block round [disabled]="!profileForm.form.valid">
+            <ion-icon name="log-in"></ion-icon> Update
+          </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </form> -->
+
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-title color="mainColor">Profile Data</ion-card-title>
+                <ion-row>
+                  <ion-col col-12><br /></ion-col>
+                  <ion-col col-4><h2>Name:</h2></ion-col><ion-col col-8><h2>{{name}}</h2></ion-col>
+                  <ion-col col-4><h2>Password:</h2></ion-col><ion-col col-8><h2>{{password}}</h2></ion-col>
+                  <ion-col col-4><h2>Address:</h2></ion-col><ion-col col-8><h2>{{address}}</h2></ion-col>
+                  <ion-col col-4><h2>Phone:</h2></ion-col><ion-col col-8><h2>{{phone}}</h2></ion-col>
+                </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

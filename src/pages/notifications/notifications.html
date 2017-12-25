@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'NOTIFICATION_PAGE.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items">
+      <!-- <p>{{item.time}} | {{item.date}}</p> -->
+      <p>{{item.time | date:'short'}}</p>
+      <h3>Bus Speed : {{item?.speed}}</h3>
+      <h3>{{item.msg}}</h3>
+    </button>
+  </ion-list>
+
+</ion-content>

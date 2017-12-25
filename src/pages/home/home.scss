@@ -1,0 +1,56 @@
+page-home {
+  
+  .home-content {
+    background-image: url(../assets/imgs/3.jpg);
+    background-size: cover;
+
+    .segment-button.segment-activated{
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
+      font-size: 17px;
+    }
+
+    .segment-button .segment{
+      background-color: #f08080;
+    }
+
+    .logo{
+      margin: 0 35%;
+      width: 30%;
+    }
+
+    h2{
+      color: #fff;
+      font-family: cursive;
+      margin-bottom: 50px;
+    }
+
+
+    ion-icon{
+      padding-right: 10px;
+    }
+
+
+    h3{
+      color:#fff;
+      font-family: cursive;
+    }
+
+    button{
+      font-size: 1.7rem;
+      text-transform: capitalize;
+    }
+    
+    .scroll-content{
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      display: flex;
+      flex-direction: column;
+      box-shadow: none;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+  }
+
+}
