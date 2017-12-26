@@ -55,17 +55,13 @@ export class ChildrenPage {
 
 					if (data != null) {
 						this.children = res;
-						console.log("this.children.childLstMsg", this.children.childLstMsg)
 					}else{
 						this.storage.get("token").then((token)=>{
 							this.getNotificationProvider.getNotification(token).then((data) => {
 								this.children = data;
-								console.log("data.childLstMsg", data.childLstMsg)
 							}).catch((error5)=>{
-								
 								//get new token
 								this.getNewToken();
-
 							});
 						}).catch((error4)=>{
 							alert("error4 can't get token")

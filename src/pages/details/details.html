@@ -18,8 +18,8 @@
 
 	        	<ion-col col-5><h2>Child Status:</h2></ion-col>
 	        	<ion-col col-7>
-	        		<h2 *ngIf="child.childLastMsg != undefined">{{childData["childLastMsg"]["status"]}}</h2>
-	        		<h2 *ngIf="child.childLastMsg == undefined">No Status</h2>
+	        		<h2 *ngIf="childData.childLastMsg != undefined">{{childData["childLastMsg"]["status"]}}</h2>
+	        		<h2 *ngIf="childData.childLastMsg == undefined">No Status</h2>
 	        	</ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
