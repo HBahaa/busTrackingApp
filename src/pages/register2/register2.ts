@@ -28,10 +28,10 @@ export class Register2Page {
     this.address = this.navParams.get('param1');
     this.location = this.navParams.get('param2');
 
-    // this.address = "Luxor";
+    // this.address = "3015 حلبان، Dhahrat Laban, Riyadh 13782, Saudi Arabia";
     // this.location = {
-    //   "lat": "25.010737",
-    //   "lng": "30.5261475"
+    //   "lat": "24.637307",
+    //   "lng": "46.553948"
     // }
 
     this.user = new FormGroup({

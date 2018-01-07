@@ -13,7 +13,6 @@
     <button ion-item *ngFor="let item of items">
       <!-- <p>{{item.time}} | {{item.date}}</p> -->
       <p>{{item.time | date:'short'}}</p>
-      <h3>Bus Speed : {{item?.speed}}</h3>
       <h3>{{item.msg}}</h3>
     </button>
   </ion-list>

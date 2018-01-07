@@ -9,14 +9,14 @@ import * as io from "socket.io-client";
 import { DetailsPage } from '../details/details';
 import { NotificationsPage } from '../notifications/notifications';
 import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
-import { GetChildrenProvider } from '../../providers/get-children/get-children';
+// import { GetChildrenProvider } from '../../providers/get-children/get-children';
 import { LoginProvider } from '../../providers/login/login';
 
 
 @Component({
   selector: 'page-children',
   templateUrl: 'children.html',
-  providers: [GetNotificationProvider, GetChildrenProvider, LoginProvider]
+  providers: [GetNotificationProvider, LoginProvider]
 })
 
 export class ChildrenPage {
@@ -28,11 +28,11 @@ export class ChildrenPage {
 
 	constructor(public navCtrl: NavController, private storage: Storage, public backgroundMode: BackgroundMode,
 				private platform: Platform, private getNotificationProvider: GetNotificationProvider,
-				private getChildrenProvider: GetChildrenProvider, private loginProvider: LoginProvider) {	
+				private loginProvider: LoginProvider) {	
 
-		this.serverConnection();
+		// this.serverConnection();
 
-		platform.ready().then(() => {
+		this.platform.ready().then(() => {
 
 			this.backgroundMode.on("activate").subscribe(() => {
 				console.log('activated');

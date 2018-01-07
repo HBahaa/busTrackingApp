@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'page-details',
@@ -13,12 +12,16 @@ export class DetailsPage {
 	childData: any;
 	tag: any;
 
-	constructor(public navCtrl: NavController, private navParams: NavParams, private storage: Storage, private platform: Platform) {
+	constructor(public navCtrl: NavController, private navParams: NavParams,
+		private storage: Storage, private platform: Platform) {
 
-		platform.ready().then(() => {
+		this.platform.ready().then(() => {
 
 			this.tag = this.navParams.get("param1");
 			this.childData = this.navParams.get("param2");
+
+			console.log(this.childData)
+			console.log(this.childData["childLastMsg"]["speed"])
 			
 			this.storage.get(this.tag).then((messages)=>{
 				this.messages = messages;

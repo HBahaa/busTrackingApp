@@ -25,6 +25,15 @@
 
 	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>{{childData.bus}}</h2></ion-col>
 	        	<ion-col col-5><h2>Bus ID:</h2></ion-col><ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
+	        	<ion-col col-5><h2>Bus Speed:</h2></ion-col>
+	        	<ion-col col-7>
+	        		<h2 *ngIf="childData['childLastMsg']['speed'] != undefined; else lastMsgSpeed ">
+	        			{{childData["childLastMsg"]["speed"]}}
+	        		</h2>
+	        		<ng-template #lastMsgSpeed>
+	        			<h2>{{childData["lastMsg"]["speed"]}}</h2>
+	        		</ng-template>
+	        	</ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
 	        	<ion-col col-5><h2>Driver Name:</h2></ion-col>
@@ -47,7 +56,6 @@
 		<h2>Notifications</h2>
 	    <button ion-item *ngFor="let message of messages">
 	      <p>{{message.time | date:'short'}}</p>
-	      <h3>Bus Speed : {{message.speed}}</h3>
 	      <h3>{{message.msg}}</h3>
 	    </button>
 	</ion-list>

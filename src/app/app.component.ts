@@ -51,8 +51,8 @@ export class MyApp {
       splashScreen.hide();
 
 
-      translateService.setDefaultLang('en');
-      translateService.use('en');
+      this.translateService.setDefaultLang('en');
+      this.translateService.use('en');
 
       this.presentLoading();
       this.loadingPage();
