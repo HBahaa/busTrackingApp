@@ -54,16 +54,15 @@
 
 	<ion-list *ngIf="messages.length > 0">
 		<h2>Notifications</h2>
-	    <!-- <button ion-item *ngFor="let message of messages">
-	      <p>{{message.time | date:'short'}}</p>
-	      <h3>{{message.msg}}</h3>
-	    </button> -->
-	    <ion-item *ngFor="let message of messages">
-			<ion-icon *ngIf="message.sid == tag" ios="ios-pricetag-outline" md="md-pricetag" item-start></ion-icon>
-			<ion-icon *ngIf="rooms.bus.indexOf(message.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
-	      	<ion-icon *ngIf="rooms.geo == message.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>
-	        <p>{{message.time | date:'short'}}</p>
-	        <h2>{{message.msg}}</h2>
-	    </ion-item>
+	    <button ion-item *ngFor="let message of messages"  (click)="notificationDetails(message)">
+			<ion-icon color="mainColor" *ngIf="message.sid == tag" ios="ios-pricetag-outline" md="md-pricetag" item-start></ion-icon>
+			<ion-icon color="mainColor" *ngIf="rooms.bus.indexOf(message.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
+	      	<ion-icon color="mainColor" *ngIf="rooms.geo == message.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>
+
+        	<p>{{message.time | date:'short'}}</p>
+	        
+	        <h2 *ngIf="message.msg.length == 30 || message.msg.length < 30 ;else msg">{{message.msg}}</h2>
+        	<ng-template #msg><h2>{{message.msg.substr(0, 30) +"..."}}</h2></ng-template>
+	    </button>
 	</ion-list>
 </ion-content>

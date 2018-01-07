@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { NotificationPage } from '../notification/notification';
+
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html'
@@ -34,6 +36,9 @@ export class DetailsPage {
 			console.log("error 1: "+ error1);
 		});
 
+	}
+	notificationDetails(item){
+	    this.navCtrl.push(NotificationPage, {'param1': item})
 	}
 
 }

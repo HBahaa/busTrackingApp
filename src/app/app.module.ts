@@ -18,6 +18,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { NotificationPage } from '../pages/notification/notification';
 import { ProfilePage } from '../pages/profile/profile';
 import { DetailsPage } from '../pages/details/details';
 import { ChildrenPage } from '../pages/children/children';
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     HomePage,
     NotificationsPage,
+    NotificationPage,
     Register1Page,
     Register2Page,
     LoginPage,
@@ -68,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     HomePage,
     NotificationsPage,
+    NotificationPage,
     Register1Page,
     Register2Page,
     LoginPage,

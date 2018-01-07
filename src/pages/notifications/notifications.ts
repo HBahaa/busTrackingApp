@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
 import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
+import { NotificationPage } from '../notification/notification';
 
 
 @Component({
@@ -57,5 +58,9 @@ export class NotificationsPage {
       });
 
     });
+  }
+
+  notificationDetails(item){
+    this.navCtrl.push(NotificationPage, {'param1': item})
   }
 }
