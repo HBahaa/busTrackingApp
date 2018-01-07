@@ -14,6 +14,8 @@ import { GetNotificationProvider } from '../../providers/get-notification/get-no
 export class NotificationsPage {
 
   items: any= [];
+  newDate = new Date();
+  rooms:any;
 
   constructor(public navCtrl: NavController, private storage: Storage, private getNotificationProvider: GetNotificationProvider) {
 
@@ -22,6 +24,11 @@ export class NotificationsPage {
   ionViewDidLoad(){
 
     let msg = [];
+
+    this.storage.get("rooms").then((data)=>{
+      this.rooms = data;
+    })
+
     this.storage.get("children").then((result)=>{
       // let children = result;
 

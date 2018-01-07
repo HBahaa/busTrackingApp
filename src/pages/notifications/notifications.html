@@ -10,11 +10,19 @@
 <ion-content>
 
   <ion-list>
-    <button ion-item *ngFor="let item of items">
-      <!-- <p>{{item.time}} | {{item.date}}</p> -->
+    <!-- <button ion-item *ngFor="let item of items">
+      <p>{{item.time}} | {{item.date}}</p>
       <p>{{item.time | date:'short'}}</p>
-      <h3>{{item.msg}}</h3>
-    </button>
+      <h2>{{item.msg}}</h2>
+    </button> -->
+
+    <ion-item *ngFor="let item of items">
+      <ion-icon *ngIf="rooms.tag.indexOf(item.sid) >= 0" ios="ios-pricetag-outline" md="md-pricetag" item-start></ion-icon>
+      <ion-icon *ngIf="rooms.bus.indexOf(item.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
+      <ion-icon *ngIf="rooms.geo == item.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>
+        <p>{{item.time | date:'short'}}</p>
+        <h2>{{item.msg}}</h2>
+    </ion-item>
   </ion-list>
 
 </ion-content>

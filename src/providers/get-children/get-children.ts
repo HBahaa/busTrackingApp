@@ -9,7 +9,8 @@ import 'rxjs/add/operator/map';
 export class GetChildrenProvider {
 	loader:any;
 	children: any[] = [];
-	rooms: any[] = [];
+	// rooms: any[] = [];
+	rooms:any = {};
 
 	constructor(private storage: Storage, private loadingCtrl: LoadingController) {}
 
@@ -37,15 +38,32 @@ export class GetChildrenProvider {
 			  	if(response.success)
 		      	{
 		      		
-		    		this.rooms.push(response.data['loc']['fence_id']);
+		    		// this.rooms.push(response.data['loc']['fence_id']);
+		    		this.rooms.geo = response.data['loc']['fence_id'];
 					$.each(response.data.children, (index, value)=>{
 				   		value["tag"] = index;
 				   		value["image"] = "https://hst-api.wialon.com/avl_tag_image/"+value.source+"/"+value.id+"/100/100/2490508405.png";
-				   		this.rooms.push(index);
+				   		// this.rooms.push(index);
 
-				   		if (this.rooms.indexOf(value.bus_id) == -1) {
-				   			this.rooms.push(value.bus_id);
+				   		if ('tag' in this.rooms) {
+				   			this.rooms.tag.push(index);
+				   		}else{
+				   			this.rooms.tag = [index];
 				   		}
+
+				   		if ('bus' in this.rooms) {
+				   			
+				   			if (this.rooms.bus.indexOf(value.bus_id) == -1) {
+					   			this.rooms.bus.push(value.bus_id);
+					   		}else{
+					   			this.rooms.bus.push(value.bus_id);
+					   		}
+
+				   		}else{
+				   			this.rooms.bus = [value.bus_id];
+				   		}
+
+				   		
 				   		
 						this.children.push(value);
 						this.storage.set("rooms", this.rooms);

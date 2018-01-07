@@ -11,17 +11,18 @@ export class DetailsPage {
 	messages: any[] = [];
 	childData: any;
 	tag: any;
+	rooms:any;
 
 	constructor(public navCtrl: NavController, private navParams: NavParams,
 		private storage: Storage, private platform: Platform) {
 
 		this.platform.ready().then(() => {
+			this.storage.get("rooms").then((data)=>{
+		      this.rooms = data;
+		    })
 
 			this.tag = this.navParams.get("param1");
 			this.childData = this.navParams.get("param2");
-
-			console.log(this.childData)
-			console.log(this.childData["childLastMsg"]["speed"])
 			
 			this.storage.get(this.tag).then((messages)=>{
 				this.messages = messages;

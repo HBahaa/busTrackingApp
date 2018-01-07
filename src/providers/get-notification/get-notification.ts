@@ -22,6 +22,8 @@ export class GetNotificationProvider {
 
     		this.children = result;
 
+    		console.log("getNotifications")
+
 			$.each(result, (index, child)=>{
 				let settings = {
 					"async": true,
