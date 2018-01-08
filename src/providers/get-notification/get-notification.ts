@@ -22,8 +22,6 @@ export class GetNotificationProvider {
 
     		this.children = result;
 
-    		console.log("getNotifications")
-
 			$.each(result, (index, child)=>{
 				let settings = {
 					"async": true,
@@ -44,6 +42,11 @@ export class GetNotificationProvider {
 					if(response.success)
 			      	{
 			      		let messages = response.message;
+			      		$.each(messages, (index, message)=>{
+			      			message.msg = message.msg.replace(/['"]/g, "");
+			      			message.status = message.status.replace(/['"]/g, "");
+			      		})
+
 			      		this.storage.set(child.tag, messages);
             			if (messages.length > 0) {
             				child.lastMsg= messages[0];

@@ -28073,19 +28073,12 @@ page-details img {
   border-radius: 50%;
 }
 
-page-details .card {
-  background: #f8f8f8;
-  padding: 20px;
-  margin: 10px 0;
-  width: calc(100%);
+page-details .list {
+  margin: -1px 2px 16px 0;
 }
 
 page-details .list h2 {
   font-size: 19px;
-}
-
-page-details .item-md {
-  background: #f8f8f8 !important;
 }
 
 page-home .home-content {
