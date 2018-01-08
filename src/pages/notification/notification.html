@@ -13,7 +13,8 @@
 	<ion-card>
 	  
 	  <ion-card-content>
-	  	<p>{{notification.time | date:'short'}}</p>
+	  	<p>{{notification.time | date:'shortTime'}}</p>
+	  	
 		<h2><span>Bus Speed:</span> {{ notification.speed }}</h2>
 		<h2><span>Status:</span> {{ notification.status }}</h2>
 		<ion-card-title>

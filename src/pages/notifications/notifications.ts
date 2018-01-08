@@ -52,7 +52,7 @@ export class NotificationsPage {
           )
         })
         .catch((error1)=>{
-          alert("error1");
+          console.log("error1");
         })
 
       });

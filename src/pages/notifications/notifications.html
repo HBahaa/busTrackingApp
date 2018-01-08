@@ -15,10 +15,19 @@
       <ion-icon color="mainColor" *ngIf="rooms.bus.indexOf(item.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
       <ion-icon color="mainColor" *ngIf="rooms.geo == item.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>
 
-        <p>{{item.time | date:'short'}}</p>
-      
+              
         <h2 *ngIf="item.msg.length == 30 || item.msg.length < 30;else msg">{{item.msg}}</h2>
         <ng-template #msg><h2>{{item.msg.substr(0, 30) +"..."}}</h2></ng-template>
+        
+        <p *ngIf="(item.time | customDate) != item.time; else temp" text-right>
+          <span>{{ item.time | customDate }}, </span>
+          {{item.time | date:'shortTime'}}
+        </p>
+        <ng-template #temp>
+          <p text-right>
+            {{item.time | date:'short'}}
+          </p>
+        </ng-template>
 
     </button>
   </ion-list>

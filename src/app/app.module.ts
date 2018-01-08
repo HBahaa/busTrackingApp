@@ -31,6 +31,7 @@ import { GetChildrenProvider } from '../providers/get-children/get-children';
 import { LoginProvider } from '../providers/login/login';
 import { RegisterProvider } from '../providers/register/register';
 
+import { DatePipe } from '../pipes/date/date'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DetailsPage,
     ProfilePage,
     ChildrenPage,
-    MapPage
+    MapPage,
+    DatePipe
   ],
   imports: [
     BrowserModule,

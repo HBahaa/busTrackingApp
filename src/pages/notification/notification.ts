@@ -34,9 +34,7 @@ export class NotificationPage {
 
 		this.map.one(GoogleMapsEvent.MAP_READY)
       	.then(() => {
-	        console.log('Map is ready!');
 
-	        // Now you can use all methods safely.
 	        this.map.addMarker({
 	            title: desc,
 	            icon: 'red',
