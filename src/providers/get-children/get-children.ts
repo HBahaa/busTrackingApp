@@ -56,7 +56,8 @@ export class GetChildrenProvider {
 				   			if (this.rooms.bus.indexOf(value.bus_id) == -1) {
 					   			this.rooms.bus.push(value.bus_id);
 					   		}else{
-					   			this.rooms.bus.push(value.bus_id);
+					   			// this.rooms.bus.push(value.bus_id);
+					   			console.log("else")
 					   		}
 
 				   		}else{

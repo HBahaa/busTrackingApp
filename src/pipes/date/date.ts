@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+import * as moment from 'moment';
 
 @Pipe({
   name: 'customDate',
@@ -13,14 +13,15 @@ export class DatePipe implements PipeTransform {
 
 		if (myDate.getFullYear() === newDate.getFullYear() && newDate.getMonth() === newDate.getMonth()) {
 			if (myDate.getDate() === newDate.getDate()) {
-				return 'Today'
+				// return 'Today';
+				return moment(value).fromNow();
 			}
-			else if(myDate.getDate() === newDate.getDate()-1)
+			else if(newDate.getDate() >= myDate.getDate() && myDate.getDate()>= newDate.getDate()-6)
 			{
-				return 'Yesterday'
+				return moment(value).fromNow();
 			}
 			else{
-				return value 
+				return value;
 			}
 		}
 		else{

@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { NotificationPage } from '../notification/notification';
+import { NotificationsPage } from '../notifications/notifications';
 
 @Component({
   selector: 'page-details',
@@ -39,6 +40,10 @@ export class DetailsPage {
 	}
 	notificationDetails(item){
 	    this.navCtrl.push(NotificationPage, {'param1': item})
+	}
+
+	moreNotifications(){
+		this.navCtrl.setRoot(NotificationsPage);
 	}
 
 }

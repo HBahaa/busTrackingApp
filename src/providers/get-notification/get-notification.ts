@@ -43,6 +43,15 @@ export class GetNotificationProvider {
 			      	{
 			      		let messages = response.message;
 			      		$.each(messages, (index, message)=>{
+			      			if (child.tag == message.sid || child.bus_id == message.sid ) {
+
+			      				if (message.name) {
+				      				message.name.push(child.name);
+				      			}else{
+				      				message.name = [child.name];
+				      			}
+			      			}
+
 			      			message.msg = message.msg.replace(/['"]/g, "");
 			      			message.status = message.status.replace(/['"]/g, "");
 			      		})

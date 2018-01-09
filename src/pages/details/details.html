@@ -64,8 +64,10 @@
 
 
 	        <p *ngIf="(message.time | customDate) != message.time; else temp" text-right>
-	          <span>{{ message.time | customDate }}, </span>
-	          {{message.time | date:'shortTime'}}
+	          <span>{{ message.time | customDate }}</span>
+	          <span *ngIf="(message.time | customDate).includes('day')">
+	          	, {{message.time | date:'shortTime'}}
+	          </span>
 	        </p>
 	        <ng-template #temp>
 	          <p text-right>
@@ -74,5 +76,7 @@
 	        </ng-template>
 
 	    </button>
+
+	    <button ion-button color="mainColor" clear (click)="moreNotifications()">More Notifications</button>
 	</ion-list>
 </ion-content>
