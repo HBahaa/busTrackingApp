@@ -9,10 +9,7 @@ import 'rxjs/add/operator/map';
 export class GetNotificationProvider {
 	children: any;
 
-	constructor(private storage: Storage) {
-		console.log('Hello GetNotificationProvider Provider');
-	}
-
+	constructor(private storage: Storage) {	}
 
 	getNotification(token){
 
@@ -42,38 +39,49 @@ export class GetNotificationProvider {
 					if(response.success)
 			      	{
 			      		let messages = response.message;
-			      		$.each(messages, (index, message)=>{
-			      			if (child.tag == message.sid || child.bus_id == message.sid ) {
+			      		
+			      		this.storage.get("roomsData").then((data)=>{
 
-			      				if (message.name) {
-				      				message.name.push(child.name);
-				      			}else{
-				      				message.name = [child.name];
+			      			let roomsData = data;
+			      			$.each(messages, (index, message)=>{
+				      			if (child.tag == message.sid || child.bus_id == message.sid ) {
+
+				      				message.name = roomsData[message.sid];
 				      			}
-			      			}
+				      			else{
+				      				//if sid equal geo id
+				      				if (message.bus_id) {
+				      					let id = roomsData[message.sid][message.bus_id];
+				      					message.name = roomsData[id];
+				      				}
+				      			}
 
-			      			message.msg = message.msg.replace(/['"]/g, "");
-			      			message.status = message.status.replace(/['"]/g, "");
-			      		})
+				      			message.msg = message.msg.replace(/['"]/g, "");
+				      			message.status = message.status.replace(/['"]/g, "");
+				      		});
 
-			      		this.storage.set(child.tag, messages);
-            			if (messages.length > 0) {
-            				child.lastMsg= messages[0];
-            				for (let i=0; i< messages.length; i++) {
-            					if (messages[i].sid == child.tag) {
-            						child.childLastMsg = messages[i];
-            						break
-            					}else{
-		            				child.childLastMsg = [];
-		            			}
-            				}
-            			}
-            			else{
-            				child.lastMsg = [];
-            				child.childLastMsg = [];
-            			}
-		            	this.storage.set("children", this.children);
-				    	dfd.resolve(this.children);
+				      		this.storage.set(child.tag, messages);
+	            			if (messages.length > 0) {
+	            				child.lastMsg= messages[0];
+	            				for (let i=0; i< messages.length; i++) {
+	            					if (messages[i].sid == child.tag) {
+	            						child.childLastMsg = messages[i];
+	            						break
+	            					}else{
+			            				child.childLastMsg = [];
+			            			}
+	            				}
+	            			}
+	            			else{
+	            				child.lastMsg = [];
+	            				child.childLastMsg = [];
+	            			}
+			            	this.storage.set("children", this.children);
+					    	dfd.resolve(this.children);
+
+			      		}).catch((err)=>{
+			      			console.log(err)
+			      		});			      		
 			      	}
 			      	else{
 			       		dfd.reject("children not allowed")

@@ -28284,6 +28284,11 @@ page-notifications .input-wrapper h2 {
   font-size: 18px;
 }
 
+page-notifications .input-wrapper h3 {
+  color: #666;
+  font-size: 15px;
+}
+
 page-profile ion-card-title {
   text-align: center;
 }

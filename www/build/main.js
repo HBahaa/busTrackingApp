@@ -93,7 +93,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var GetNotificationProvider = (function () {
     function GetNotificationProvider(storage) {
         this.storage = storage;
-        console.log('Hello GetNotificationProvider Provider');
     }
     GetNotificationProvider.prototype.getNotification = function (token) {
         var _this = this;
@@ -117,38 +116,45 @@ var GetNotificationProvider = (function () {
                 };
                 __WEBPACK_IMPORTED_MODULE_2_jquery__["ajax"](settings).done(function (response) {
                     if (response.success) {
-                        var messages = response.message;
-                        __WEBPACK_IMPORTED_MODULE_2_jquery__["each"](messages, function (index, message) {
-                            if (child.tag == message.sid || child.bus_id == message.sid) {
-                                if (message.name) {
-                                    message.name.push(child.name);
+                        var messages_1 = response.message;
+                        _this.storage.get("roomsData").then(function (data) {
+                            var roomsData = data;
+                            __WEBPACK_IMPORTED_MODULE_2_jquery__["each"](messages_1, function (index, message) {
+                                if (child.tag == message.sid || child.bus_id == message.sid) {
+                                    message.name = roomsData[message.sid];
                                 }
                                 else {
-                                    message.name = [child.name];
+                                    //if sid equal geo id
+                                    if (message.bus_id) {
+                                        var id = roomsData[message.sid][message.bus_id];
+                                        message.name = roomsData[id];
+                                    }
+                                }
+                                message.msg = message.msg.replace(/['"]/g, "");
+                                message.status = message.status.replace(/['"]/g, "");
+                            });
+                            _this.storage.set(child.tag, messages_1);
+                            if (messages_1.length > 0) {
+                                child.lastMsg = messages_1[0];
+                                for (var i = 0; i < messages_1.length; i++) {
+                                    if (messages_1[i].sid == child.tag) {
+                                        child.childLastMsg = messages_1[i];
+                                        break;
+                                    }
+                                    else {
+                                        child.childLastMsg = [];
+                                    }
                                 }
                             }
-                            message.msg = message.msg.replace(/['"]/g, "");
-                            message.status = message.status.replace(/['"]/g, "");
+                            else {
+                                child.lastMsg = [];
+                                child.childLastMsg = [];
+                            }
+                            _this.storage.set("children", _this.children);
+                            dfd.resolve(_this.children);
+                        }).catch(function (err) {
+                            console.log(err);
                         });
-                        _this.storage.set(child.tag, messages);
-                        if (messages.length > 0) {
-                            child.lastMsg = messages[0];
-                            for (var i = 0; i < messages.length; i++) {
-                                if (messages[i].sid == child.tag) {
-                                    child.childLastMsg = messages[i];
-                                    break;
-                                }
-                                else {
-                                    child.childLastMsg = [];
-                                }
-                            }
-                        }
-                        else {
-                            child.lastMsg = [];
-                            child.childLastMsg = [];
-                        }
-                        _this.storage.set("children", _this.children);
-                        dfd.resolve(_this.children);
                     }
                     else {
                         dfd.reject("children not allowed");
@@ -164,9 +170,10 @@ var GetNotificationProvider = (function () {
 }());
 GetNotificationProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]) === "function" && _a || Object])
 ], GetNotificationProvider);
 
+var _a;
 //# sourceMappingURL=get-notification.js.map
 
 /***/ }),
@@ -552,6 +559,7 @@ var GetChildrenProvider = (function () {
         this.children = [];
         // rooms: any[] = [];
         this.rooms = {};
+        this.roomsData = {};
     }
     GetChildrenProvider.prototype.getAllChildren = function (token) {
         var _this = this;
@@ -575,11 +583,28 @@ var GetChildrenProvider = (function () {
             __WEBPACK_IMPORTED_MODULE_3_jquery__["ajax"](settings).done(function (response) {
                 if (response.success) {
                     // this.rooms.push(response.data['loc']['fence_id']);
-                    _this.rooms.geo = response.data['loc']['fence_id'];
+                    var geo_id_1 = response.data['loc']['fence_id'];
+                    _this.rooms.geo = geo_id_1;
+                    _this.roomsData[geo_id_1] = [];
                     __WEBPACK_IMPORTED_MODULE_3_jquery__["each"](response.data.children, function (index, value) {
                         value["tag"] = index;
                         value["image"] = "https://hst-api.wialon.com/avl_tag_image/" + value.source + "/" + value.id + "/100/100/2490508405.png";
                         // this.rooms.push(index);
+                        _this.roomsData[index] = [value.name];
+                        if (geo_id_1 in _this.roomsData) {
+                            if (_this.roomsData[geo_id_1].indexOf(value.bus_id) == -1) {
+                                _this.roomsData[geo_id_1].push(value.bus_id);
+                            }
+                        }
+                        else {
+                            _this.roomsData[geo_id_1] = [value.bus_id];
+                        }
+                        if (value.bus_id in _this.roomsData) {
+                            _this.roomsData[value.bus_id].push(value.name);
+                        }
+                        else {
+                            _this.roomsData[value.bus_id] = [value.name];
+                        }
                         if ('tag' in _this.rooms) {
                             _this.rooms.tag.push(index);
                         }
@@ -600,6 +625,7 @@ var GetChildrenProvider = (function () {
                         }
                         _this.children.push(value);
                         _this.storage.set("rooms", _this.rooms);
+                        _this.storage.set("roomsData", _this.roomsData);
                         _this.storage.set("children", _this.children);
                     });
                     _this.loader.dismiss();
@@ -1492,10 +1518,11 @@ ChildrenPage = __decorate([
         selector: 'page-children',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/children/children.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'CHILDREN_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card class="std" *ngFor="let child of children">\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="child.image" onError="this.src=\'assets/imgs/1.png\'">\n      </ion-avatar>\n      \n      <ion-row>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.name\' | translate }}:</span></ion-col>\n        <ion-col col-8><span class="chData">{{child.name}}</span></ion-col>\n        <ion-col col-4><span>{{ \'CHILDREN_PAGE.status\' | translate }}:</span></ion-col>\n        <ion-col col-8>\n          <span class="chData" *ngIf="child.childLastMsg != undefined">{{child.childLastMsg?.status}}</span>\n          <span class="chData" *ngIf="child.childLastMsg == undefined">No Status</span>\n        </ion-col>\n      </ion-row>\n      <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ \'CHILDREN_PAGE.details\' | translate }}</button>\n    </ion-item>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/children/children.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_9__providers_get_notification_get_notification__["a" /* GetNotificationProvider */], __WEBPACK_IMPORTED_MODULE_10__providers_login_login__["a" /* LoginProvider */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__["a" /* BackgroundMode */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__["a" /* BackgroundMode */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__providers_get_notification_get_notification__["a" /* GetNotificationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_10__providers_login_login__["a" /* LoginProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__providers_login_login__["a" /* LoginProvider */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_background_mode__["a" /* BackgroundMode */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_9__providers_get_notification_get_notification__["a" /* GetNotificationProvider */],
+        __WEBPACK_IMPORTED_MODULE_10__providers_login_login__["a" /* LoginProvider */]])
 ], ChildrenPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=children.js.map
 
 /***/ }),
@@ -1894,7 +1921,7 @@ var NotificationsPage = (function () {
 }());
 NotificationsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'NOTIFICATION_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <ion-icon color="mainColor" *ngIf="rooms.tag.indexOf(item.sid) >= 0" ios="ios-pricetag-outline" md="md-pricetag" item-start></ion-icon>\n      <ion-icon color="mainColor" *ngIf="rooms.bus.indexOf(item.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>\n      <ion-icon color="mainColor" *ngIf="rooms.geo == item.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>\n        <h3 *ngIf="item.name">child name: {{item.name.toString()}}</h3>\n        <h2 *ngIf="item.msg.length == 30 || item.msg.length < 30;else msg">{{item.msg}}</h2>\n        <ng-template #msg><h2>{{item.msg.substr(0, 30) +"..."}}</h2></ng-template>\n        \n        <p *ngIf="(item.time | customDate) != item.time; else temp" text-right>\n          <span>{{ item.time | customDate }}</span>\n          <span *ngIf="(item.time | customDate).includes(\'day\')">, {{item.time | date:\'shortTime\'}}</span>\n        </p>\n        <ng-template #temp>\n          <p text-right>\n            {{item.time | date:\'short\'}}\n          </p>\n        </ng-template>\n\n    </button>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/notifications/notifications.html"*/,
+        selector: 'page-notifications',template:/*ion-inline-start:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/notifications/notifications.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{ \'NOTIFICATION_PAGE.title\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">\n      <ion-icon \n        color="mainColor" *ngIf="rooms.tag.indexOf(item.sid) >= 0" ios="ios-pricetag-outline" md="md-pricetag" item-start>\n      </ion-icon>\n\n      <ion-icon\n        color="mainColor" *ngIf="rooms.bus.indexOf(item.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start>\n      </ion-icon>\n\n      <ion-icon\n        color="mainColor" *ngIf="rooms.geo == item.sid" ios="ios-home-outline" md="md-home" item-start>\n      </ion-icon>\n\n      <h3 *ngIf="item.name">child name: {{item.name.toString()}}</h3>\n      <h2 *ngIf="item.msg.length == 30 || item.msg.length < 30;else msg">{{item.msg}}</h2>\n      <ng-template #msg><h2>{{item.msg.substr(0, 30) +"..."}}</h2></ng-template>\n      \n      <p *ngIf="(item.time | customDate) != item.time; else temp" text-right>\n        <span>{{ item.time | customDate }}</span>\n        <span *ngIf="(item.time | customDate).includes(\'day\')">, {{item.time | date:\'shortTime\'}}</span>\n      </p>\n      <ng-template #temp>\n        <p text-right>{{item.time | date:\'short\'}}</p>\n      </ng-template>\n\n    </button>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/heba/Downloads/mw3_task/busTrackingApp/src/pages/notifications/notifications.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_4__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__providers_get_notification_get_notification__["a" /* GetNotificationProvider */]])
