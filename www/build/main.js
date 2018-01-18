@@ -170,10 +170,9 @@ var GetNotificationProvider = (function () {
 }());
 GetNotificationProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
 ], GetNotificationProvider);
 
-var _a;
 //# sourceMappingURL=get-notification.js.map
 
 /***/ }),
@@ -1384,7 +1383,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ChildrenPage = (function () {
     function ChildrenPage(navCtrl, storage, backgroundMode, platform, getNotificationProvider, loginProvider) {
-        // this.serverConnection();
         var _this = this;
         this.navCtrl = navCtrl;
         this.storage = storage;
@@ -1394,6 +1392,7 @@ var ChildrenPage = (function () {
         this.loginProvider = loginProvider;
         this.children = [];
         this.items = [];
+        this.serverConnection();
         this.platform.ready().then(function () {
             _this.backgroundMode.on("activate").subscribe(function () {
                 console.log('activated');
