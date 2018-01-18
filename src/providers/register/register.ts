@@ -16,7 +16,7 @@ export class RegisterProvider {
 			var settings1 = {
 			"async": true,
 				"crossDomain": true,
-				"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/register?nid="+nid+"&secureCode="+secureCode+"&name="+user._value.name+"&locLat="+location.lat+"&locLong="+location.lng+"&locDesc="+user._value.address+"&password="+user._value.password,
+				"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/register?nid="+nid+"&secureCode="+secureCode+"&name="+user._value.name+"&locLat="+location.lat+"&locLong="+location.lng+"&locDesc="+user._value.address+"&password="+user._value.password+"&email="+user._value.email+"&phone="+user._value.mob,
 				"method": "POST",
 				"headers": {
 					"content-type": "application/json",

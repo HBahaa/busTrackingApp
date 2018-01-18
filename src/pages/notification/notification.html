@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>notification</ion-title>
+    <ion-title>{{ 'NOTIFICATION_PAGE.title' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,12 +11,11 @@
 <ion-content>
 	<div id="map"></div>
 	<ion-card>
-	  
 	  <ion-card-content>
 	  	<p>{{notification.time | date:'shortTime'}}</p>
-	  	
-		<h2><span>Bus Speed:</span> {{ notification.speed }}</h2>
-		<h2><span>Status:</span> {{ notification.status }}</h2>
+		<h2><span>{{ 'NOTIFICATION_PAGE.childName' | translate }}:</span> {{ notification.name }}</h2>
+		<h2><span>{{ 'NOTIFICATION_PAGE.busSpeed' | translate }}:</span> {{ notification.speed }}</h2>
+		<h2><span>{{ 'NOTIFICATION_PAGE.status' | translate }}:</span> {{ notification.status }}</h2>
 		<ion-card-title>
 	      {{ notification.msg }}
 	    </ion-card-title>

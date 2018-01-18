@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="navbarColor">
     <ion-title>
-      Details
+      {{ 'DETAILS_PAGE.title' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,19 +13,24 @@
 			<ion-card-title color="mainColor">{{childData.name}}</ion-card-title>
 			<ion-row>
 	        	<ion-col col-12><br /></ion-col>
-	        	<ion-col col-5><h2>Child ID:</h2></ion-col>
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.childID' | translate }}:</h2></ion-col>
+
 	        	<ion-col col-7><h2>{{childData.tag}}</h2></ion-col>
 
-	        	<ion-col col-5><h2>Child Status:</h2></ion-col>
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.childStatus' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
 	        		<h2 *ngIf="childData.childLastMsg != undefined">{{childData["childLastMsg"]["status"]}}</h2>
 	        		<h2 *ngIf="childData.childLastMsg == undefined">No Status</h2>
 	        	</ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
-	        	<ion-col col-5><h2>Bus Number:</h2></ion-col><ion-col col-7><h2>{{childData.bus}}</h2></ion-col>
-	        	<ion-col col-5><h2>Bus ID:</h2></ion-col><ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
-	        	<ion-col col-5><h2>Bus Speed:</h2></ion-col>
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busNumber' | translate }}:</h2></ion-col>
+	        	<ion-col col-7><h2>{{childData.bus}}</h2></ion-col>
+
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busID' | translate }}:</h2></ion-col>
+	        	<ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
+	        	
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busSpeed' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
 	        		<h2 *ngIf="childData['childLastMsg']['speed'] != undefined; else lastMsgSpeed ">
 	        			{{childData["childLastMsg"]["speed"]}}
@@ -36,13 +41,13 @@
 	        	</ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
-	        	<ion-col col-5><h2>Driver Name:</h2></ion-col>
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverName' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
 	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverName"]}}</h2>
 	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverName"]}}</h2>
 	        	</ion-col>
 
-	        	<ion-col col-5><h2>Driver Phone:</h2></ion-col>
+	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverPhone' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
 	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverPhone"]}}</h2>
 	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverPhone"]}}</h2>
@@ -53,8 +58,11 @@
 	</ion-card>
 
 	<ion-list *ngIf="messages.length > 0">
-		<h2>Notifications</h2>
+
+		<h2>{{ 'DETAILS_PAGE.notifications' | translate }}</h2>
+
 	    <button ion-item *ngFor="let message of messages"  (click)="notificationDetails(message)">
+	    	
 			<ion-icon color="mainColor" *ngIf="message.sid == tag" ios="ios-pricetag-outline" md="md-pricetag" item-start></ion-icon>
 			<ion-icon color="mainColor" *ngIf="rooms.bus.indexOf(message.sid) >= 0" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
 	      	<ion-icon color="mainColor" *ngIf="rooms.geo == message.sid" ios="ios-home-outline" md="md-home" item-start></ion-icon>

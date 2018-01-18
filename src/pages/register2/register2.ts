@@ -36,6 +36,7 @@ export class Register2Page {
 
     this.user = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z-]+.[a-zA-Z0-9-.]+$')]),
       address: new FormControl(this.address),
       mob: new FormControl('', [Validators.required,Validators.pattern('^[0-9]*$')]),
       password: new FormControl('', [Validators.minLength(5),Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')])
@@ -50,6 +51,7 @@ export class Register2Page {
       let nid= data.id;
       let secureCode = data.skey
       data.name = user._value.name;
+      data.email = user._value.email;
       data.password = user._value.password;
       data.phone = user._value.mob;
       data.address = this.address;

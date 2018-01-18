@@ -1,28 +1,13 @@
 {
-	"BUTTONS" : {
-		"btn_eng" : "English",
-		"btn_ar" : "Arabic",
-		"alreadyHaveAccount": "Already Have Account",
-		"dontHaveAccount" 	: "Don't Have Account"
+	"LANGUAGE" : {
+		"en" : "English",
+		"ar" : "Arabic"
 	},
-	"FORM":{
-		"name" 	  	 : "Name",
-		"email"	   	 : "Email",
-		"password" 	 : "Password",
-		"address" 	 : "Address",
-		"secertKey"	 : "Secert Key",
-		"idNumber"	 : "ID Number",
-		"send"		 : "Send",
-		"login"		 : "Login",
-		"register"	 : "Register",
-		"phone"		 : "Phone Number",
-		"locateMe"	 : "Change My Address"
-	}, 
 	"ERROR_MESSAGES":{
 		"register1": {
 			"id":{
-				"required": "ID Number is required.",
-				"pattern" : "Please enter valid ID Number."
+				"required" : "ID Number is required.",
+				"pattern"  : "Please enter valid ID Number."
 			},
 			"skey": {
 				"required" : "Secert key is required.",
@@ -31,18 +16,22 @@
 			}
 		},
 		"register2" : {
+			"name": {
+				"required"  : "Name is required.",
+				"minlength" : "Name must be minimum of 4 characters"
+			},
 			"email": {
-				"required": "Email is required.",
-				"pattern" : "Please enter valid email."
+				"required"  : "Email is required.",
+				"pattern"   : "Please enter valid email."
 			},
 			"password": {
-				"required" : "Password is required.",
-				"minlength": "Password must be at least 5 characters long.",
-				"pattern"  : "Your password must contain at least one uppercase, one lowercase, and one number."
+				"required"  : "Password is required.",
+				"minlength" : "Password must be at least 5 characters long.",
+				"pattern"   : "Your password must contains uppercase, lowercase, and numbers."
 			},
 			"mobile": {
-				"required": "Mobile no. is required",
-				"pattern" : "Please enter valid mobile number"
+				"required" : "Mobile no. is required",
+				"pattern"  : "Please enter valid mobile number"
 			}
 		}
 	},
@@ -53,30 +42,66 @@
 		"details" 	: "Details"
 	},
 	"HOME_PAGE":  	 {
-		"title"		: "Your Bus School",
 		"or" 		: "OR",
 		"login" 	: "Login",
 		"register"	: "Register"
 	},
 	"LOGIN_PAGE"	: {
-		"title"		: "Login"
+		"title"				: "Login",
+		"idNumber"	 		: "ID Number",
+		"password"			: "Password",
+		"login"		 		: "Login",
+		"dontHaveAccount" 	: "Don't Have Account"		
 	},
 	"REGISTER1_PAGE"	: {
-		"title"		: "Registration"
+		"title"				: "Registration",
+		"secertKey"	 		: "Secert Key",
+		"idNumber"	 		: "ID Number",
+		"send"		 		: "Send",
+		"alreadyHaveAccount": "Already Have Account"
 	},
 	"REGISTER2_PAGE"	: {
-		"title"		: "Registration"
+		"title"		: "Registration",
+		"name" 	  	: "Name",
+		"email"	    : "Email",
+		"password"	: "Password",
+		"address"   : "Address",
+		"phone"		: "Phone Number",
+		"locateMe"	: "Change My Address",
+		"register"	: "Register"
 	},
 	"DETAILS_PAGE" : {
 		"title"			: "Details",
 		"childID"		: "Child ID",
-		"status"		: "Status",
+		"childStatus"	: "Child Status",
 		"busNumber"		: "Bus Number",
+		"busID"			: "Bus ID",
+		"busSpeed"		: "Bus Speed",
 		"driverName"	: "Driver Name",
-		"driverPhone"	: "Driver Phone"
+		"driverPhone"	: "Driver Phone",
+		"notifications" : "NotificationS"
+	},
+	"NOTIFICATIONS_PAGE" : {
+		"title" : "NotificationS",
+		"childName" : "Child Name"
 	},
 	"NOTIFICATION_PAGE" : {
-		"title" : "Notification"
+		"title" 	: "Notification",
+		"childName" : "Child Name",
+		"busSpeed" 	: "Bus Speed",
+		"status" 	: "Status"
+	},
+	"MAP_PAGE" : {
+		"title" : "Select your home",
+		"next" 	: "Next"
+	},
+	"PROFILE_PAGE" : {
+		"title"		: "Profile",
+		"subTitle"	: "Profile Data",
+		"name"		: "Name",
+		"email"		: "Email",
+		"password"	: "Password",
+		"phone"		: "Phone",
+		"address"	: "Address"
 	}
-
 }

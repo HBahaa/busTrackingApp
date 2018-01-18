@@ -39,9 +39,6 @@ export class MyApp {
     platform.ready().then(() => {
 
       if (window.cordova && window.cordova.plugins.Keyboard) {
-        console.log("window.cordova && window.cordova.plugins.Keyboard")
-        // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
-        // and can only affect native compiled Ionic2 apps (not webserved).
         cordova.plugins.Keyboard.disableScroll(true);
       }
 
@@ -59,7 +56,6 @@ export class MyApp {
                 
     });
 
-    // used for an example of ngFor and navigation
     this.pages = [
       { icon: 'contacts',title: 'My Children', component: ChildrenPage },
       { icon: 'notifications',title: 'Notifications', component: NotificationsPage },
@@ -70,9 +66,6 @@ export class MyApp {
 
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-
     this.nav.setRoot(page.component);
   }
 
@@ -89,7 +82,6 @@ export class MyApp {
         });
       })
     });
-
   }
 
   loadingPage(){

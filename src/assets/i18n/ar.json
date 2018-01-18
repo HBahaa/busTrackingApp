@@ -1,82 +1,107 @@
 {
-	"BUTTONS" : {
-		"btn_eng" : "اﻷنجليزيه",
-		"btn_ar" : "العربيه",
-		"alreadyHaveAccount": "لدي حساب",
-		"dontHaveAccount" 	: "ليس لدي حساب"
+	"LANGUAGE" : {
+		"en" : "الانجليزية",
+		"ar" : "العربية"
 	},
-	"FORM":{
-		"name" 	  	 : "الاسم",
-		"email"	   	 : "الايميل",
-		"password" 	 : "كلمة السر",
-		"address" 	 : "العنوان",
-		"secertKey"	 : "Secert Key",
-		"idNumber"	 : "الرقم القومي",
-		"send"		 : "ارسال",
-		"login"		 : "تسجيل الدخول",
-		"register"	 : "Register",
-		"phone"		 : "Phone Number",
-		"locateMe"	 : "Change My Address"
-	}, 
 	"ERROR_MESSAGES":{
 		"register1": {
 			"id":{
-				"required": "ID Number is required.",
-				"pattern" : "Please enter valid ID Number."
+				"required" : "ادخل الرقم القومي",
+				"pattern"  : "ادخل رقم قومي صحيح"
 			},
 			"skey": {
-				"required" : "Secert key is required.",
-				"min"      : "Please enter valid Secert key.",
-				"max"	   : "Please enter valid Secert key."
+				"required" : "ادخل كلمة السر",
+				"min"      : "ادخل كلمة السر الصحيحة",
+				"max"	   : "ادخل كلمة السر الصحيحة"
 			}
 		},
 		"register2" : {
+			"name": {
+				"required"  : "ادخل اﻷسم",
+				"minlength" : "اﻷسم يجب ان يكون 4 علي اﻷقل"
+			},
 			"email": {
-				"required": "Email is required.",
-				"pattern" : "Please enter valid email."
+				"required"  : "ادخل البريد الإلكتروني",
+				"pattern"   : "ادخل بريد إلكتروني صحيح"
 			},
 			"password": {
-				"required" : "Password is required.",
-				"minlength": "Password must be at least 5 characters long.",
-				"pattern"  : "Your password must contain at least one uppercase, one lowercase, and one number."
+				"required"  : "ادخل كلمة المرور",
+				"minlength" : "كلمة سر يجب ان تكون 5 حروف علي اﻷقل",
+				"pattern"   : "كلمة المرور يجب ان تحتوي حروف و ارقام"
 			},
 			"mobile": {
-				"required": "Mobile no. is required",
-				"pattern" : "Please enter valid mobile number"
+				"required" : "ادخل رقم التلفون",
+				"pattern"  : "رقم التلفون يحتوي علي ارقام فقط"
 			}
 		}
 	},
 	"CHILDREN_PAGE": {
-		"title"		: "My Children",
-		"name"  	: "Name",
-		"status" 	: "Status",
-		"details" 	: "Details"
+		"title"		: "اﻷطفال",
+		"name"  	: "اﻷسم",
+		"status" 	: "الحالة",
+		"details" 	: "التفاصيل"
 	},
 	"HOME_PAGE":  	 {
-		"title"		: "Your Bus School",
-		"or" 		: "OR",
-		"login" 	: "Login",
-		"register"	: "Register"
+		"or" 		: "أو",
+		"login" 	: "تسجيل الدخول",
+		"register"	: "حساب جديد"
 	},
 	"LOGIN_PAGE"	: {
-		"title"		: "Login"
+		"title"				: "تسجيل الدخول",
+		"idNumber"	 		: "الرقم القومي",
+		"password"			: "كلمة المرور",
+		"login"		 		: "ارسال",
+		"dontHaveAccount" 	: "ليس لدي حساب"		
 	},
 	"REGISTER1_PAGE"	: {
-		"title"		: "Registration"
+		"title"				: "حساب جديد",
+		"secertKey"	 		: "الرقم السري",
+		"idNumber"	 		: "الرقم القومي",
+		"send"		 		: "ارسال",
+		"alreadyHaveAccount": "لدي حساب"
 	},
 	"REGISTER2_PAGE"	: {
-		"title"		: "Registration"
+		"title"		: "حساب جديد",
+		"name" 	  	: "اﻷسم",
+		"email"	    : "البريد الإلكتروني",
+		"password"	: "كلمة المرور",
+		"address"   : "العنوان",
+		"phone"		: "رقم التلفون",
+		"locateMe"	: "تغيير العنوان",
+		"register"	: "تسجيل"
 	},
 	"DETAILS_PAGE" : {
-		"title"			: "Details",
-		"childID"		: "Child ID",
-		"status"		: "Status",
-		"busNumber"		: "Bus Number",
-		"driverName"	: "Driver Name",
-		"driverPhone"	: "Driver Phone"
+		"title"			: "التفاصيل",
+		"childID"		: "رقم الطفل",
+		"childStatus"	: "حالة الطفل",
+		"busNumber"		: "رقم اﻷتوبيس",
+		"busID"			: "Bus ID",
+		"busSpeed"		: "سرعة اﻷتوبيس",
+		"driverName"	: "اسم السائق",
+		"driverPhone"	: "Driver Phone",
+		"notifications" : "الإشعارات"
+	},
+	"NOTIFICATIONS_PAGE" : {
+		"title" : "كل الإشعارات",
+		"childName" : "اسم الطفل"
 	},
 	"NOTIFICATION_PAGE" : {
-		"title" : "Notification"
+		"title" 	: "الإشعارات",
+		"childName" : "اسم الطفل",
+		"busSpeed" 	: "سرعة اﻷتوبيس",
+		"status" 	: "الحالة"
+	},
+	"MAP_PAGE" : {
+		"title" : "اختر عنوان المنزل",
+		"next" 	: "التالي"
+	},
+	"PROFILE_PAGE" : {
+		"title"		: "الصفحة الشخصية",
+		"subTitle"	: "البيانات اﻷساسية",
+		"name"		: "اﻷسم",
+		"email"		: "البريد الإلكتروني",
+		"password"	: "كلمة المرور",
+		"phone"		: "رقم التلفون",
+		"address"	: "العنوان"
 	}
-
 }

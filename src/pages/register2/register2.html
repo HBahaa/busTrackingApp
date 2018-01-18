@@ -1,24 +1,26 @@
 <ion-content padding class="login-content">
   <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+
     <h3>{{ 'REGISTER2_PAGE.title' | translate }}</h3>
      <ion-item>
         <ion-label ><ion-icon name="person"></ion-icon></ion-label>
-        <ion-input type="text" value="" formControlName="name"></ion-input>
+        <ion-input type="text" placeholder="{{ 'REGISTER2_PAGE.name' | translate }}" formControlName="name">
+        </ion-input>
       </ion-item>
 
       <div class="error-container" no-lines *ngIf="( user.get('name').hasError('minlength') || user.get('name').hasError('required') ) && user.get('name').touched">
 
         <div class="error" *ngIf="user.get('name').hasError('required') && user.get('name').touched">
-          Name is required
+          {{ 'ERROR_MESSAGES.register2.name.required' | translate }}
         </div>
         <div class="error" *ngIf="user.get('name').hasError('minlength') && user.get('name').touched">
-          Minimum of 4 characters
+          {{ 'ERROR_MESSAGES.register2.name.minlength' | translate }}
         </div>
       </div>
 
-    <!-- <ion-item>
+    <ion-item>
       <ion-label ><ion-icon name="mail"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="email" formControlName="email"></ion-input>
+      <ion-input type="text" placeholder="{{ 'REGISTER2_PAGE.email' | translate }}" formControlName="email"></ion-input>
     </ion-item>
 
     <div class="error-container" no-lines *ngIf="( user.get('email').hasError('required') || user.get('email').hasError('pattern') ) && user.get('email').touched">
@@ -31,11 +33,11 @@
         {{ 'ERROR_MESSAGES.register2.email.pattern' | translate }}
       </div>
 
-    </div> -->
+    </div>
 
     <ion-item>
       <ion-label ><ion-icon name="lock"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="password" formControlName="password"></ion-input>
+      <ion-input type="text" placeholder="{{ 'REGISTER2_PAGE.password' | translate }}" formControlName="password"></ion-input>
     </ion-item>
 
     <div class="error-container" no-lines *ngIf="( user.get('password').hasError('required') || user.get('password').hasError('minlength') || user.get('password').hasError('pattern') ) && user.get('password').touched">
@@ -56,12 +58,12 @@
 
     <ion-item>
       <ion-label ><ion-icon name="pin"></ion-icon></ion-label>
-      <ion-input type="text" formControlName="address" readonly></ion-input>
+      <ion-input type="text" formControlName="{{ 'REGISTER2_PAGE.address' | translate }}" readonly></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label ><ion-icon name="phone-portrait"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="phone" formControlName="mob"></ion-input>
+      <ion-input type="text" placeholder="{{ 'REGISTER2_PAGE.phone' | translate }}" formControlName="mob"></ion-input>
     </ion-item>
 
     <div class="error-container" no-lines *ngIf="( user.get('mob').hasError('required') || user.get('mob').hasError('pattern'))&& user.get('mob').touched">
@@ -79,11 +81,11 @@
 
     </div>
 
-    <button ion-button block round color="mainColor" [disabled]="!user.valid"><ion-icon name="log-in"></ion-icon>Sign up</button>
+    <button ion-button block round color="mainColor" [disabled]="!user.valid"><ion-icon name="log-in"></ion-icon>{{ 'REGISTER2_PAGE.register' | translate }}</button>
   </form>
 
   <button ion-button type="button" color="primary" block round style="text-transform: capitalize;" (click)="locateMe()">
-    <ion-icon name="pin"></ion-icon> {{ 'FORM.locateMe' | translate }}
+    <ion-icon name="pin"></ion-icon> {{ 'REGISTER2_PAGE.locateMe' | translate }}
   </button>
       
 </ion-content>

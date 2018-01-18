@@ -8,9 +8,7 @@ import * as $ from 'jquery';
 @Injectable()
 export class LoginProvider {
 
-	constructor(public storage: Storage) {
-		console.log('Hello LoginProvider Provider');
-	}
+	constructor(public storage: Storage) {}
 
 	Login(id, password){
 		return new Promise((resolve, reject) => {

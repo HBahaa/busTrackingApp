@@ -1,7 +1,11 @@
 <ion-content padding class="home-content">
-	<!-- <h2>{{ 'HOME_PAGE.title' | translate }}</h2> -->
+    <button ion-button color="mainColor" round block (click)="goToLogin()">
+    	<ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}
+    </button>
 
-    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}</button>
     <h3>{{ 'HOME_PAGE.or' | translate }}</h3>
-    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.register' | translate }}</button>
+
+    <button ion-button color="primary" round block (click)="goToRegistration()">
+    	<ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.register' | translate }}
+    </button>
 </ion-content>
