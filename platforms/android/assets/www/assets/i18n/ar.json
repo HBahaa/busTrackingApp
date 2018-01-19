@@ -1,26 +1,119 @@
 {
-	"BUTTONS" : {
-		"btn_eng" : "اﻷنجليزيه",
-		"btn_ar" : "العربيه",
+	"LANGUAGE" : {
+		"selectLanguage": "اختر اللغة",
+		"en"			: "الانجليزية",
+		"ar"			: "العربية",
+		"ok"			: "تأكيد",
+		"cancel"		: "إلغاء"
+	},
+	"ERROR_MESSAGES":{
+		"register1": {
+			"id":{
+				"required" : "ادخل الرقم القومي",
+				"pattern"  : "ادخل رقم قومي صحيح"
+			},
+			"skey": {
+				"required" : "ادخل كلمة السر",
+				"min"      : "ادخل كلمة السر الصحيحة",
+				"max"	   : "ادخل كلمة السر الصحيحة"
+			}
+		},
+		"register2" : {
+			"name": {
+				"required"  : "ادخل اﻷسم",
+				"minlength" : "اﻷسم يجب ان يكون 4 علي اﻷقل"
+			},
+			"email": {
+				"required"  : "ادخل البريد الإلكتروني",
+				"pattern"   : "ادخل بريد إلكتروني صحيح"
+			},
+			"password": {
+				"required"  : "ادخل كلمة المرور",
+				"minlength" : "كلمة سر يجب ان تكون 5 حروف علي اﻷقل",
+				"pattern"   : "كلمة المرور يجب ان تحتوي حروف و ارقام"
+			},
+			"mobile": {
+				"required" : "ادخل رقم التلفون",
+				"pattern"  : "رقم التلفون يحتوي علي ارقام فقط"
+			}
+		}
+	},
+	"APP_PAGE" : {
+		"menu" 	 : "القائمة",
+		"logout" : "خروج"
+	},
+	"CHILDREN_PAGE": {
+		"title"		: "اﻷطفال",
+		"name"  	: "اﻷسم",
+		"status" 	: "الحالة",
+		"details" 	: "التفاصيل"
+	},
+	"HOME_PAGE":  	 {
+		"or" 		: "أو",
+		"login" 	: "تسجيل الدخول",
+		"register"	: "تسجيل"
+	},
+	"LOGIN_PAGE"	: {
+		"title"				: "تسجيل الدخول",
+		"idNumber"	 		: "الرقم القومي",
+		"password"			: "كلمة المرور",
+		"login"		 		: "ارسال",
+		"dontHaveAccount" 	: "ليس لدي حساب",
+		"error1" 			: "الرقم القومي او كلمة السر غير صحيح",
+		"error2" 			: "الرقم القومي او كلمة السر غير صحيح. تأكد ان جهازك متصل بالانترنت"		
+	},
+	"REGISTER1_PAGE"	: {
+		"title"				: "تسجيل",
+		"secertKey"	 		: "الرقم السري",
+		"idNumber"	 		: "الرقم القومي",
+		"send"		 		: "ارسال",
 		"alreadyHaveAccount": "لدي حساب",
-		"dontHaveAccount" 	: "ليس لدي حساب"
+		"error" 			: "حدث خطأ أثناء التسجيل،برجاء المحاولة مرة اخري"
 	},
-	"PAGES": {
-		"login": "تسجيل الدخول",
-		"register1"	   : "تسجيل الدخول",
-		"register2"	   : "Register2",
-		"children" 	   : "My Children",
-		"notifications": "الاشعارات"
+	"REGISTER2_PAGE"	: {
+		"title"		: "تسجيل",
+		"name" 	  	: "اﻷسم",
+		"email"	    : "البريد الإلكتروني",
+		"password"	: "كلمة المرور",
+		"address"   : "العنوان",
+		"phone"		: "رقم التلفون",
+		"locateMe"	: "تغيير العنوان",
+		"register"	: "تسجيل"
 	},
-	"FORM":{
-		"name" 	  	 : "الاسم",
-		"email"	   	 : "الايميل",
-		"password" 	 : "كلمة السر",
-		"location" 	 : "العنوان",
-		"secertKey"	 : "Secert Key",
-		"nationalID" : "الرقم القومي",
-		"send"		 : "ارسال",
-		"login"		 : "تسجيل الدخول"
+	"DETAILS_PAGE" : {
+		"title"			: "التفاصيل",
+		"childID"		: "رقم الطفل",
+		"childStatus"	: "حالة الطفل",
+		"busNumber"		: "رقم اﻷتوبيس",
+		"busID"			: "Bus ID",
+		"busSpeed"		: "سرعة اﻷتوبيس",
+		"driverName"	: "اسم السائق",
+		"driverPhone"	: "Driver Phone",
+		"notifications" : "الإشعارات"
+	},
+	"NOTIFICATIONS_PAGE" : {
+		"title" : "كل الإشعارات",
+		"childName" : "اسم الطفل"
+	},
+	"NOTIFICATION_PAGE" : {
+		"title" 	: "الإشعارات",
+		"childName" : "اسم الطفل",
+		"busSpeed" 	: "سرعة اﻷتوبيس",
+		"status" 	: "الحالة"
+	},
+	"MAP_PAGE" : {
+		"title" : "اختر عنوان المنزل",
+		"next" 	: "التالي",
+		"toast1" : "يمكنك الضغط علي الخريطة لاختيار منزلك او ادخل العنوان في البحث ثم اضغط التالي",
+		"toast2" : "ادخل العنوان في بحث ثم اضغط التالي"
+	},
+	"PROFILE_PAGE" : {
+		"title"		: "الصفحة الشخصية",
+		"subTitle"	: "البيانات اﻷساسية",
+		"name"		: "اﻷسم",
+		"email"		: "البريد الإلكتروني",
+		"password"	: "كلمة المرور",
+		"phone"		: "رقم التلفون",
+		"address"	: "العنوان"
 	}
-
 }

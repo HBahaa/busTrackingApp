@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, ToastController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
-
+import { TranslateService } from '@ngx-translate/core';
 import { Register2Page } from '../register2/register2';
 
 declare var google;
@@ -20,10 +20,13 @@ export class MapPage {
     searchQuery: any;
 
  
-    constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps, private toastCtrl: ToastController) {
+    constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps,
+      private toastCtrl: ToastController, private translate: TranslateService) {
         platform.ready().then(() => {
             this.loadMap();
-            this.presentToast('Select your location, you can click on map to select you home or from search box  then click Next', 5000, 'top');
+            this.translate.get('MAP_PAGE.toast1').subscribe((toast1)=>{
+              this.presentToast(toast1, 5000, 'top');
+            })
         });
     }
  
@@ -169,22 +172,22 @@ loadMap() {
             };
 
             this.map.setOptions(mapOption);
-
             this.searchQuery = '';
 
           }).catch(()=>{
-            console.log("clear map")
+            // console.log("clear map")
           })
 
         } else {
-          alert("Geocode was not successful for the following reason: " + status);
+          // alert("Geocode was not successful for the following reason: " + status);
         }
       });
     }
     else if (this.searchQuery == undefined) {
+      this.translate.get('MAP_PAGE.toast2').subscribe((toast2)=>{
+        this.presentToast(toast2, 4000, "bottom");
+      });
 
-      console.log("this.searchQuery", this.searchQuery);
-      this.presentToast('Please enter address in search box or click Next', 4000, "bottom");
     }
   }
 

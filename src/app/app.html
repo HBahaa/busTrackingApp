@@ -1,17 +1,37 @@
-<ion-menu [content]="content">
+<ion-menu *ngIf="this.platform.dir()==='rtl'" side="right" [content]="content">
   <ion-header>
-    <ion-toolbar style="min-height: 150px">
-      <ion-title>Menu</ion-title>
+    <ion-toolbar style="min-height: 150px;">
+      <ion-title>{{ 'APP_PAGE.menu' | translate }} </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name={{p.icon}}></ion-icon> {{p.title}}
+        <ion-icon name={{p.icon}}></ion-icon> {{ p.title | translate }}
       </button>
       <button menuClose ion-item (click)="userLogout()">
-        <ion-icon name="log-out"></ion-icon> Logout
+        <ion-icon name="log-out"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-menu *ngIf="this.platform.dir()==='ltr'" side="left" [content]="content">
+  <ion-header>
+    <ion-toolbar style="min-height: 150px;">
+      <ion-title>{{ 'APP_PAGE.menu' | translate }} </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name={{p.icon}}></ion-icon> {{ p.title | translate }}
+      </button>
+      <button menuClose ion-item (click)="userLogout()">
+        <ion-icon name="log-out"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
       </button>
     </ion-list>
   </ion-content>

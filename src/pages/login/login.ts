@@ -46,7 +46,7 @@ export class LoginPage {
          
   }
 
-  createAccount(){
+  createAccount(){ 
     this.menuCtrl.enable(false);
     this.navCtrl.setRoot(Register1Page);
   }

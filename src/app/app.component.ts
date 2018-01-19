@@ -34,7 +34,6 @@ export class MyApp {
     private translateService: TranslateService, private keyboard: Keyboard,public toastCtrl:ToastController
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
-    // this.storage.clear();
 
     platform.ready().then(() => {
 
@@ -47,9 +46,10 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
+      console.log(this.platform.lang());
 
-      this.translateService.setDefaultLang('en');
-      this.translateService.use('en');
+      // this.translateService.setDefaultLang(en);
+      this.translateService.use(this.platform.lang());
 
       this.presentLoading();
       this.loadingPage();
@@ -57,9 +57,9 @@ export class MyApp {
     });
 
     this.pages = [
-      { icon: 'contacts',title: 'My Children', component: ChildrenPage },
-      { icon: 'notifications',title: 'Notifications', component: NotificationsPage },
-      { icon: 'person',title: 'Profile', component: ProfilePage }
+      { icon: 'contacts',title: 'CHILDREN_PAGE.title', component: ChildrenPage },
+      { icon: 'notifications',title: 'NOTIFICATIONS_PAGE.title', component: NotificationsPage },
+      { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage }
     ];
 
   }
@@ -70,18 +70,7 @@ export class MyApp {
   }
 
   userLogout(){
-    this.storage.get('children').then((result)=>{
-      $.each(result, (index, child)=>{
-        this.storage.remove(child.tag).then(()=>{
-          this.storage.remove('children')
-          this.storage.remove('token').then(()=>{
-            this.nav.setRoot(LoginPage);
-          }).catch(()=>{
-            console.log("error")
-          });
-        });
-      })
-    });
+    this.storage.clear();
   }
 
   loadingPage(){

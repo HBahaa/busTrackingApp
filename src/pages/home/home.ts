@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import 'rxjs/add/operator/map';
-// import * as $ from 'jquery';
 
 import { LoginPage } from '../login/login';
 import { Register1Page } from '../register1/register1';
@@ -18,8 +17,21 @@ export class HomePage {
   }
 
    ionViewDidEnter() {
-
     this.menuCtrl.enable(false);
+  }
+
+  changeLanguage(language){
+    if (language === 'ar') {
+      this.platform.setDir('ltr', false);
+      this.platform.setDir('rtl', true);
+      this.translateService.use(language);
+      
+    } else {
+      this.platform.setDir('rtl', false);
+      this.platform.setDir('ltr', true);
+      this.translateService.use(language);
+    }
+    // this.translateService.use(language)
   }
 
   goToLogin() {

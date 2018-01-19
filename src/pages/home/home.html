@@ -1,4 +1,14 @@
 <ion-content padding class="home-content">
+	<ion-item>
+		<ion-label>{{ 'LANGUAGE.selectLanguage' | translate }}:</ion-label>
+		<ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage($event)"
+				okText="{{ 'LANGUAGE.ok' | translate }}" cancelText="{{ 'LANGUAGE.cancel' | translate }}">
+
+			<ion-option value="en">{{ 'LANGUAGE.en' | translate }}</ion-option>
+			<ion-option value="ar">{{ 'LANGUAGE.ar' | translate }}</ion-option>
+		</ion-select>
+	</ion-item>
+
     <button ion-button color="mainColor" round block (click)="goToLogin()">
     	<ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}
     </button>

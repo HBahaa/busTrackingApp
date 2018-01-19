@@ -11,24 +11,23 @@ import { Storage } from '@ionic/storage';
 export class ProfilePage {
 
 	name: string;
+	email: string;
 	address: string;
 	password: string;
 	phone: string;
 
-	constructor(public navCtrl: NavController, private storage: Storage) {
-
-	}
+	constructor(public navCtrl: NavController, private storage: Storage) {}
 
 	ionViewDidLoad(){
-
 		this.storage.get("userData").then((data)=>{
 			this.name = data.name;
+			this.email = data.email;
 			this.phone = data.phone;
 			this.password = data.password;
 			this.address = data.address;
 		})
-
 	}
+	
 	// presentToast() {
 	//     let toast = this.toastCtrl.create({
 	//       message: "data saved",
