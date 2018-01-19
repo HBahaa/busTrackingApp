@@ -40,7 +40,8 @@
 	},
 	"APP_PAGE" : {
 		"menu" 	 : "Menu",
-		"logout" : "Logout"
+		"logout" : "Logout",
+		"load" 	 : "Authenticating..."
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
@@ -114,6 +115,8 @@
 		"email"		: "Email",
 		"password"	: "Password",
 		"phone"		: "Phone",
-		"address"	: "Address"
+		"address"	: "Address",
+		"update"	: "Update",
+		"edit" 		: "Edit"
 	}
 }

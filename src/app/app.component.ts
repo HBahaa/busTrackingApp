@@ -24,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = ProfilePage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -49,10 +49,10 @@ export class MyApp {
       console.log(this.platform.lang());
 
       // this.translateService.setDefaultLang(en);
-      this.translateService.use(this.platform.lang());
+      this.translateService.use('en');
 
-      this.presentLoading();
-      this.loadingPage();
+      // this.presentLoading();
+      // this.loadingPage();
                 
     });
 
@@ -90,9 +90,12 @@ export class MyApp {
   }
 
   presentLoading() {
-    this.loader = this.loadingCtrl.create({
-      content: "Authenticating..."
+    this.translateService.get('APP_PAGE.load').subscribe((content)=>{
+      this.loader = this.loadingCtrl.create({
+        content: content
+      });
+      this.loader.present();
     });
-    this.loader.present();
+
   }
 }

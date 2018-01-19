@@ -14,11 +14,15 @@
               <ion-input type="text" placeholder="{{ 'LOGIN_PAGE.password' | translate }}" name="password" [(ngModel)]="password" required></ion-input>
             </ion-item>
 
-            <button ion-button type="submit" color="primary" block round [disabled]="!loginForm.form.valid">
-              <ion-icon name="log-in"></ion-icon> {{ 'LOGIN_PAGE.login' | translate }}</button>
+            <button ion-button icon-start ype="submit" color="primary" block round [disabled]="!loginForm.form.valid">
+              <ion-icon name="log-in"></ion-icon> {{ 'LOGIN_PAGE.login' | translate }}
+            </button>
+            
           </ion-list>
         </ion-col>
       </ion-row>
     </form>
-    <button ion-button color="light" (click)="createAccount()" clear>  <ion-icon name="arrow-round-forward"></ion-icon> {{ 'LOGIN_PAGE.dontHaveAccount' | translate }}</button>
+    <button ion-button icon-start color="light" (click)="createAccount()" clear>
+      <ion-icon name="arrow-round-forward"></ion-icon> {{ 'LOGIN_PAGE.dontHaveAccount' | translate }}
+    </button>
 </ion-content>
