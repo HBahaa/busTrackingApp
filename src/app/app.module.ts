@@ -32,6 +32,8 @@ import { LoginProvider } from '../providers/login/login';
 import { RegisterProvider } from '../providers/register/register';
 
 import { DatePipe } from '../pipes/date/date'
+import { ResetPasswordProvider } from '../providers/reset-password/reset-password';
+import { EditProfileProvider } from '../providers/edit-profile/edit-profile';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -93,7 +95,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GetNotificationProvider,
     GetChildrenProvider,
     LoginProvider,
-    RegisterProvider
+    RegisterProvider,
+    ResetPasswordProvider,
+    EditProfileProvider
   ]
 })
 export class AppModule {}

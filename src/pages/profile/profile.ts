@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
+
+import { EditProfileProvider } from '../../providers/edit-profile/edit-profile';
 
 @Component({
   selector: 'page-profile',
-  templateUrl: 'profile.html'
+  templateUrl: 'profile.html',
+  providers: [EditProfileProvider]
 })
 
 
@@ -16,9 +19,12 @@ export class ProfilePage {
 	address: string;
 	password: string;
 	phone: string;
+	location: any;
 	flag: boolean = false;
+	map;
 
-	constructor(public navCtrl: NavController, private storage: Storage, private toastCtrl: ToastController) {}
+	constructor(public navCtrl: NavController, private storage: Storage, private toastCtrl: ToastController,
+				private googleMaps: GoogleMaps, private editProfileProvider: EditProfileProvider) {}
 
 	ionViewDidLoad(){
 		this.storage.get("userData").then((data)=>{
@@ -27,11 +33,41 @@ export class ProfilePage {
 			this.phone = data.phone;
 			this.password = data.password;
 			this.address = data.address;
+			this.location = data.loc
 		})
+	}
+
+	loadMap(x, y) {
+		let mapOptions: GoogleMapOptions = {
+			camera: {
+				target: {
+	                lat: x,
+	                lng: y
+	            },
+				zoom: 18,
+				tilt: 15
+			}
+		};
+
+		this.map = this.googleMaps.create('map', mapOptions);
+
+		this.map.one(GoogleMapsEvent.MAP_READY)
+      	.then(() => {
+	        this.map.addMarker({
+	            title: 'Your Previous Address',
+	            icon: 'red',
+	            animation: 'DROP',
+	            position: {
+	              lat: x,
+	              lng: y
+	            }
+	        })
+	    });
 	}
 	
 	changeFlag(){
 		this.flag = true;
+		this.loadMap(this.location["locLat"], this.location["locLong"]);
 		return this.flag
 	}
 
@@ -49,28 +85,29 @@ export class ProfilePage {
 	  //   });
 	    toast.present();
 
-		// var settings1 = {
-		// 	"async": true,
-		// 		"crossDomain": true,
-		// 		"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?name="+data.value['name']+"&password="+data.value['password']+"&phone="+data.value['phone'],
-		// 		"method": "POST",
-		// 		"headers": {
-		// 			"content-type": "application/json",
-		// 			"cache-control": "no-cache",
-		// 			"postman-token": "4a53920c-7605-4383-bde5-db03b13e1214",
-		// 			"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-		// 			"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-		// 			"Access-Control-Allow-Origin":"*"
-		// 		}
-		// 	}
+		this.editProfileProvider.updateProfile(data).then((res)=>{
 
-		// $.ajax(settings1).done((response)=>{
+					
+			// this.loginProvider.Login(this.id, this.password).then((token)=>{
 
-		// 	console.log("response ", response)
+		 //    	this.getChildrenProvider.getAllChildren(token).then((flag)=>{
+			//         if (flag) {
+			//           this.navCtrl.setRoot(ChildrenPage);
+			//         }
+			//     }).catch((error1)=>{
+			//         alert(error1);
+			//     });
 
-		// 	toast.dismiss();
-		// });
+		 //    }).catch((error2)=>{
+		 //      alert(error2)
+		 //    });
 
+			toast.dismiss();
+			this.flag = false;
+			return this.flag;
+		}).catch((error)=>{
+			toast.dismiss();
+			alert("error" + error)
+		})
 	}
-
 }

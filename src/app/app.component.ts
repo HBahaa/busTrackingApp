@@ -24,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ProfilePage;
+  rootPage: any;
   isLoggedIn:boolean;
   loader:any;
 
@@ -51,8 +51,8 @@ export class MyApp {
       // this.translateService.setDefaultLang(en);
       this.translateService.use('en');
 
-      // this.presentLoading();
-      // this.loadingPage();
+      this.presentLoading();
+      this.loadingPage();
                 
     });
 
@@ -63,7 +63,6 @@ export class MyApp {
     ];
 
   }
-
 
   openPage(page) {
     this.nav.setRoot(page.component);
