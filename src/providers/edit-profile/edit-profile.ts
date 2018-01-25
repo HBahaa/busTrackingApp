@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import * as $ from 'jquery';
 import 'rxjs/add/operator/map';
 
+import { LoginProvider } from '../login/login';
+import { GetChildrenProvider } from '../get-children/get-children';
+
 
 @Injectable()
 export class EditProfileProvider {
 
-	constructor() {}
+	constructor(private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {}
 
-    updateProfile(data){
+    updateProfile(data, nid){
     	return new Promise ((resolve, reject)=>{
     		var settings1 = {
 				"async": true,
 					"crossDomain": true,
-					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?name="+data.value['name']+"&password="+data.value['password']+"&phone="+data.value['phone']+"&email="+data.value['email']+"&locLat="+data.lat+"&locLong="+data.lng+"&locDesc="+data._value.address,
+					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?name="+data.value['name']+"&password="+data.value['password']+"&phone="+data.value['phone']+"&email="+data.value['email'],
 					"method": "POST",
 					"headers": {
 						"content-type": "application/json",
@@ -29,9 +32,18 @@ export class EditProfileProvider {
 
 				if(response.success)
 				{
-					resolve("updated");
+					this.loginProvider.Login(nid, data.password).then((newToken)=>{
+						this.getChildrenProvider.getAllChildren(newToken).then((flag)=>{
+					        if (flag) {
+					          resolve("updated");
+					        }
+					    }).catch((error1)=>{
+					        alert(error1);
+					    });
+					})
 				}
-				else{
+				else
+				{
 					reject("error occurs while update profile");
 				}
 

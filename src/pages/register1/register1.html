@@ -39,5 +39,7 @@
 
     <button ion-button block round color="mainColor" [disabled]="validations_form.invalid"><ion-icon name="log-in"></ion-icon>{{ 'REGISTER1_PAGE.send' | translate }}</button>
   </form>
-    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>{{ 'REGISTER1_PAGE.alreadyHaveAccount' | translate }}</button>
+    <button ion-button color="light" icon-start (click)="alreadyHaveAccount()" clear>
+      <ion-icon name="arrow-round-forward"></ion-icon> {{ 'REGISTER1_PAGE.alreadyHaveAccount' | translate }}
+    </button>
 </ion-content>

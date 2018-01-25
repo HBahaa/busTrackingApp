@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 
 import { ChildrenPage } from '../pages/children/children';
 import { HomePage } from '../pages/home/home';
@@ -24,7 +23,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any ;
   isLoggedIn:boolean;
   loader:any;
 
@@ -45,8 +44,6 @@ export class MyApp {
 
       statusBar.styleDefault();
       splashScreen.hide();
-
-      console.log(this.platform.lang());
 
       // this.translateService.setDefaultLang(en);
       this.translateService.use('en');
@@ -69,7 +66,9 @@ export class MyApp {
   }
 
   userLogout(){
-    this.storage.clear();
+    this.storage.clear().then(()=>{
+      this.nav.setRoot(LoginPage);
+    });
   }
 
   loadingPage(){

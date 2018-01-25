@@ -11,7 +11,8 @@ export class GetChildrenProvider {
 	children: any[] = [];
 	rooms:any = {};
 	roomsData:any = {};
-	parent:any = {};
+	parent:any = {'loc':{}};
+
 
 	constructor(private storage: Storage, private loadingCtrl: LoadingController) {}
 
@@ -20,21 +21,21 @@ export class GetChildrenProvider {
 			this.presentLoading();
 
 			var settings = {
-			  "async": true,
-			  "crossDomain": true,
-			  "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/data?token="+token,
-			  "method": "POST",
-			  "headers": {
-			    "content-type": "application/json",
-			    "cache-control": "no-cache",
-			    "postman-token": "4935ed16-98ed-c035-1572-aeb484e2838a",
-			    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-		        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-		        "Access-Control-Allow-Origin":"*",
-		        "Allow-Control-Allow-Origin":"*"
-			  }
+				"async": true,
+				"crossDomain": true,
+				"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/data?token="+token,
+				"method": "POST",
+				"headers": {
+					"content-type": "application/json",
+					"cache-control": "no-cache",
+					"postman-token": "4935ed16-98ed-c035-1572-aeb484e2838a",
+					"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+					"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
+					"Access-Control-Allow-Origin":"*",
+					"Allow-Control-Allow-Origin":"*"
+				}
 			}
-			
+
 			$.ajax(settings).done((response)=> {
 			  	if(response.success)
 		      	{

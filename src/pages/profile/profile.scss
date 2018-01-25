@@ -1,13 +1,9 @@
-page-profile {
 
-	ion-card-title{
-		text-align: center;
-	}
-	#map {
-        height: 300px;
+page-profile {
+    ion-card-title{
+        text-align: center;
     }
-	// ion-grid {
-	//     height: 100%;
-	//     justify-content: center;
-	// }
+    .list[inset]{
+        margin: 0;
+    }
 }

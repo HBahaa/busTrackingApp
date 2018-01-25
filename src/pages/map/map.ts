@@ -12,23 +12,23 @@ declare var google;
 })
 export class MapPage {
  
-    map: GoogleMap;
-    lat: any;
-    lng: any;
-    location: any;
-    address: any;
-    searchQuery: any;
+  map: GoogleMap;
+  lat: any;
+  lng: any;
+  location: any;
+  address: any;
+  searchQuery: any;
 
  
-    constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps,
-      private toastCtrl: ToastController, private translate: TranslateService) {
-        platform.ready().then(() => {
-            this.loadMap();
-            this.translate.get('MAP_PAGE.toast1').subscribe((toast1)=>{
-              this.presentToast(toast1, 5000, 'top');
-            })
-        });
-    }
+  constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps,
+    private toastCtrl: ToastController, private translate: TranslateService) {
+      platform.ready().then(() => {
+          this.loadMap();
+          this.translate.get('MAP_PAGE.toast1').subscribe((toast1)=>{
+            this.presentToast(toast1, 5000, 'top');
+          })
+      });
+  }
  
 loadMap() {
 

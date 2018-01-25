@@ -40,7 +40,8 @@
 	},
 	"APP_PAGE" : {
 		"menu" 	 : "Menu",
-		"logout" : "Logout"
+		"logout" : "Logout",
+		"load" 	 : "Authenticating..."
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
@@ -57,7 +58,10 @@
 		"title"				: "Login",
 		"idNumber"	 		: "ID Number",
 		"password"			: "Password",
+		"forgetPassword" 	: "Forget Password",
+		"resetPassword"		: "Reset Password",
 		"login"		 		: "Login",
+		"send"		 		: "Send",
 		"dontHaveAccount" 	: "Don't Have Account",
 		"error1" 			: "ID or Password is incorrect.",
 		"error2" 			: "ID or Password is incorrect and Please check internet connection."	
@@ -114,6 +118,8 @@
 		"email"		: "Email",
 		"password"	: "Password",
 		"phone"		: "Phone",
-		"address"	: "Address"
+		"address"	: "Address",
+		"update"	: "Update",
+		"edit" 		: "Edit"
 	}
 }

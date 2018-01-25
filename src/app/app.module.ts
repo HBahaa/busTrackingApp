@@ -26,6 +26,8 @@ import { LoginPage } from '../pages/login/login';
 import { Register1Page } from '../pages/register1/register1';
 import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
+import { MapModalPage } from '../pages/map-modal/map-modal';
+
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
 import { GetChildrenProvider } from '../providers/get-children/get-children';
 import { LoginProvider } from '../providers/login/login';
@@ -53,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfilePage,
     ChildrenPage,
     MapPage,
+    MapModalPage,
     DatePipe
   ],
   imports: [
@@ -81,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DetailsPage,
     ProfilePage,
     ChildrenPage,
-    MapPage
+    MapPage,
+    MapModalPage
   ],
   providers: [
     StatusBar,
