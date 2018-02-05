@@ -180,20 +180,20 @@ export class MapModalPage {
 			}
 			this.storage.set("userData", user);
 			this.storage.get("token").then((token)=>{
+				
 				var settings = {
 					"async": true,
-						"crossDomain": true,
-						"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?locLat="+user.loc['locLat']+"&locLong="+user.loc['locLong']+"&locDesc="+user.address+"&token="+token,
-						"method": "POST",
-						"headers": {
-							"content-type": "application/json",
-							"cache-control": "no-cache",
-							"postman-token": "4a53920c-7605-4383-bde5-db03b13e1214",
-							"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-							"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-							"Access-Control-Allow-Origin":"*"
-						}
-					}
+					"crossDomain": true,
+					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?token="+token,
+					"method": "POST",
+					"headers": {
+					"content-type": "application/json",
+					"cache-control": "no-cache",
+					"postman-token": "aa50dfb0-9c6d-a871-8fef-d6fbcaf228d1"
+					},
+					"processData": false,
+					"data": `{"loc": {"locLat": user.loc['locLat'],"locLong": user.loc['locLong'],"locDesc": user.loc['locDesc']}}`
+				}
 
 				$.ajax(settings).done((response)=>{
 

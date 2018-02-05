@@ -44,6 +44,19 @@ export class ProfilePage {
 	presentMapModal(){
 		this.navCtrl.setRoot(MapModalPage, {'param1' : this.location});
 	}
+	editProfile(data){
+		console.log("data", data.value)
+		this.storage.get("userData").then((user)=>{
+	    	this.editProfileProvider.updateProfile(data.value, user.nid).then((res)=>{
+	    		console.log("res", res)
+				this.flag = false;
+				return this.flag;
+			}).catch((error)=>{
+				// alert("error" + error)
+				console.log("error", error)
+			})
+	    });
+	}
 
 	presentToast(data) {
 		var toast = this.toastCtrl.create({
@@ -62,6 +75,6 @@ export class ProfilePage {
 				toast.dismiss();
 				// alert("error" + error)
 			})
-	    })
+	    });
 	}
 }

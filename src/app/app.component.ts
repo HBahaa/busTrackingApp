@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+import { MapPage } from '../pages/map/map';
 
 
 declare var cordova:any;
@@ -23,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any ;
+  rootPage: any;
   isLoggedIn:boolean;
   loader:any;
 

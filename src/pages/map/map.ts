@@ -22,24 +22,25 @@ export class MapPage {
  
   constructor(public navCtrl: NavController, public platform: Platform, private googleMaps: GoogleMaps,
     private toastCtrl: ToastController, private translate: TranslateService) {
-      platform.ready().then(() => {
-          this.loadMap();
-          this.translate.get('MAP_PAGE.toast1').subscribe((toast1)=>{
-            this.presentToast(toast1, 5000, 'top');
-          })
-      });
+
+    platform.ready().then(() => {
+        this.loadMap();
+        this.translate.get('MAP_PAGE.toast1').subscribe((toast1)=>{
+          this.presentToast(toast1, 5000, 'top');
+        })
+    });
   }
  
-loadMap() {
+  loadMap() {
 
-  let mapOptions: GoogleMapOptions = {
-    camera: {
-      zoom: 18,
-      tilt: 15
-    }
-  };
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        zoom: 18,
+        tilt: 15
+      }
+    };
 
-  this.map = this.googleMaps.create('map', mapOptions);
+    this.map = this.googleMaps.create('map', mapOptions);
 
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
         console.log('Map is ready!');
@@ -206,6 +207,7 @@ loadMap() {
   }
 
   goToRegister(){
+    alert("clicked")
     this.navCtrl.setRoot(Register2Page, {'param1': this.address, 'param2': this.location})
   }
 

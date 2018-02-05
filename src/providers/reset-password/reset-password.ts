@@ -10,25 +10,24 @@ export class ResetPasswordProvider {
 	resetPassword(nid){
     	return new Promise ((resolve, reject)=>{
     		var settings = {
-				"async": true,
-					"crossDomain": true,
-					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notesecure/reset?nid="+nid,
-					"method": "POST",
-					"headers": {
-						"content-type": "application/json",
-						"cache-control": "no-cache",
-						"postman-token": "4a53920c-7605-4383-bde5-db03b13e1214",
-						"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-						"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
-						"Access-Control-Allow-Origin":"*"
-					}
-				}
+			  "async": true,
+			  "crossDomain": true,
+			  "url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/reset",
+			  "method": "POST",
+			  "headers": {
+			    "content-type": "application/json",
+			    "cache-control": "no-cache",
+			    "postman-token": "1fe201ea-0110-78b2-be27-f6f780d9c3db"
+			  },
+			  "processData": false,
+			  "data": `{\"nid\": ${nid}}`
+			}
 
 			$.ajax(settings).done((response)=>{
 
 				if(response.success)
 				{
-					resolve("check your email");
+					resolve("Please check your email");
 				}
 				else{
 					reject("error occurs while reset password");

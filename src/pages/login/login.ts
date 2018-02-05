@@ -37,6 +37,7 @@ export class LoginPage {
 
   resetPassword(){
     this.resetPasswordProvider.resetPassword(this.nid).then((res)=>{
+      alert(res)
       this.flag = false;
       return this.flag;
     }).catch((error)=>{

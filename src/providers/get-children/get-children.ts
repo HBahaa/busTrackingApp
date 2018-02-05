@@ -39,6 +39,9 @@ export class GetChildrenProvider {
 			$.ajax(settings).done((response)=> {
 			  	if(response.success)
 		      	{
+		      		this.children = [];
+					this.rooms = {};
+					this.roomsData = {};
 		      		this.parent.nid = response.data['nid'];
 		      		this.parent.name = response.data['name'];
 		      		this.parent.email = response.data['email'];
@@ -95,7 +98,7 @@ export class GetChildrenProvider {
 				   		}
 
 				   		
-				   		
+				   		console.log("data set to storage")
 						this.children.push(value);
 						this.storage.set("rooms", this.rooms);
 						this.storage.set("roomsData", this.roomsData);

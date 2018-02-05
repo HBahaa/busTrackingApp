@@ -1,11 +1,12 @@
-
 <ion-header>
-
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{ 'PROFILE_PAGE.title' | translate }}</ion-title>
   </ion-navbar>
-
 </ion-header>
+
 <ion-content *ngIf="!flag">
   <ion-grid>
     <ion-row>
@@ -32,13 +33,13 @@
                 <ion-col col-8><h2>{{address}}</h2></ion-col>
               
               </ion-row>
-              <!-- <button ion-button icon-start color="mainColor" block (click)="changeFlag()">
+              <button ion-button icon-start color="mainColor" block (click)="changeFlag()">
                 <ion-icon name="create"></ion-icon>
                 {{ 'PROFILE_PAGE.edit' | translate }}
               </button>
               <button ion-button icon-start block (click)="presentMapModal()">
                 <ion-icon name="pin"></ion-icon> change address
-              </button> -->
+              </button>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -53,7 +54,7 @@
       {{ 'PROFILE_PAGE.subTitle' | translate }}
     </ion-card-title>
     <ion-card-content>
-      <form #profileForm="ngForm" (ngSubmit)="presentToast(profileForm)">
+      <form #profileForm="ngForm" (ngSubmit)="editProfile(profileForm)">
         <ion-list inset>
           <ion-item>
             <ion-label> <ion-icon name="person"></ion-icon></ion-label>
