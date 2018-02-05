@@ -46,10 +46,10 @@ export class GetChildrenProvider {
 		      		this.parent.name = response.data['name'];
 		      		this.parent.email = response.data['email'];
 		      		this.parent.phone = response.data['phone'];
-		      		this.parent.password = response.data['password'];
-		      		this.parent.address = response.data['loc']['desc'];
-		      		this.parent.loc["locLat"] = response.data['loc']['lat']
-		      		this.parent.loc["locLong"] = response.data['loc']['long']
+		      		this.parent.password = response.data['pass'];
+		      		this.parent.address = response.data['loc']['locDesc'];
+		      		this.parent.loc["locLat"] = response.data['loc']['locLat']
+		      		this.parent.loc["locLong"] = response.data['loc']['locLong']
 		      		this.storage.set("userData", this.parent);
 		      		
 		    		let geo_id = response.data['loc']['fence_id']

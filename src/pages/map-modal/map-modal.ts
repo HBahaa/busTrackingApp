@@ -29,8 +29,9 @@ export class MapModalPage {
 				private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {
 
 		this.location = navParams.get('param1');
-		console.log("location ", this.location)
+		console.log("location cons ", JSON.stringify(this.location))
 		this.loadMap(this.location["locLat"], this.location["locLong"]);
+		// this.loadMap();
 	}
 
 	loadMap(x,y) {
@@ -62,6 +63,7 @@ export class MapModalPage {
 
 	    this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
 	    	console.log('Map is ready!');
+	    	console.log("location", JSON.stringify(this.location));
 	        this.map.addEventListener(GoogleMapsEvent.MAP_CLICK).subscribe((data)=>{
 
 	        	console.log("data", JSON.stringify(data))
@@ -180,7 +182,6 @@ export class MapModalPage {
 			}
 			this.storage.set("userData", user);
 			this.storage.get("token").then((token)=>{
-				
 				var settings = {
 					"async": true,
 					"crossDomain": true,
@@ -192,15 +193,13 @@ export class MapModalPage {
 					"postman-token": "aa50dfb0-9c6d-a871-8fef-d6fbcaf228d1"
 					},
 					"processData": false,
-					"data": `{"loc": {"locLat": user.loc['locLat'],"locLong": user.loc['locLong'],"locDesc": user.loc['locDesc']}}`
+					"data" : `{"loc": {"locLat": "${user.loc['locLat']}", "locLong": "${user.loc['locLong']}", "locDesc": "${this.address}"}}`
 				}
 
 				$.ajax(settings).done((response)=>{
-
 					if(response.success)
 					{
-						this.loginProvider.Login(user.nid, user.password).then((newToken)=>{
-							
+						this.loginProvider.Login(user.nid, "Hb222").then((newToken)=>{
 							this.getChildrenProvider.getAllChildren(newToken).then((flag)=>{
 						        if (flag) {
 									this.navCtrl.setRoot(ProfilePage);
@@ -210,11 +209,11 @@ export class MapModalPage {
 						    });
 						})
 					}else{
-						alert("error during saving data")
+						alert("fail error during saving data")
 					}
 
 				}).fail((error)=>{
-					alert("error during saving data")
+					alert("error during saving data here"+ error)
 				});
 			})			
 		})

@@ -11,7 +11,6 @@ import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
-import { MapPage } from '../pages/map/map';
 
 
 declare var cordova:any;
@@ -76,12 +75,14 @@ export class MyApp {
     this.storage.ready().then(()=>{
 
       this.storage.get("children").then((data)=>{
+          this.loader.dismiss();
+        
         if(data != null){
           this.rootPage = ChildrenPage;
-          this.loader.dismiss();
+          // this.loader.dismiss();
 
         }else if(data == null){
-          this.loader.dismiss();
+          // this.loader.dismiss();
           this.rootPage = HomePage;
         }
       })
