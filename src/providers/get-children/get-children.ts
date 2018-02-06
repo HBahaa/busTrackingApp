@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery';
 import 'rxjs/add/operator/map';
 
@@ -11,10 +12,10 @@ export class GetChildrenProvider {
 	children: any[] = [];
 	rooms:any = {};
 	roomsData:any = {};
-	parent:any = {'loc':{}};
+	// parent:any = {'loc':{}};
 
 
-	constructor(private storage: Storage, private loadingCtrl: LoadingController) {}
+	constructor(private storage: Storage, private loadingCtrl: LoadingController, private translate: TranslateService) {}
 
 	getAllChildren(token){
 		return new Promise((resolve, reject) => {
@@ -42,15 +43,17 @@ export class GetChildrenProvider {
 		      		this.children = [];
 					this.rooms = {};
 					this.roomsData = {};
-		      		this.parent.nid = response.data['nid'];
-		      		this.parent.name = response.data['name'];
-		      		this.parent.email = response.data['email'];
-		      		this.parent.phone = response.data['phone'];
-		      		this.parent.password = response.data['pass'];
-		      		this.parent.address = response.data['loc']['locDesc'];
-		      		this.parent.loc["locLat"] = response.data['loc']['locLat']
-		      		this.parent.loc["locLong"] = response.data['loc']['locLong']
-		      		this.storage.set("userData", this.parent);
+					this.storage.get("userData").then((parent)=>{
+						parent.nid = response.data['nid'];
+			      		parent.name = response.data['name'];
+			      		parent.email = response.data['email'];
+			      		parent.phone = response.data['phone'];
+			      		parent.address = response.data['loc']['locDesc'];
+			      		parent.loc["locLat"] = response.data['loc']['locLat'];
+			      		parent.loc["locLong"] = response.data['loc']['locLong'];
+			      		this.storage.set("userData", parent);
+
+					})
 		      		
 		    		let geo_id = response.data['loc']['fence_id']
 		    		this.rooms.geo = geo_id;
@@ -97,7 +100,6 @@ export class GetChildrenProvider {
 				   			this.rooms.bus = [value.bus_id];
 				   		}
 
-				   		
 				   		console.log("data set to storage")
 						this.children.push(value);
 						this.storage.set("rooms", this.rooms);
@@ -105,6 +107,7 @@ export class GetChildrenProvider {
 						this.storage.set("children", this.children);
 						
 			        });
+
 			        this.loader.dismiss();
 			        resolve("true");
 		      	}
@@ -121,10 +124,12 @@ export class GetChildrenProvider {
 	}
 
 	presentLoading() {
-	    this.loader = this.loadingCtrl.create({
-	      content: "Loading..."
-	    });
-	    this.loader.present();
+		this.translate.get('LOGIN_PAGE.loading').subscribe((content)=>{
+		    this.loader = this.loadingCtrl.create({
+		      content: content
+		    });
+		    this.loader.present();
+		});
 	}
 
 }

@@ -64,7 +64,8 @@
 		"send"		 		: "Send",
 		"dontHaveAccount" 	: "Don't Have Account",
 		"error1" 			: "ID or Password is incorrect.",
-		"error2" 			: "ID or Password is incorrect and Please check internet connection."	
+		"error2" 			: "ID or Password is incorrect and Please check internet connection.",
+		"loading"			: "Loading..."
 	},
 	"REGISTER1_PAGE"	: {
 		"title"				: "Registration",
@@ -82,7 +83,8 @@
 		"address"   : "Address",
 		"phone"		: "Phone Number",
 		"locateMe"	: "Change My Address",
-		"register"	: "Register"
+		"register"	: "Register",
+		"error" 			: "User registration is currently not allowed"
 	},
 	"DETAILS_PAGE" : {
 		"title"			: "Details",
@@ -106,20 +108,28 @@
 		"status" 	: "Status"
 	},
 	"MAP_PAGE" : {
-		"title" : "Select your home",
-		"next" 	: "Next",
-		"toast1" : "Select your location, you can click on map to select you home or from search box  then click Next",
-		"toast2" : "Please enter address in search box or click Next"
+		"title"		: "Select your home",
+		"next"		: "Next",
+		"toast1"	: "Select your location, you can click on map to select you home or from search box  then click Next",
+		"toast2"	: "Please enter address in search box or click Next"
 	},
 	"PROFILE_PAGE" : {
-		"title"		: "Profile",
-		"subTitle"	: "Profile Data",
-		"name"		: "Name",
-		"email"		: "Email",
-		"password"	: "Password",
-		"phone"		: "Phone",
-		"address"	: "Address",
-		"update"	: "Update",
-		"edit" 		: "Edit"
+		"title"			: "Profile",
+		"subTitle"		: "Profile Data",
+		"name"			: "Name",
+		"email"			: "Email",
+		"password"		: "Password",
+		"phone"			: "Phone",
+		"address"		: "Address",
+		"update"		: "Update",
+		"edit" 			: "Edit",
+		"changeAddress"	: "Change Address",
+		"updated"		: "Your Data Updated, Please Verify your email and relogin",
+		"error"			: "Error while update data"
+	},
+	"MAPMODAL_PAGE": {
+		"sesionNotAuthenticated"	: "Session isn't authenticated",
+		"errorOnUpdateAddress"		: "Error on updating your address",
+		"loading"					: "Loading..."
 	}
 }

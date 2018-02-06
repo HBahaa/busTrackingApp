@@ -8,6 +8,8 @@ import * as $ from 'jquery';
 @Injectable()
 export class LoginProvider {
 
+	user: any = {'loc': {}};
+
 	constructor(public storage: Storage, private translate: TranslateService) {}
 
 	Login(id, password){
@@ -32,7 +34,11 @@ export class LoginProvider {
 	    	$.ajax(settings).then((response)=> {
 				if(response.success)
 				{
+					this.user.password = password;
+					console.log("this.user", JSON.stringify(this.user));
 			        this.storage.set("token", response.token);
+			        this.storage.set("userData", this.user);
+
 			        resolve(response.token);			  
 				}
 				else{

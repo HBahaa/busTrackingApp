@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
+
 import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
 
@@ -7,7 +9,7 @@ import * as $ from 'jquery';
 @Injectable()
 export class RegisterProvider {
 
-	constructor(private storage: Storage) {}
+	constructor(private storage: Storage, private translate: TranslateService) {}
 
 	Register(nid, secureCode, location, user){
 
@@ -36,11 +38,15 @@ export class RegisterProvider {
 					resolve(response.token);
 				}
 				else{
-					reject("User registration is currently not allowed");
+					this.translate.get('REGISTER2_PAGE.error').subscribe((error)=>{
+			        	reject(error);
+			        });
 				}
 
 			}).fail((error)=>{
-				reject("User registration is currently not allowed");
+				this.translate.get('REGISTER2_PAGE.error').subscribe((error)=>{
+		        	reject(error);
+		        });
 			});
 
 		});

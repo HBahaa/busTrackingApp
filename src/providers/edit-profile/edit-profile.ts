@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 import 'rxjs/add/operator/map';
+import { TranslateService } from '@ngx-translate/core';
 
 import { LoginProvider } from '../login/login';
 import { GetChildrenProvider } from '../get-children/get-children';
@@ -9,16 +10,21 @@ import { GetChildrenProvider } from '../get-children/get-children';
 
 @Injectable()
 export class EditProfileProvider {
+	error: any;
 
-	constructor( private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {}
+	constructor( private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider,
+				 private translate: TranslateService) {
 
-    updateProfile(token, data, nid, f){
+		this.error = this.translate.get('PROFILE_PAGE.error')
+	}
+
+    updateProfile(token, data, nid, isEmailChanged){
 
     	return new Promise ((resolve, reject)=>{
 
 			// this.storage.get("token").then(token=>{
 				
-				if (f) {
+				if (isEmailChanged) {
 					var settings1 = {
 						"async": true,
 						"crossDomain": true,
@@ -37,15 +43,17 @@ export class EditProfileProvider {
 
 						if(response.success)
 						{
-							resolve("Your Data Updated, Please Verify your email and relogin");
+							this.translate.get('PROFILE_PAGE.updated').subscribe((updated)=>{
+					        	resolve(updated);
+					        })
 						}
 						else
 						{
-							reject("fail")
+							reject(this.error)
 						}
 
 					}).fail((error)=>{
-						reject("error");
+						reject(this.error);
 					});
 				}
 				else{
@@ -78,11 +86,11 @@ export class EditProfileProvider {
 						}
 						else
 						{
-							reject("fail")
+							reject(this.error)
 						}
 
 					}).fail((error)=>{
-						reject("error");
+						reject(this.error);
 					});
 				}
 

@@ -23,15 +23,14 @@ export class ProfilePage {
 	password: string;
 	phone: string;
 	location: any;
-	flag: boolean = false;
+	showEditForm: boolean = false;
 
 	constructor(public navCtrl: NavController, private storage: Storage, private platform: Platform,
 				private toastCtrl: ToastController, private loginProvider: LoginProvider, private editProfileProvider: EditProfileProvider)
 	{
-
 		platform.ready().then(() => {
 			this.storage.get("userData").then((data)=>{
-				console.log("user Data", JSON.stringify(data))
+				// alert("data = "+ JSON.stringify(data));
 				this.nid = data.nid;
 				this.name = data.name;
 				this.email = data.email;
@@ -44,36 +43,35 @@ export class ProfilePage {
 	}
 
 	changeFlag(){
-		this.flag = true;
-		return this.flag;
+		this.showEditForm = true;
+		return this.showEditForm;
 	}
 
 	presentMapModal(){
-		console.log("param1 loc", JSON.stringify(this.location))
-		this.navCtrl.setRoot(MapModalPage, {'param1' : this.location});
+		this.navCtrl.push(MapModalPage, {'param1' : this.location});
 	}
 
 	editProfile(data){
 		this.storage.get("userData").then((user)=>{
-
+			// console.log("user.password", user.password);
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {
-					this.editProfileProvider.updateProfile(log, data.value, user.nid , 0).then((res)=>{
-						this.flag = false;
-						return this.flag;
+					this.editProfileProvider.updateProfile(log, data.value, user.nid , false).then((res)=>{
+						this.showEditForm = false;
+						return this.showEditForm;
 					}).catch((error)=>{
-						console.log("error", error)
+						console.log(error)
 					});
 				}
 				else
 				{
-					this.editProfileProvider.updateProfile(log, data.value, user.nid , 1).then((res)=>{
-						alert(res);
+					this.editProfileProvider.updateProfile(log, data.value, user.nid , true).then((res)=>{
+						// alert(res);
 						this.storage.clear().then(()=>{
 					      this.navCtrl.setRoot(LoginPage);
 					    });
 					}).catch((error)=>{
-						console.log("error", error);
+						console.log(error);
 					});
 				}
 

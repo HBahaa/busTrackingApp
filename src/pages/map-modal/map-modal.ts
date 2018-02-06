@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
+
 import * as $ from 'jquery';
 
 import { ProfilePage } from '../profile/profile';
 import { LoginProvider } from '../../providers/login/login';
-import { GetChildrenProvider } from '../../providers/get-children/get-children';
-
 
 declare var google;
 
 @Component({
-  selector: 'page-map-modal',
-  templateUrl: 'map-modal.html',
-  providers: [LoginProvider, GetChildrenProvider]
+	selector: 'page-map-modal',
+	templateUrl: 'map-modal.html',
+	providers: [LoginProvider]
+
 })
 
 export class MapModalPage {
@@ -24,14 +25,14 @@ export class MapModalPage {
 	address:any;
 	map: GoogleMap;
 	searchQuery: any;
+ 	loader:any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
-				private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {
+				private loadingCtrl: LoadingController, private translate: TranslateService,
+				private loginProvider: LoginProvider) {
 
 		this.location = navParams.get('param1');
-		console.log("location cons ", JSON.stringify(this.location))
 		this.loadMap(this.location["locLat"], this.location["locLong"]);
-		// this.loadMap();
 	}
 
 	loadMap(x,y) {
@@ -63,10 +64,7 @@ export class MapModalPage {
 
 	    this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
 	    	console.log('Map is ready!');
-	    	console.log("location", JSON.stringify(this.location));
 	        this.map.addEventListener(GoogleMapsEvent.MAP_CLICK).subscribe((data)=>{
-
-	        	console.log("data", JSON.stringify(data))
 
 	          	this.map.clear().then(()=>{
 		            this.lat = data[0]['lat'];
@@ -99,7 +97,6 @@ export class MapModalPage {
 
 		            this.getAddress(this.lat, this.lng);
 	            	this.location = {'lat': this.lat, 'lng': this.lng}
-					// alert("location"+ this.location);
 	          	});
 	        })
 
@@ -170,6 +167,7 @@ export class MapModalPage {
 
 	dismiss() {
 
+		this.presentLoading();
 		this.storage.get("userData").then((user)=>{
 			if (this.address) {
 				user.address = this.address;
@@ -181,7 +179,10 @@ export class MapModalPage {
 				user.loc = this.location;
 			}
 			this.storage.set("userData", user);
-			this.storage.get("token").then((token)=>{
+
+			this.loginProvider.Login(user.nid, user.password).then(token=>{
+				// this.storage.get("token").then((token)=>{
+				// alert("token"+ token)
 				var settings = {
 					"async": true,
 					"crossDomain": true,
@@ -197,25 +198,40 @@ export class MapModalPage {
 				}
 
 				$.ajax(settings).done((response)=>{
+					// alert("response"+ JSON.stringify(response))
 					if(response.success)
 					{
-						this.loginProvider.Login(user.nid, "Hb222").then((newToken)=>{
-							this.getChildrenProvider.getAllChildren(newToken).then((flag)=>{
-						        if (flag) {
-									this.navCtrl.setRoot(ProfilePage);
-						        }
-						    }).catch((error1)=>{
-						        alert(error1);
-						    });
-						})
+						this.loader.dismiss();
+						this.navCtrl.setRoot(ProfilePage);
+
 					}else{
-						alert("fail error during saving data")
+						this.loader.dismiss();
+						this.translate.get('MAPMODAL_PAGE.loading').subscribe((sesionNotAuthenticated)=>{
+							alert(sesionNotAuthenticated)
+						});
 					}
 
 				}).fail((error)=>{
-					alert("error during saving data here"+ error)
+					this.loader.dismiss();
+					this.translate.get('MAPMODAL_PAGE.loading').subscribe((errorOnUpdateAddress)=>{
+						alert(errorOnUpdateAddress)
+					});
 				});
-			})			
+				// })
+			}).catch(error=>{
+				console.log("error on getting token")
+			})
+					
 		})
+	}
+
+
+	presentLoading() {
+	    this.translate.get('MAPMODAL_PAGE.loading').subscribe((loading)=>{
+	      this.loader = this.loadingCtrl.create({
+	        content: loading
+	      });
+	      this.loader.present();
+	    });
 	}
 }
