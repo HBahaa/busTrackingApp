@@ -8,13 +8,14 @@ import * as $ from 'jquery';
 
 import { ProfilePage } from '../profile/profile';
 import { LoginProvider } from '../../providers/login/login';
+import { GetChildrenProvider } from '../../providers/get-children/get-children';
 
 declare var google;
 
 @Component({
 	selector: 'page-map-modal',
 	templateUrl: 'map-modal.html',
-	providers: [LoginProvider]
+	providers: [LoginProvider, GetChildrenProvider]
 
 })
 
@@ -29,7 +30,7 @@ export class MapModalPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
 				private loadingCtrl: LoadingController, private translate: TranslateService,
-				private loginProvider: LoginProvider) {
+				private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {
 
 		this.location = navParams.get('param1');
 		this.loadMap(this.location["locLat"], this.location["locLong"]);
@@ -169,62 +170,70 @@ export class MapModalPage {
 
 		this.presentLoading();
 		this.storage.get("userData").then((user)=>{
-			if (this.address) {
-				user.address = this.address;
-			}
-			if (this.location['lat']) {
-				user.loc['locLat'] = this.location.lat;
-				user.loc['locLong'] = this.location.lng;
-			}else{
-				user.loc = this.location;
-			}
-			this.storage.set("userData", user);
-
+			
 			this.loginProvider.Login(user.nid, user.password).then(token=>{
-				// this.storage.get("token").then((token)=>{
-				// alert("token"+ token)
-				var settings = {
-					"async": true,
-					"crossDomain": true,
-					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?token="+token,
-					"method": "POST",
-					"headers": {
-					"content-type": "application/json",
-					"cache-control": "no-cache",
-					"postman-token": "aa50dfb0-9c6d-a871-8fef-d6fbcaf228d1"
-					},
-					"processData": false,
-					"data" : `{"loc": {"locLat": "${user.loc['locLat']}", "locLong": "${user.loc['locLong']}", "locDesc": "${this.address}"}}`
-				}
+				// this.getChildrenProvider.getAllChildren(token).then((flag)=>{
 
-				$.ajax(settings).done((response)=>{
-					// alert("response"+ JSON.stringify(response))
-					if(response.success)
-					{
-						this.loader.dismiss();
-						this.navCtrl.setRoot(ProfilePage);
+	        		// if (flag) {
 
-					}else{
-						this.loader.dismiss();
-						this.translate.get('MAPMODAL_PAGE.loading').subscribe((sesionNotAuthenticated)=>{
-							alert(sesionNotAuthenticated)
+	        			if (this.address) {
+							user.address = this.address;
+						}
+						if (this.location['lat']) {
+							user.loc['locLat'] = this.location.lat;
+							user.loc['locLong'] = this.location.lng;
+						}else{
+							user.loc = this.location;
+						}
+						this.storage.set("userData", user);
+
+	        			// this.storage.get("token").then((token)=>{
+						// alert("token"+ token)
+						var settings = {
+							"async": true,
+							"crossDomain": true,
+							"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/edit?token="+token,
+							"method": "POST",
+							"headers": {
+							"content-type": "application/json",
+							"cache-control": "no-cache",
+							"postman-token": "aa50dfb0-9c6d-a871-8fef-d6fbcaf228d1"
+							},
+							"processData": false,
+							"data" : `{"loc": {"locLat": "${user.loc['locLat']}", "locLong": "${user.loc['locLong']}", "locDesc": "${this.address}"}}`
+						}
+
+						$.ajax(settings).done((response)=>{
+							// alert("response"+ JSON.stringify(response))
+							if(response.success)
+							{
+								this.loader.dismiss();
+								this.navCtrl.setRoot(ProfilePage);
+
+							}else{
+								this.loader.dismiss();
+								this.translate.get('MAPMODAL_PAGE.loading').subscribe((sesionNotAuthenticated)=>{
+									alert(sesionNotAuthenticated)
+								});
+							}
+
+						}).fail((error)=>{
+							this.loader.dismiss();
+							this.translate.get('MAPMODAL_PAGE.loading').subscribe((errorOnUpdateAddress)=>{
+								alert(errorOnUpdateAddress)
+							});
 						});
-					}
-
-				}).fail((error)=>{
-					this.loader.dismiss();
-					this.translate.get('MAPMODAL_PAGE.loading').subscribe((errorOnUpdateAddress)=>{
-						alert(errorOnUpdateAddress)
-					});
-				});
-				// })
+						// })
+	        		// }
+	        	// });
+				
 			}).catch(error=>{
 				console.log("error on getting token")
 			})
-					
+
+			// alert("user"+ JSON.stringify(user));
 		})
 	}
-
 
 	presentLoading() {
 	    this.translate.get('MAPMODAL_PAGE.loading').subscribe((loading)=>{

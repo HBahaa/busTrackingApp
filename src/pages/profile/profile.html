@@ -7,8 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="!showEditForm">
-  <ion-grid>
+<ion-content>
+  <ion-grid  *ngIf="!showEditForm">
     <ion-row>
       <ion-col>
         <ion-card>
@@ -46,37 +46,40 @@
     </ion-row>
   </ion-grid>
 
+
+  <div *ngIf="showEditForm">
+    <ion-card>
+      <ion-card-title color="mainColor">
+        {{ 'PROFILE_PAGE.subTitle' | translate }}
+      </ion-card-title>
+      <ion-card-content>
+        <form #profileForm="ngForm" (ngSubmit)="editProfile(profileForm)">
+          <ion-list inset>
+            <!-- <ion-item>
+              <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+              <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
+            </ion-item> -->
+            <ion-item>
+              <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
+              <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>
+              <ion-input type="text" name="phone" [(ngModel)]="phone"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>
+              <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+            </ion-item>
+            <button ion-button icon-start type="submit" color="mainColor" block round>
+              <ion-icon name="log-in"></ion-icon> {{ 'PROFILE_PAGE.update' | translate }}
+            </button>
+          </ion-list>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
 
-<ion-content class="editForm" *ngIf="showEditForm">
-  <ion-card>
-    <ion-card-title color="mainColor">
-      {{ 'PROFILE_PAGE.subTitle' | translate }}
-    </ion-card-title>
-    <ion-card-content>
-      <form #profileForm="ngForm" (ngSubmit)="editProfile(profileForm)">
-        <ion-list inset>
-          <!-- <ion-item>
-            <ion-label> <ion-icon name="person"></ion-icon></ion-label>
-            <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
-          </ion-item> -->
-          <ion-item>
-            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
-            <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>
-            <ion-input type="text" name="phone" [(ngModel)]="phone"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>
-            <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
-          </ion-item>
-          <button ion-button icon-start type="submit" color="mainColor" block round>
-            <ion-icon name="log-in"></ion-icon> {{ 'PROFILE_PAGE.update' | translate }}
-          </button>
-        </ion-list>
-      </form>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+<!-- <ion-content class="editForm"></ion-content>-->
