@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 
 import 'rxjs/add/operator/map';
@@ -9,9 +8,11 @@ import * as $ from 'jquery';
 @Injectable()
 export class RegisterProvider {
 
-	constructor(private storage: Storage, private translate: TranslateService) {}
+	constructor(private translate: TranslateService) {}
 
 	Register(nid, secureCode, location, user){
+
+		// alert("location"+ JSON.stringify(location))
 
 		return new Promise((resolve, reject) => {
 
@@ -34,7 +35,7 @@ export class RegisterProvider {
 
 				if(response.success)
 				{
-			        this.storage.set("token", response.token);
+			        // this.storage.set("token", response.token);
 					resolve(response.token);
 				}
 				else{

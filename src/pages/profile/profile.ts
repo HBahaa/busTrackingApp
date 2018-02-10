@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { MapModalPage } from '../map-modal/map-modal';
 import { LoginPage } from '../login/login';
+import { MapModalPage } from '../map-modal/map-modal';
 import { LoginProvider } from '../../providers/login/login';
 import { EditProfileProvider } from '../../providers/edit-profile/edit-profile';
 
@@ -27,7 +27,8 @@ export class ProfilePage {
 	loader:any;
 
 	constructor(public navCtrl: NavController, private storage: Storage, private platform: Platform,
-				private loadingCtrl: LoadingController, private loginProvider: LoginProvider, private editProfileProvider: EditProfileProvider)
+				private loadingCtrl: LoadingController, private loginProvider: LoginProvider,
+				private editProfileProvider: EditProfileProvider)
 	{
 		platform.ready().then(() => {
 			this.storage.get("userData").then((data)=>{
@@ -53,24 +54,21 @@ export class ProfilePage {
 	}
 
 	editProfile(data){
-		
 		this.storage.get("userData").then((user)=>{
-			this.presentLoading();
 			// console.log("user.password", user.password);
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {
-					this.editProfileProvider.updateProfile(log, data.value, user.nid , false).then((res)=>{
-						this.loader.dismiss();
+					this.editProfileProvider.updateProfile(log, data.value, user.nid, false).then((res)=>{
 						this.showEditForm = false;
 						return this.showEditForm;
 					}).catch((error)=>{
-						this.loader.dismiss();
 						console.log(error)
 					});
 				}
 				else
 				{
-					this.editProfileProvider.updateProfile(log, data.value, user.nid , true).then((res)=>{
+					this.presentLoading();
+					this.editProfileProvider.updateProfile(log, data.value, user.nid, true).then((res)=>{
 						// alert(res);
 						this.loader.dismiss();
 						this.storage.clear().then(()=>{
