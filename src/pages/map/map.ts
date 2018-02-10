@@ -207,7 +207,6 @@ export class MapPage {
   }
 
   goToRegister(){
-    alert("clicked")
     this.navCtrl.setRoot(Register2Page, {'param1': this.address, 'param2': this.location})
   }
 

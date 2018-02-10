@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, ToastController } from 'ionic-angular';
+import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { MapModalPage } from '../map-modal/map-modal';
@@ -24,9 +24,10 @@ export class ProfilePage {
 	phone: string;
 	location: any;
 	showEditForm: boolean = false;
+	loader:any;
 
 	constructor(public navCtrl: NavController, private storage: Storage, private platform: Platform,
-				private toastCtrl: ToastController, private loginProvider: LoginProvider, private editProfileProvider: EditProfileProvider)
+				private loadingCtrl: LoadingController, private loginProvider: LoginProvider, private editProfileProvider: EditProfileProvider)
 	{
 		platform.ready().then(() => {
 			this.storage.get("userData").then((data)=>{
@@ -48,18 +49,22 @@ export class ProfilePage {
 	}
 
 	presentMapModal(){
-		this.navCtrl.push(MapModalPage, {'param1' : this.location});
+		this.navCtrl.setRoot(MapModalPage, {'param1' : this.location});
 	}
 
 	editProfile(data){
+		
 		this.storage.get("userData").then((user)=>{
+			this.presentLoading();
 			// console.log("user.password", user.password);
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {
 					this.editProfileProvider.updateProfile(log, data.value, user.nid , false).then((res)=>{
+						this.loader.dismiss();
 						this.showEditForm = false;
 						return this.showEditForm;
 					}).catch((error)=>{
+						this.loader.dismiss();
 						console.log(error)
 					});
 				}
@@ -67,10 +72,12 @@ export class ProfilePage {
 				{
 					this.editProfileProvider.updateProfile(log, data.value, user.nid , true).then((res)=>{
 						// alert(res);
+						this.loader.dismiss();
 						this.storage.clear().then(()=>{
 					      this.navCtrl.setRoot(LoginPage);
 					    });
 					}).catch((error)=>{
+						this.loader.dismiss();
 						console.log(error);
 					});
 				}
@@ -81,12 +88,21 @@ export class ProfilePage {
 	    });
 	}
 
-	presentToast(data) {
-		var toast = this.toastCtrl.create({
-			message: "data saved",
-			duration: 3000,
-			position: 'top'
-	    });
-	    toast.present();
+	// presentToast(data) {
+	// 	var toast = this.toastCtrl.create({
+	// 		message: "data saved",
+	// 		duration: 3000,
+	// 		position: 'top'
+	//     });
+	//     toast.present();
+	// }
+
+	presentLoading() {
+	    // this.translate.get('MAPMODAL_PAGE.loading').subscribe((loading)=>{
+	      this.loader = this.loadingCtrl.create({
+	        content: "Updating..."
+	      });
+	      this.loader.present();
+	    // });
 	}
 }

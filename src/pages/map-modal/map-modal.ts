@@ -3,19 +3,17 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
-
 import * as $ from 'jquery';
 
 import { ProfilePage } from '../profile/profile';
 import { LoginProvider } from '../../providers/login/login';
-import { GetChildrenProvider } from '../../providers/get-children/get-children';
 
 declare var google;
 
 @Component({
 	selector: 'page-map-modal',
 	templateUrl: 'map-modal.html',
-	providers: [LoginProvider, GetChildrenProvider]
+	providers: [LoginProvider]
 
 })
 
@@ -30,7 +28,7 @@ export class MapModalPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage,
 				private loadingCtrl: LoadingController, private translate: TranslateService,
-				private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {
+				private loginProvider: LoginProvider) {
 
 		this.location = navParams.get('param1');
 		this.loadMap(this.location["locLat"], this.location["locLong"]);
@@ -212,16 +210,16 @@ export class MapModalPage {
 
 							}else{
 								this.loader.dismiss();
-								this.translate.get('MAPMODAL_PAGE.loading').subscribe((sesionNotAuthenticated)=>{
-									alert(sesionNotAuthenticated)
-								});
+								// this.translate.get('MAPMODAL_PAGE.loading').subscribe((sesionNotAuthenticated)=>{
+									alert(response.message)
+								// });
 							}
 
 						}).fail((error)=>{
 							this.loader.dismiss();
-							this.translate.get('MAPMODAL_PAGE.loading').subscribe((errorOnUpdateAddress)=>{
-								alert(errorOnUpdateAddress)
-							});
+							// this.translate.get('MAPMODAL_PAGE.loading').subscribe((errorOnUpdateAddress)=>{
+								alert("Error on updating your address")
+							// });
 						});
 						// })
 	        		// }
@@ -230,8 +228,6 @@ export class MapModalPage {
 			}).catch(error=>{
 				console.log("error on getting token")
 			})
-
-			// alert("user"+ JSON.stringify(user));
 		})
 	}
 
