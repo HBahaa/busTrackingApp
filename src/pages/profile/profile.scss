@@ -9,4 +9,23 @@ page-profile {
     .editForm .scroll-content{
     	top: 60px;
     }
+    .profileData{
+    	margin: 5px;
+    	width: calc(100% - 10px);
+    }
+    .settings .label{
+		font-size: 17px;
+    }
+    .settings .card-content{
+    	padding: 5px;
+    }
+    .settings .card-title{
+    	padding: 8px 0 0;
+    }
+    .settings .select {
+	    padding: 16px 13px 13px 7px;
+	}
+	.select-text{
+		padding: 0 10px;
+	}
 }

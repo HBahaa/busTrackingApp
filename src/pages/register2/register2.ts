@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import {  Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 import { LoginPage } from '../login/login';
 import { MapPage } from '../map/map';
@@ -21,12 +22,26 @@ export class Register2Page {
   user    : FormGroup;
   rooms:any = [];
   loader:any;
+  alertTitle :string;
+  alertSubtitle :string;
+  alertBtn:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private translate: TranslateService, 
               private registerProvider: RegisterProvider, private storage: Storage,private loadingCtrl: LoadingController ) {
     
     this.address = this.navParams.get('param1');
     this.location = this.navParams.get('param2');
+
+    this.translate.get('REGISTER2_PAGE.alertTitle').subscribe((title)=>{
+      this.alertTitle = title;
+    });
+
+    this.translate.get('REGISTER2_PAGE.alertSubtitle').subscribe((subtitle)=>{
+      this.alertSubtitle = subtitle;
+    });
+    this.translate.get('PROFILE_PAGE.alertBtn').subscribe((text)=>{
+      this.alertBtn = text;
+    });
 
     this.user = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -39,47 +54,25 @@ export class Register2Page {
 
   onSubmit(user){
     this.presentLoading();
-    // this.menuCtrl.enable(true);
     this.storage.get('userData').then((data)=> {
 
       let nid= data.id;
       let secureCode = data.skey
-      // data.name = user._value.name;
-      // data.email = user._value.email;
-      // data.password = user._value.password;
-      // data.phone = user._value.mob;
-      // data.address = this.address;
-
-      // this.storage.set("userData", data);
 
       this.registerProvider.Register(nid, secureCode, this.location, user).then((token)=>{
-
-        // this.getChildrenProvider.getAllChildren(token).then((flag)=>{
-        //   if (flag) {
-        //     this.navCtrl.setRoot(ChildrenPage);
-        //   }
-        // }).catch((error1)=>{
-        //   console.log("error1", error1);
-        // });
         this.loader.dismiss();
         this.showAlert();
 
       }).catch((error2)=>{
         this.loader.dismiss();
-        alert(error2);  //error2=User registration is currently not allowed
+        alert(error2);
       })
 
     }).catch((error3)=>{
       this.loader.dismiss();
-      console.log("error getting userData from storage");
     })
     
   }
-
-  // RegisterFN() {
-  //   this.menuCtrl.enable(true);
-  //   this.navCtrl.setRoot(ChildrenPage);
-  // }
 
   locateMe()
   {
@@ -87,21 +80,23 @@ export class Register2Page {
   }
 
   presentLoading() {
-    this.loader = this.loadingCtrl.create({
-      content: "Creating account..."
+    this.translate.get('REGISTER2_PAGE.loader').subscribe((loader)=>{
+      this.loader = this.loadingCtrl.create({
+        content: loader
+      });
+      this.loader.present();
     });
-    this.loader.present();
   }
 
   showAlert() {
+    
     let alert = this.alertCtrl.create({
-      title: 'Registration successeded',
-      subTitle: 'Your accout has bees created, Please verify your email the Login!',
+      title: this.alertTitle,
+      subTitle: this.alertSubtitle,
       buttons: [
         {
-          text: 'OK',
+          text: this.alertBtn,
           handler: data => {
-            console.log('Saved clicked');
             this.navCtrl.setRoot(LoginPage);
           }
         }

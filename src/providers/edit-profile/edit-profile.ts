@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LoginProvider } from '../login/login';
 import { GetChildrenProvider } from '../get-children/get-children';
+import { GetNotificationProvider } from '../get-notification/get-notification';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class EditProfileProvider {
 	error: any;
 
 	constructor( private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider,
-				 private translate: TranslateService) {
+				 private translate: TranslateService, private getNotificationProvider: GetNotificationProvider) {
 
 		this.error = this.translate.get('PROFILE_PAGE.error')
 	}
@@ -77,7 +78,11 @@ export class EditProfileProvider {
 							this.loginProvider.Login(response.data.nid , data.password).then((newToken)=>{
 								this.getChildrenProvider.getAllChildren(newToken).then((flag)=>{
 							        if (flag) {
-							          resolve("updated");
+							        	this.getNotificationProvider.getNotification(newToken).then((data) => {
+											resolve("updated");
+										}).catch((error2)=>{
+											console.log(error2)
+							          	})
 							        }
 							    }).catch((error1)=>{
 							        alert(error1);

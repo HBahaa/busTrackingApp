@@ -76,15 +76,19 @@
 		"error" 			: "User registration is currently not allowed"
 	},
 	"REGISTER2_PAGE"	: {
-		"title"		: "Registration",
-		"name" 	  	: "Name",
-		"email"	    : "Email",
-		"password"	: "Password",
-		"address"   : "Address",
-		"phone"		: "Phone Number",
-		"locateMe"	: "Change My Address",
-		"register"	: "Register",
-		"error" 			: "User registration is currently not allowed"
+		"title"			: "Registration",
+		"name" 	  		: "Name",
+		"email"	    	: "Email",
+		"password"		: "Password",
+		"address"   	: "Address",
+		"phone"			: "Phone Number",
+		"locateMe"		: "Change My Address",
+		"register"		: "Register",
+		"error" 		: "User registration is currently not allowed",
+		"loader"		: "Creating account...",
+		"alertTitle" 	: "Registration successeded",
+		"alertSubtitle" : "Your accout has bees created, Please verify your email to activate you accout then login.",
+		"alertBtn"		: "OK"
 	},
 	"DETAILS_PAGE" : {
 		"title"			: "Details",
@@ -110,12 +114,14 @@
 	"MAP_PAGE" : {
 		"title"		: "Select your home",
 		"next"		: "Next",
+		"search"	: "Search",
 		"toast1"	: "Select your location, you can click on map to select you home or from search box  then click Next",
 		"toast2"	: "Please enter address in search box or click Next"
 	},
 	"PROFILE_PAGE" : {
 		"title"			: "Profile",
 		"subTitle"		: "Profile Data",
+		"settings"		: "Settings",
 		"name"			: "Name",
 		"email"			: "Email",
 		"password"		: "Password",
@@ -125,11 +131,17 @@
 		"edit" 			: "Edit",
 		"changeAddress"	: "Change Address",
 		"updated"		: "Your Data Updated, Please Verify your email and relogin",
-		"error"			: "Error while update data"
+		"error"			: "Error while update data",
+		"updating"		: "Updating...",
+		"alertSubtitle" : "Your email has bees changed successfully, Please verify your email then login.",
+		"alertBtn"		: "OK"
 	},
 	"MAPMODAL_PAGE": {
 		"sesionNotAuthenticated"	: "Session isn't authenticated",
 		"errorOnUpdateAddress"		: "Error on updating your address",
-		"loading"					: "Loading..."
+		"loading"					: "Updating...",
+		"save"						: "save",
+		"map"						: "Map",
+		"search"					: "Search"
 	}
 } 

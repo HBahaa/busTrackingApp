@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, LoadingController } from 'ionic-angular';
+import { NavController, Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 import { LoginPage } from '../login/login';
 import { MapModalPage } from '../map-modal/map-modal';
 import { LoginProvider } from '../../providers/login/login';
 import { EditProfileProvider } from '../../providers/edit-profile/edit-profile';
-
 
 
 @Component({
@@ -24,13 +24,25 @@ export class ProfilePage {
 	phone: string;
 	location: any;
 	showEditForm: boolean = false;
-	loader:any;
+	language:any;
+	alertSubtitle :string;
+	alertBtn: string;
 
 	constructor(public navCtrl: NavController, private storage: Storage, private platform: Platform,
-				private loadingCtrl: LoadingController, private loginProvider: LoginProvider,
-				private editProfileProvider: EditProfileProvider)
+				private alertCtrl: AlertController, private loginProvider: LoginProvider,
+				private editProfileProvider: EditProfileProvider, private translate: TranslateService)
 	{
 		platform.ready().then(() => {
+
+		    this.translate.get('PROFILE_PAGE.alertSubtitle').subscribe((subtitle)=>{
+		    	this.alertSubtitle = subtitle;
+		    });
+		    this.translate.get('PROFILE_PAGE.alertBtn').subscribe((text)=>{
+		    	this.alertBtn = text;
+		    });
+			this.storage.get("language").then((lang)=>{
+				this.language = lang; 
+			});
 			this.storage.get("userData").then((data)=>{
 				// alert("data = "+ JSON.stringify(data));
 				this.nid = data.nid;
@@ -44,6 +56,21 @@ export class ProfilePage {
 		})
 	}
 
+	changeLanguage(language){
+		if (language === 'ar') {
+		  this.platform.setDir('ltr', false);
+		  this.platform.setDir('rtl', true);
+		  this.translate.use(language);
+		  
+		} else {
+		  this.platform.setDir('rtl', false);
+		  this.platform.setDir('ltr', true);
+		  this.translate.use(language);
+		}
+		this.storage.set("language", language);
+	}
+
+
 	changeFlag(){
 		this.showEditForm = true;
 		return this.showEditForm;
@@ -55,7 +82,7 @@ export class ProfilePage {
 
 	editProfile(data){
 		this.storage.get("userData").then((user)=>{
-			// console.log("user.password", user.password);
+
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {
 					this.editProfileProvider.updateProfile(log, data.value, user.nid, false).then((res)=>{
@@ -67,15 +94,10 @@ export class ProfilePage {
 				}
 				else
 				{
-					this.presentLoading();
 					this.editProfileProvider.updateProfile(log, data.value, user.nid, true).then((res)=>{
 						// alert(res);
-						this.loader.dismiss();
-						this.storage.clear().then(()=>{
-					      this.navCtrl.setRoot(LoginPage);
-					    });
+						this.showAlert();
 					}).catch((error)=>{
-						this.loader.dismiss();
 						console.log(error);
 					});
 				}
@@ -86,21 +108,20 @@ export class ProfilePage {
 	    });
 	}
 
-	// presentToast(data) {
-	// 	var toast = this.toastCtrl.create({
-	// 		message: "data saved",
-	// 		duration: 3000,
-	// 		position: 'top'
-	//     });
-	//     toast.present();
-	// }
-
-	presentLoading() {
-	    // this.translate.get('MAPMODAL_PAGE.loading').subscribe((loading)=>{
-	      this.loader = this.loadingCtrl.create({
-	        content: "Updating..."
-	      });
-	      this.loader.present();
-	    // });
-	}
+	showAlert() {
+	    let alert = this.alertCtrl.create({
+	      subTitle: this.alertSubtitle,
+	      buttons: [
+	        {
+	        	text: this.alertBtn,
+	          handler: data => {
+	            this.storage.clear().then(()=>{
+			      this.navCtrl.setRoot(LoginPage);
+			    });
+	          }
+	        }
+	      ]
+	    });
+	    alert.present();
+    }
 }

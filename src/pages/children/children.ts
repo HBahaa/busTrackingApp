@@ -29,7 +29,7 @@ export class ChildrenPage {
 				private platform: Platform, private getNotificationProvider: GetNotificationProvider,
 				private loginProvider: LoginProvider) {	
 
-		// this.serverConnection();
+		this.serverConnection();
 
 		this.platform.ready().then(() => {
 
@@ -86,6 +86,7 @@ export class ChildrenPage {
 	}
 
 	childDetails(tag,child){
+		console.log("child", tag, child)
 		this.navCtrl.push(DetailsPage, {'param1': tag, 'param2': child})
 	}
 

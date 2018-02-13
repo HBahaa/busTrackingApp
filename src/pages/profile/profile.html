@@ -9,9 +9,25 @@
 
 <ion-content>
   <ion-grid  *ngIf="!showEditForm">
+    <ion-card class="settings">
+      <ion-card-title color="mainColor">
+        {{ 'PROFILE_PAGE.settings' | translate }}
+      </ion-card-title>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>{{ 'LANGUAGE.selectLanguage' | translate }}:</ion-label>
+          <ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage($event)"
+              okText="{{ 'LANGUAGE.ok' | translate }}" cancelText="{{ 'LANGUAGE.cancel' | translate }}">
+
+            <ion-option value="en">{{ 'LANGUAGE.en' | translate }}</ion-option>
+            <ion-option value="ar">{{ 'LANGUAGE.ar' | translate }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card class="profileData">
           <ion-card-content>
             <ion-card-title color="mainColor">{{ 'PROFILE_PAGE.subTitle' | translate }}</ion-card-title>
               <ion-row>
@@ -34,12 +50,13 @@
               
               </ion-row>
               <button ion-button icon-start color="mainColor" block (click)="changeFlag()">
-                <ion-icon name="create"></ion-icon>
+                <ion-icon name="create"></ion-icon>&nbsp; &nbsp;
                 {{ 'PROFILE_PAGE.edit' | translate }}
               </button>
               <button ion-button icon-start block (click)="presentMapModal()">
-                <ion-icon name="pin"></ion-icon> {{ 'PROFILE_PAGE.changeAddress' | translate }}
+                <ion-icon name="pin"></ion-icon> &nbsp; &nbsp; {{ 'PROFILE_PAGE.changeAddress' | translate }}
               </button>
+
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -72,7 +89,7 @@
               <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
             </ion-item>
             <button ion-button icon-start type="submit" color="mainColor" block round>
-              <ion-icon name="log-in"></ion-icon> {{ 'PROFILE_PAGE.update' | translate }}
+              <ion-icon name="log-in"></ion-icon> &nbsp; &nbsp;{{ 'PROFILE_PAGE.update' | translate }}
             </button>
           </ion-list>
         </form>

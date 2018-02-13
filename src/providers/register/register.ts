@@ -35,6 +35,7 @@ export class RegisterProvider {
 
 				if(response.success)
 				{
+					console.log("response", JSON.stringify(response));
 			        // this.storage.set("token", response.token);
 					resolve(response.token);
 				}

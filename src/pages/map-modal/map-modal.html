@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Map</ion-title>
+    <ion-title>{{ 'MAPMODAL_PAGE.map' | translate }}</ion-title>
     <ion-buttons end>
       <button ion-button color="light" (click)="dismiss()">
-        save
+        {{ 'MAPMODAL_PAGE.save' | translate }}
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -13,7 +13,7 @@
 <ion-content>
   <div id="over_map">
 
-    <ion-searchbar primary [(ngModel)]="searchQuery" show-cancel="true" placeholder="Search"></ion-searchbar>
+    <ion-searchbar primary [(ngModel)]="searchQuery" show-cancel="true" placeholder="{{ 'MAPMODAL_PAGE.search' | translate }}"></ion-searchbar>
     <button ion-button icon-only block (click)="codeAddress()"><ion-icon name="redo"></ion-icon></button>
   </div>
   <div id="map"></div>

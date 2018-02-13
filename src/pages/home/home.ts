@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 
 import { LoginPage } from '../login/login';
 import { Register1Page } from '../register1/register1';
@@ -13,7 +13,8 @@ import { Register1Page } from '../register1/register1';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private platform: Platform, private translateService: TranslateService, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, private platform: Platform, private translateService: TranslateService,
+              private menuCtrl: MenuController, private storage: Storage) {
   }
 
    ionViewDidEnter() {
@@ -31,7 +32,7 @@ export class HomePage {
       this.platform.setDir('ltr', true);
       this.translateService.use(language);
     }
-    // this.translateService.use(language)
+    this.storage.set("language", language);
   }
 
   goToLogin() {
