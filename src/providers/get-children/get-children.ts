@@ -11,6 +11,7 @@ export class GetChildrenProvider {
 	loader:any;
 	children: any[] = [];
 	rooms:any = {};
+	topics:any;
 	roomsData:any = {};
 	// parent:any = {'loc':{}};
 
@@ -41,6 +42,7 @@ export class GetChildrenProvider {
 			  	if(response.success)
 		      	{
 		      		this.children = [];
+		      		this.topics = [];
 					this.rooms = {};
 					this.roomsData = {};
 					this.storage.get("userData").then((parent)=>{
@@ -59,11 +61,21 @@ export class GetChildrenProvider {
 		    		this.rooms.geo = geo_id;
 		    		this.roomsData[geo_id] = [];
 
+		    		this.topics.push(geo_id);
+
 					$.each(response.data.children, (index, value)=>{
 				   		value["tag"] = index;
 				   		value["image"] = "https://hst-api.wialon.com/avl_tag_image/"+value.source+"/"+value.id+"/100/100/2490508405.png";
 
 				   		this.roomsData[index] = [value.name];
+
+				   		this.topics.push(index);
+						if (this.topics.indexOf(value.bus_id) == -1) {
+							this.topics.push(value.bus_id);
+						}
+						else{
+							console.log("else")
+						}
 
 				   		if (geo_id in this.roomsData) {
 				   			
@@ -102,6 +114,7 @@ export class GetChildrenProvider {
 
 				   		console.log("data set to storage")
 						this.children.push(value);
+						this.storage.set("topics", this.topics);
 						this.storage.set("rooms", this.rooms);
 						this.storage.set("roomsData", this.roomsData);
 						this.storage.set("children", this.children);

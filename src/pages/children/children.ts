@@ -86,7 +86,6 @@ export class ChildrenPage {
 	}
 
 	childDetails(tag,child){
-		console.log("child", tag, child)
 		this.navCtrl.push(DetailsPage, {'param1': tag, 'param2': child})
 	}
 
@@ -100,8 +99,10 @@ export class ChildrenPage {
 		this.socket = io(this.socketHost);
 
 		this.socket.on("connect", (msg) => {
-			this.storage.get("rooms").then((rooms)=>{
-				this.socket.emit("set", { "topics": rooms });
+
+			this.storage.get("topics").then((topics)=>{
+
+				this.socket.emit("set", { "topics": topics });
 
 				this.socket.on("serverpublisher", (data) => {
 					
