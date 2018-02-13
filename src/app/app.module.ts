@@ -38,9 +38,8 @@ import { ResetPasswordProvider } from '../providers/reset-password/reset-passwor
 import { EditProfileProvider } from '../providers/edit-profile/edit-profile';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 
 @NgModule({
   declarations: [
