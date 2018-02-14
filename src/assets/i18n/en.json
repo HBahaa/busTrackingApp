@@ -128,6 +128,7 @@
 		"phone"			: "Phone",
 		"address"		: "Address",
 		"update"		: "Update",
+		"cancel"		: "Cancel",
 		"edit" 			: "Edit",
 		"changeAddress"	: "Change Address",
 		"updated"		: "Your Data Updated, Please Verify your email and relogin",

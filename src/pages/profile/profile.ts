@@ -22,6 +22,11 @@ export class ProfilePage {
 	address: string;
 	password: string;
 	phone: string;
+
+	user_email: string;
+	user_password: string;
+	user_phone: string;
+
 	location: any;
 	showEditForm: boolean = false;
 	language:any;
@@ -50,6 +55,11 @@ export class ProfilePage {
 				this.email = data.email;
 				this.phone = data.phone;
 				this.password = data.password;
+
+				this.user_email = data.email;
+				this.user_phone = data.phone;
+				this.user_password = data.password;
+
 				this.address = data.address;
 				this.location = data.loc;
 			})
@@ -70,14 +80,20 @@ export class ProfilePage {
 		this.storage.set("language", language);
 	}
 
-
 	changeFlag(){
 		this.showEditForm = true;
 		return this.showEditForm;
 	}
+	cancelEdit(){
+		this.email = this.user_email;
+		this.phone = this.user_phone;
+		this.password = this.user_password;
+		this.showEditForm = false;
+		return this.showEditForm;
+	}
 
 	presentMapModal(){
-		this.navCtrl.setRoot(MapModalPage, {'param1' : this.location});
+		this.navCtrl.push(MapModalPage, {'param1' : this.location});
 	}
 
 	editProfile(data){
