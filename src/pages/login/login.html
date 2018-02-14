@@ -16,7 +16,7 @@
             </ion-item>
 
             <button ion-button icon-start type="submit" color="primary" block round [disabled]="!loginForm.form.valid">
-              <ion-icon name="log-in"></ion-icon> {{ 'LOGIN_PAGE.login' | translate }}
+              <ion-icon name="log-in"></ion-icon> &nbsp; &nbsp;{{ 'LOGIN_PAGE.login' | translate }}
             </button>
             
           </ion-list>
@@ -24,10 +24,10 @@
       </ion-row>
     </form>
     <button ion-button icon-start color="light" clear (click)="changeFlag()">
-      <ion-icon name="arrow-round-forward"></ion-icon> {{ 'LOGIN_PAGE.forgetPassword' | translate }}
+      <ion-icon name="arrow-round-forward"></ion-icon> &nbsp; &nbsp;{{ 'LOGIN_PAGE.forgetPassword' | translate }}
     </button><br />
     <button ion-button icon-start color="light" (click)="createAccount()" clear>
-      <ion-icon name="arrow-round-forward"></ion-icon> {{ 'LOGIN_PAGE.dontHaveAccount' | translate }}
+      <ion-icon name="arrow-round-forward"></ion-icon> &nbsp; &nbsp;{{ 'LOGIN_PAGE.dontHaveAccount' | translate }}
     </button>
   </div>
 
@@ -45,7 +45,7 @@
 
             <button ion-button icon-start type="submit" color="mainColor" block round 
             [disabled]="!resetForm.form.valid">
-              <ion-icon name="log-in"></ion-icon> {{ 'LOGIN_PAGE.send' | translate }}
+              <ion-icon name="log-in"></ion-icon> &nbsp; &nbsp; {{ 'LOGIN_PAGE.send' | translate }}
             </button>
             
           </ion-list>
