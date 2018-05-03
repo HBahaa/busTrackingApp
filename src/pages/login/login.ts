@@ -46,10 +46,8 @@ export class LoginPage {
   }
 
   login() {
-
     this.menuCtrl.enable(true);
     this.loginProvider.Login(this.id, this.password).then((token)=>{
-
       this.getChildrenProvider.getAllChildren(token).then((flag)=>{
         if (flag) {
           this.navCtrl.setRoot(ChildrenPage);
@@ -57,7 +55,6 @@ export class LoginPage {
       }).catch((error1)=>{
         alert(error1);
       });
-
     }).catch((error2)=>{
       alert(error2)
     });

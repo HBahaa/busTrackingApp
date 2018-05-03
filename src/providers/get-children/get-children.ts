@@ -107,12 +107,9 @@ export class GetChildrenProvider {
 					   			// this.rooms.bus.push(value.bus_id);
 					   			console.log("else")
 					   		}
-
 				   		}else{
 				   			this.rooms.bus = [value.bus_id];
 				   		}
-
-				   		console.log("data set to storage")
 						this.children.push(value);
 						this.storage.set("topics", this.topics);
 						this.storage.set("rooms", this.rooms);

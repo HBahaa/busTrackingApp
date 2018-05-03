@@ -166,5 +166,4 @@ export class ChildrenPage {
 			});
 		})
 	}
-
 }

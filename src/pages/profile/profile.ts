@@ -94,7 +94,7 @@ export class ProfilePage {
 
 	presentMapModal(){
 		this.navCtrl.push(MapModalPage, {'param1' : this.location});
-	}
+	} 
 
 	editProfile(data){
 		this.storage.get("userData").then((user)=>{
@@ -102,6 +102,9 @@ export class ProfilePage {
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {
 					this.editProfileProvider.updateProfile(log, data.value, user.nid, false).then((res)=>{
+						this.user_email = this.email;
+						this.user_phone = this.phone;
+						this.user_password = this.password;
 						this.showEditForm = false;
 						return this.showEditForm;
 					}).catch((error)=>{
