@@ -3,14 +3,12 @@ import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
-import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
 import { NotificationPage } from '../notification/notification';
 
 
 @Component({
   selector: 'page-notifications',
-  templateUrl: 'notifications.html',
-  providers: [GetNotificationProvider]
+  templateUrl: 'notifications.html'
 })
 export class NotificationsPage {
 
@@ -18,7 +16,7 @@ export class NotificationsPage {
   newDate = new Date();
   rooms:any;
 
-  constructor(public navCtrl: NavController, private storage: Storage, private getNotificationProvider: GetNotificationProvider) {
+  constructor(public navCtrl: NavController, private storage: Storage) {
 
   }
 
