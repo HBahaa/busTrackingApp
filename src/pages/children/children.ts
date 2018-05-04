@@ -29,7 +29,7 @@ export class ChildrenPage {
 				private platform: Platform, private getNotificationProvider: GetNotificationProvider,
 				private loginProvider: LoginProvider) {	
 
-		// this.serverConnection();
+		this.serverConnection();
 
 		this.platform.ready().then(() => {
 

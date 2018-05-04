@@ -14,6 +14,8 @@ export class DatePipe implements PipeTransform {
 		
 		if (args[0]) {
 			moment.locale(args[0]);
+		}else{
+			moment.locale('en');
 		}
 
 		if (myDate.getFullYear() === newDate.getFullYear() && newDate.getMonth() === newDate.getMonth()) {

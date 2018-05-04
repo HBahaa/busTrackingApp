@@ -26,7 +26,6 @@ export class DetailsPage {
 		    })
 
 		    this.storage.get("language").then(lang=>{
-		    	console.log("deta", lang)
 		      this.lang = lang;
 		    })
 
