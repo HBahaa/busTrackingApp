@@ -46,7 +46,6 @@ export class MyApp {
       splashScreen.hide();
 
       // this.translateService.setDefaultLang(en);
-      this.translateService.use('en');
 
       this.presentLoading();
       this.loadingPage();
@@ -78,15 +77,32 @@ export class MyApp {
           this.loader.dismiss();
         
         if(data != null){
+
+          this.setLanguage()
+
           this.rootPage = ChildrenPage;
           // this.loader.dismiss();
 
         }else if(data == null){
           // this.loader.dismiss();
+          this.translateService.use('en');
           this.rootPage = HomePage;
         }
       })
     })
+  }
+
+  setLanguage(){
+    this.storage.get("language").then(lang =>{
+      // console.log("app", lang)
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', false);
+        this.platform.setDir('rtl', true);
+      }
+      this.translateService.use(lang);
+    }).catch(err =>{
+      this.translateService.use('en');
+    });
   }
 
   presentLoading() {

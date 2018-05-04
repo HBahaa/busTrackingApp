@@ -15,6 +15,7 @@ export class DetailsPage {
 	childData: any;
 	tag: any;
 	rooms:any;
+	lang: string;
 
 	constructor(public navCtrl: NavController, private navParams: NavParams,
 		private storage: Storage, private platform: Platform) {
@@ -24,8 +25,14 @@ export class DetailsPage {
 		      this.rooms = data;
 		    })
 
+		    this.storage.get("language").then(lang=>{
+		    	console.log("deta", lang)
+		      this.lang = lang;
+		    })
+
 			this.tag = this.navParams.get("param1");
 			this.childData = this.navParams.get("param2");
+			
 			
 			this.storage.get(this.tag).then((messages)=>{
 				this.messages = messages;

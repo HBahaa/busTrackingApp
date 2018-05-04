@@ -71,9 +71,9 @@
         	<ng-template #msg><h2>{{message.msg.substr(0, 30) +"..."}}</h2></ng-template>
 
 
-	        <p *ngIf="(message.time | customDate) != message.time; else temp" text-right>
-	          <span>{{ message.time | customDate }}</span>
-	          <span *ngIf="(message.time | customDate).includes('day')">
+	        <p *ngIf="(message.time | customDate: lang) != message.time; else temp" text-right>
+	          <span>{{ message.time | customDate: lang }}</span>
+	          <span *ngIf="(message.time | customDate: lang).includes('day')">
 	          	, {{message.time | date:'shortTime'}}
 	          </span>
 	        </p>

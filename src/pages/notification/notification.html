@@ -12,7 +12,7 @@
 	<div id="map"></div>
 	<ion-card>
 	  <ion-card-content>
-	  	<p>{{notification.time | date:'shortTime'}}</p>
+	  	<p>{{notification.time | customDate: lang}}</p>
 		<h2><span>{{ 'NOTIFICATION_PAGE.childName' | translate }}:</span> {{ notification.name }}</h2>
 		<h2><span>{{ 'NOTIFICATION_PAGE.busSpeed' | translate }}:</span> {{ notification.speed }}</h2>
 		<h2><span>{{ 'NOTIFICATION_PAGE.status' | translate }}:</span> {{ notification.status }}</h2>
