@@ -10,10 +10,12 @@ import { GoogleMaps, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/goo
 export class NotificationPage {
 
 	notification:any;
+	lang: string;
 	map;
 
 	constructor(public navParams: NavParams, private googleMaps: GoogleMaps) {
 		this.notification = this.navParams.get("param1");
+		this.lang = this.navParams.get("param2");
 		this.loadMap(this.notification["locLat"], this.notification["locLong"], this.notification["locDesc"]);
 	}
 

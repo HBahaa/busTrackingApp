@@ -46,7 +46,6 @@ export class MyApp {
       splashScreen.hide();
 
       // this.translateService.setDefaultLang(en);
-      this.translateService.use('en');
 
       this.presentLoading();
       this.loadingPage();
@@ -75,27 +74,45 @@ export class MyApp {
     this.storage.ready().then(()=>{
 
       this.storage.get("children").then((data)=>{
-          this.loader.dismiss();
+        this.loader.dismiss();
         
         if(data != null){
+
+          this.setLanguage()
+
           this.rootPage = ChildrenPage;
           // this.loader.dismiss();
 
         }else if(data == null){
           // this.loader.dismiss();
+          this.storage.set("language", "en");
+          this.translateService.use('en');
           this.rootPage = HomePage;
         }
       })
     })
   }
 
+  setLanguage(){
+    this.storage.get("language").then(lang =>{
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', false);
+        this.platform.setDir('rtl', true);
+      }
+      this.translateService.use(lang);
+    }).catch(err =>{
+      
+      this.translateService.use('en');
+    });
+  }
+
   presentLoading() {
-    this.translateService.get('APP_PAGE.load').subscribe((content)=>{
+    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
       this.loader = this.loadingCtrl.create({
-        content: content
+        content: "Authenticating..."
       });
       this.loader.present();
-    });
+    // });
 
   }
 }

@@ -15,9 +15,9 @@ export class NotificationsPage {
   items: any= [];
   newDate = new Date();
   rooms:any;
+  lang: string;
 
   constructor(public navCtrl: NavController, private storage: Storage) {
-
   }
 
   ionViewDidLoad(){
@@ -26,7 +26,11 @@ export class NotificationsPage {
 
     this.storage.get("rooms").then((data)=>{
       this.rooms = data;
-    })
+    });
+
+    this.storage.get("language").then(lang =>{
+      this.lang = lang;
+    });
 
     this.storage.get("children").then((result)=>{
       // let children = result;
@@ -59,6 +63,6 @@ export class NotificationsPage {
   }
 
   notificationDetails(item){
-    this.navCtrl.push(NotificationPage, {'param1': item})
+    this.navCtrl.push(NotificationPage, {'param1': item, 'param2': this.lang})
   }
 }
