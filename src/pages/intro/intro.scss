@@ -1,0 +1,25 @@
+page-intro {
+	.content {
+	    background-image: url(../assets/imgs/3.jpg);
+	    background-size: cover;
+
+	    h3{
+			color:#fff;
+			font-family: cursive;
+		}
+		button{
+			font-size: 1.7rem;
+			text-transform: capitalize;
+		}
+
+		.scroll-content{
+			text-align: center;
+			justify-content: center;
+			align-content: center;
+			display: flex;
+			flex-direction: column;
+			box-shadow: none;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+	}
+}

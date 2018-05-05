@@ -7,10 +7,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
 import { ChildrenPage } from '../pages/children/children';
-import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+import { IntroPage } from '../pages/intro/intro';
+// import { HomePage } from '../pages/home/home';
 
 
 declare var cordova:any;
@@ -23,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = IntroPage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -42,13 +43,14 @@ export class MyApp {
 
       this.keyboard.disableScroll(true);
 
+      this.storage.clear();
+
       statusBar.styleDefault();
       splashScreen.hide();
+      this.translateService.use('en');
 
-      // this.translateService.setDefaultLang(en);
-
-      this.presentLoading();
-      this.loadingPage();
+      // this.presentLoading();
+      // this.loadingPage();
                 
     });
 
@@ -70,49 +72,49 @@ export class MyApp {
     });
   }
 
-  loadingPage(){
-    this.storage.ready().then(()=>{
+  // loadingPage(){
+  //   this.storage.ready().then(()=>{
 
-      this.storage.get("children").then((data)=>{
-        this.loader.dismiss();
+  //     this.storage.get("children").then((data)=>{
+  //       this.loader.dismiss();
         
-        if(data != null){
+  //       if(data != null){
 
-          this.setLanguage()
+  //         this.setLanguage()
 
-          this.rootPage = ChildrenPage;
-          // this.loader.dismiss();
+  //         this.rootPage = ChildrenPage;
+  //         // this.loader.dismiss();
 
-        }else if(data == null){
-          // this.loader.dismiss();
-          this.storage.set("language", "en");
-          this.translateService.use('en');
-          this.rootPage = HomePage;
-        }
-      })
-    })
-  }
+  //       }else if(data == null){
+  //         // this.loader.dismiss();
+  //         this.storage.set("language", "en");
+  //         this.translateService.use('en');
+  //         this.rootPage = HomePage;
+  //       }
+  //     })
+  //   })
+  // }
 
-  setLanguage(){
-    this.storage.get("language").then(lang =>{
-      if (lang === 'ar') {
-        this.platform.setDir('ltr', false);
-        this.platform.setDir('rtl', true);
-      }
-      this.translateService.use(lang);
-    }).catch(err =>{
+  // setLanguage(){
+  //   this.storage.get("language").then(lang =>{
+  //     if (lang === 'ar') {
+  //       this.platform.setDir('ltr', false);
+  //       this.platform.setDir('rtl', true);
+  //     }
+  //     this.translateService.use(lang);
+  //   }).catch(err =>{
       
-      this.translateService.use('en');
-    });
-  }
+  //     this.translateService.use('en');
+  //   });
+  // }
 
-  presentLoading() {
-    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
-      this.loader = this.loadingCtrl.create({
-        content: "Authenticating..."
-      });
-      this.loader.present();
-    // });
+  // presentLoading() {
+  //   // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
+  //     this.loader = this.loadingCtrl.create({
+  //       content: "Authenticating..."
+  //     });
+  //     this.loader.present();
+  //   // });
 
-  }
+  // }
 }

@@ -52,7 +52,8 @@
 	"HOME_PAGE":  	 {
 		"or" 		: "OR",
 		"login" 	: "Login",
-		"register"	: "Register"
+		"register"	: "Register",
+		"back"		: "Back"
 	},
 	"LOGIN_PAGE"	: {
 		"title"				: "Login",
