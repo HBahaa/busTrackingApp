@@ -19,11 +19,10 @@ export class ItemDataPage {
   loader:any;
   flag:any;
 
-  constructor(
-              public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
               public storage: Storage,public loadingCtrl: LoadingController,
-              public alertCtrl: AlertController, public dataService: DataServiceProvider
-            ) {
+              public alertCtrl: AlertController, public dataService: DataServiceProvider) {
+    
     this.id = this.navParams.get('param1');
     this.type = this.navParams.get('param2');
   }
@@ -35,8 +34,6 @@ export class ItemDataPage {
       this.token = data.token;
       this.tenant = data.tenant;
 
-      console.log("this.token this.token= ", this.token )
-      console.log("this.tenant this.tenant= ", this.tenant )
       this.dataService.getDataService(this.tenant, this.id, this.type, this.token, this.itemName).then((flag)=>{
         if(flag == true){
           this.navCtrl.push(UserHomePage)

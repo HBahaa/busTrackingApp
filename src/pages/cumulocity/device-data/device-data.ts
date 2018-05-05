@@ -11,6 +11,7 @@ export class DeviceDataPage {
   disableBTN:any;
   icons:any = {"c8y_TemperatureMeasurement": "ios-thermometer", "c8y_LightMeasurement":"md-bulb", "c8y_AccelerationMeasurement":"md-compass"};
   colors:any= {"c8y_TemperatureMeasurement": ["danger"], "c8y_LightMeasurement":["light"], "c8y_AccelerationMeasurement":["secondary"]};
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.device = this.navParams.get('param1');

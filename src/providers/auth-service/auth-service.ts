@@ -36,7 +36,6 @@ export class AuthServiceProvider {
     return new Promise((resolve)=>{
       let my = this;
       let value;
-      let unit
 
       var settings = {
         "async": true,
