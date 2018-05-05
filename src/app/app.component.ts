@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 
 import { ChildrenPage } from '../pages/children/children';
 import { HomePage } from '../pages/home/home';
@@ -34,14 +33,10 @@ export class MyApp {
     private translateService: TranslateService, private keyboard: Keyboard,public toastCtrl:ToastController
     ,public loadingCtrl: LoadingController, private storage: Storage) {
 
-    // this.storage.clear();
 
     platform.ready().then(() => {
 
       if (window.cordova && window.cordova.plugins.Keyboard) {
-        console.log("window.cordova && window.cordova.plugins.Keyboard")
-        // This requires installation of https://github.com/driftyco/ionic-plugin-keyboard
-        // and can only affect native compiled Ionic2 apps (not webserved).
         cordova.plugins.Keyboard.disableScroll(true);
       }
 
@@ -50,68 +45,74 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-
-      this.translateService.setDefaultLang('en');
-      this.translateService.use('en');
+      // this.translateService.setDefaultLang(en);
 
       this.presentLoading();
       this.loadingPage();
                 
     });
 
-    // used for an example of ngFor and navigation
     this.pages = [
-      { icon: 'contacts',title: 'My Children', component: ChildrenPage },
-      { icon: 'notifications',title: 'Notifications', component: NotificationsPage },
-      { icon: 'person',title: 'Profile', component: ProfilePage }
+      { icon: 'contacts',title: 'CHILDREN_PAGE.title', component: ChildrenPage },
+      { icon: 'notifications',title: 'NOTIFICATIONS_PAGE.title', component: NotificationsPage },
+      { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage }
     ];
 
   }
 
-
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-
     this.nav.setRoot(page.component);
   }
 
   userLogout(){
-    this.storage.get('children').then((result)=>{
-      $.each(result, (index, child)=>{
-        this.storage.remove(child.tag).then(()=>{
-          this.storage.remove('children')
-          this.storage.remove('token').then(()=>{
-            this.nav.setRoot(LoginPage);
-          }).catch(()=>{
-            console.log("error")
-          });
-        });
-      })
+    this.storage.clear().then(()=>{
+      this.nav.setRoot(LoginPage);
     });
-
   }
 
   loadingPage(){
     this.storage.ready().then(()=>{
 
       this.storage.get("children").then((data)=>{
+        this.loader.dismiss();
+        
         if(data != null){
+
+          this.setLanguage()
+
           this.rootPage = ChildrenPage;
-          this.loader.dismiss();
+          // this.loader.dismiss();
 
         }else if(data == null){
-          this.loader.dismiss();
+          // this.loader.dismiss();
+          this.storage.set("language", "en");
+          this.translateService.use('en');
           this.rootPage = HomePage;
         }
       })
     })
   }
 
-  presentLoading() {
-    this.loader = this.loadingCtrl.create({
-      content: "Authenticating..."
+  setLanguage(){
+    this.storage.get("language").then(lang =>{
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', false);
+        this.platform.setDir('rtl', true);
+      }
+      this.translateService.use(lang);
+    }).catch(err =>{
+      
+      this.translateService.use('en');
     });
-    this.loader.present();
+  }
+
+  presentLoading() {
+    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
+      this.loader = this.loadingCtrl.create({
+        content: "Authenticating..."
+      });
+      this.loader.present();
+    // });
+
   }
 }

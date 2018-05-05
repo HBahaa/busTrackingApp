@@ -1,7 +1,21 @@
 <ion-content padding class="home-content">
-	<!-- <h2>{{ 'HOME_PAGE.title' | translate }}</h2> -->
+	<ion-item>
+		<ion-label>{{ 'LANGUAGE.selectLanguage' | translate }}:</ion-label>
+		<ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage($event)"
+				okText="{{ 'LANGUAGE.ok' | translate }}" cancelText="{{ 'LANGUAGE.cancel' | translate }}">
 
-    <button ion-button color="mainColor" round block (click)="goToLogin()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.login' | translate }}</button>
+			<ion-option value="en">{{ 'LANGUAGE.en' | translate }}</ion-option>
+			<ion-option value="ar">{{ 'LANGUAGE.ar' | translate }}</ion-option>
+		</ion-select>
+	</ion-item>
+
+    <button ion-button color="mainColor" round block (click)="goToLogin()">
+    	<ion-icon name="ios-log-in"></ion-icon>&nbsp;{{ 'HOME_PAGE.login' | translate }}
+    </button>
+
     <h3>{{ 'HOME_PAGE.or' | translate }}</h3>
-    <button ion-button color="primary" round block (click)="goToRegistration()"><ion-icon name="ios-log-in"></ion-icon> {{ 'HOME_PAGE.register' | translate }}</button>
+
+    <button ion-button color="primary" round block (click)="goToRegistration()">
+    	<ion-icon name="ios-log-in"></ion-icon>&nbsp;{{ 'HOME_PAGE.register' | translate }}
+    </button>
 </ion-content>

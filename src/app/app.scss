@@ -1,3 +1,8 @@
+
+ion-app._gmaps_cdv_ .nav-decor{
+  background-color: transparent !important;
+}
+ 
 .md,
 .ios,
 .wp {
@@ -14,5 +19,13 @@
 	}
 	.bar-button-default{
 		color: #fff;
+	}
+
+	.alert-radio-icon{
+	    right: 13px;
+	}
+
+	ion-footer .toolbar{
+		min-height: 20px;
 	}
 }

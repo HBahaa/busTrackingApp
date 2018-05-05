@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
@@ -18,7 +19,7 @@ export class Register1Page {
 
   validations_form    : FormGroup;
 
-  constructor(public navCtrl: NavController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public storage: Storage, private translate: TranslateService) {
   }
 
 
@@ -55,11 +56,15 @@ export class Register1Page {
         })
       }
       else{
-        alert("User registration is currently not allowed")
+        this.translate.get('REGISTER1_PAGE.error').subscribe((error)=>{
+          alert(error);
+        })
       }
       
     }).catch((error)=>{
-      alert("User registration is currently not allowed")
+      this.translate.get('REGISTER1_PAGE.error').subscribe((error)=>{
+        alert(error)
+      })
     });    
   }
 

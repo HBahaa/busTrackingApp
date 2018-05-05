@@ -3,57 +3,101 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Profile</ion-title>
+    <ion-title>{{ 'PROFILE_PAGE.title' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="profile-content">
-  <!-- <form #profileForm="ngForm" (ngSubmit)="presentToast()">
-    <ion-row> 
+<ion-content>
+  <ion-grid  *ngIf="!showEditForm">
+    <ion-card class="settings">
+      <ion-card-title color="mainColor">
+        {{ 'PROFILE_PAGE.settings' | translate }}
+      </ion-card-title>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>{{ 'LANGUAGE.selectLanguage' | translate }}:</ion-label>
+          <ion-select [(ngModel)]="lang" (ngModelChange)="changeLanguage($event)"
+              okText="{{ 'LANGUAGE.ok' | translate }}" cancelText="{{ 'LANGUAGE.cancel' | translate }}">
+
+            <ion-option value="en">{{ 'LANGUAGE.en' | translate }}</ion-option>
+            <ion-option value="ar">{{ 'LANGUAGE.ar' | translate }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-row>
       <ion-col>
-        <ion-list inset>
-          <ion-item>
-            <ion-label> <ion-icon name="person"></ion-icon></ion-label>
-            <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
-            <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>
-            <ion-input type="text" name="phone" [(ngModel)]="phone"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label> <ion-icon name="lock"></ion-icon></ion-label>
-            <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
-          </ion-item>
-          <button ion-button type="submit" color="mainColor" block round [disabled]="!profileForm.form.valid">
-            <ion-icon name="log-in"></ion-icon> Update
-          </button>
-        </ion-list>
+        <ion-card class="profileData">
+          <ion-card-content>
+            <ion-card-title color="mainColor">{{ 'PROFILE_PAGE.subTitle' | translate }}</ion-card-title>
+              <ion-row>
+                <ion-col col-4><h2>{{ 'PROFILE_PAGE.name' | translate }}:</h2>
+                </ion-col><ion-col col-8><h2>{{name}}</h2></ion-col>
+
+                <ion-col col-4><h2>{{ 'PROFILE_PAGE.email' | translate }}:</h2></ion-col>
+                <ion-col col-8><h2>{{user_email}}</h2></ion-col>
+
+                <ion-col col-4><h2>{{ 'PROFILE_PAGE.password' | translate }}:</h2></ion-col>
+                <ion-col col-8><h2>{{user_password}}</h2></ion-col>
+
+                <ion-col col-4><h2>{{ 'PROFILE_PAGE.phone' | translate }}:</h2></ion-col>
+                <ion-col col-8><h2>{{user_phone}}</h2></ion-col>
+
+                <ion-col col-4><h2>{{ 'PROFILE_PAGE.address' | translate }}:</h2></ion-col>
+                <ion-col col-8><h2>{{address}}</h2></ion-col>
+              
+              </ion-row>
+              <button ion-button icon-start color="mainColor" block (click)="changeFlag()">
+                <ion-icon name="create"></ion-icon>&nbsp;{{ 'PROFILE_PAGE.edit' | translate }}
+              </button>
+              <button ion-button icon-start block (click)="presentMapModal()">
+                <ion-icon name="pin"></ion-icon> &nbsp;{{ 'PROFILE_PAGE.changeAddress' | translate }}
+              </button>
+
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
-  </form> -->
+  </ion-grid>
 
-  
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-card>
-            <ion-card-content>
-              <ion-card-title color="mainColor">Profile Data</ion-card-title>
-                <ion-row>
-                  <ion-col col-12><br /></ion-col>
-                  <ion-col col-4><h2>Name:</h2></ion-col><ion-col col-8><h2>{{name}}</h2></ion-col>
-                  <ion-col col-4><h2>Password:</h2></ion-col><ion-col col-8><h2>{{password}}</h2></ion-col>
-                  <ion-col col-4><h2>Address:</h2></ion-col><ion-col col-8><h2>{{address}}</h2></ion-col>
-                  <ion-col col-4><h2>Phone:</h2></ion-col><ion-col col-8><h2>{{phone}}</h2></ion-col>
-                </ion-row>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+
+  <div *ngIf="showEditForm">
+    <ion-card>
+      <ion-card-title color="mainColor">
+        {{ 'PROFILE_PAGE.subTitle' | translate }}
+      </ion-card-title>
+      <ion-card-content>
+        <form #profileForm="ngForm" (ngSubmit)="editProfile(profileForm)">
+          <ion-list inset>
+            <!-- <ion-item>
+              <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+              <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
+            </ion-item> -->
+            <ion-item>
+              <ion-label> <ion-icon name="mail"></ion-icon></ion-label>
+              <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon name="phone-portrait"></ion-icon></ion-label>
+              <ion-input type="text" name="phone" [(ngModel)]="phone"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label> <ion-icon name="lock"></ion-icon></ion-label>
+              <ion-input type="text" name="password" [(ngModel)]="password"></ion-input>
+            </ion-item>
+            <button ion-button icon-start type="submit" color="mainColor" block>
+              {{ 'PROFILE_PAGE.update' | translate }}
+            </button>
+
+          </ion-list>
+        </form>
+        <button ion-button icon-start type="submit" block (click)="cancelEdit()">
+          {{ 'PROFILE_PAGE.cancel' | translate }}
+        </button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>
+
+<!-- <ion-content class="editForm"></ion-content>-->

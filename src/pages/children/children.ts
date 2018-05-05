@@ -9,7 +9,6 @@ import * as io from "socket.io-client";
 import { DetailsPage } from '../details/details';
 import { NotificationsPage } from '../notifications/notifications';
 import { GetNotificationProvider } from '../../providers/get-notification/get-notification';
-// import { GetChildrenProvider } from '../../providers/get-children/get-children';
 import { LoginProvider } from '../../providers/login/login';
 
 
@@ -64,7 +63,7 @@ export class ChildrenPage {
 								this.getNewToken();
 							});
 						}).catch((error4)=>{
-							alert("error4 can't get token")
+							console.log("error4 can't get token");
 						})	
 					}
 				})	
@@ -77,11 +76,11 @@ export class ChildrenPage {
 						this.getNewToken();
 					});
 				}).catch((error2)=>{
-					alert("error2 can't get token")
+					console.log("error2 can't get token");
 				})	
 			}
 		}).catch((error1)=>{
-			alert("error1")
+			console.log("error1");
 		})
 		
 	}
@@ -100,8 +99,10 @@ export class ChildrenPage {
 		this.socket = io(this.socketHost);
 
 		this.socket.on("connect", (msg) => {
-			this.storage.get("rooms").then((rooms)=>{
-				this.socket.emit("set", { "topics": rooms });
+
+			this.storage.get("topics").then((topics)=>{
+
+				this.socket.emit("set", { "topics": topics });
 
 				this.socket.on("serverpublisher", (data) => {
 					
@@ -160,10 +161,9 @@ export class ChildrenPage {
 				this.getNotificationProvider.getNotification(token).then((data) => {
 
 				}).catch(()=>{
-					alert("error after new token")
+					console.log("error after new token")
 				});
 			});
 		})
 	}
-
 }

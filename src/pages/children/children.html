@@ -16,10 +16,10 @@
       </ion-avatar>
       
       <ion-row>
-        <ion-col col-4><span>{{ 'CHILDREN_PAGE.name' | translate }}:</span></ion-col>
-        <ion-col col-8><span class="chData">{{child.name}}</span></ion-col>
-        <ion-col col-4><span>{{ 'CHILDREN_PAGE.status' | translate }}:</span></ion-col>
-        <ion-col col-8>
+        <ion-col col-5><span>{{ 'CHILDREN_PAGE.name' | translate }}:</span></ion-col>
+        <ion-col col-7><span class="chData">{{child.name}}</span></ion-col>
+        <ion-col col-5><span>{{ 'CHILDREN_PAGE.status' | translate }}:</span></ion-col>
+        <ion-col col-7>
           <span class="chData" *ngIf="child.childLastMsg != undefined">{{child.childLastMsg?.status}}</span>
           <span class="chData" *ngIf="child.childLastMsg == undefined">No Status</span>
         </ion-col>

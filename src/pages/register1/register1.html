@@ -3,7 +3,7 @@
     <h3>{{ 'REGISTER1_PAGE.title' | translate }}</h3>
     <ion-item>
       <ion-label ><ion-icon name="person"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="{{ 'FORM.idNumber' | translate }}" formControlName="id"></ion-input>
+      <ion-input type="text" placeholder="{{ 'REGISTER1_PAGE.idNumber' | translate }}" formControlName="id"></ion-input>
     </ion-item>
 
     <div class="error-container" no-lines *ngIf="( validations_form.get('id').hasError('required') || validations_form.get('id').hasError('pattern'))&& validations_form.get('id').touched">
@@ -19,7 +19,7 @@
 
     <ion-item>
       <ion-label ><ion-icon name="key"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="{{ 'FORM.secertKey' | translate }}" formControlName="skey"></ion-input>
+      <ion-input type="text" placeholder="{{ 'REGISTER1_PAGE.secertKey' | translate }}" formControlName="skey"></ion-input>
     </ion-item>
 
     <div class="error-container" no-lines *ngIf="( validations_form.get('skey').hasError('required') || validations_form.get('skey').hasError('min') || validations_form.get('skey').hasError('max'))&& validations_form.get('skey').touched">
@@ -37,7 +37,9 @@
 
     </div>
 
-    <button ion-button block round color="mainColor" [disabled]="validations_form.invalid"><ion-icon name="log-in"></ion-icon>Sign up</button>
+    <button ion-button block round color="mainColor" [disabled]="validations_form.invalid"><ion-icon name="log-in"></ion-icon>&nbsp;{{ 'REGISTER1_PAGE.send' | translate }}</button>
   </form>
-    <button ion-button color="light" (click)="alreadyHaveAccount()" clear>{{ 'BUTTONS.alreadyHaveAccount' | translate }}</button>
+    <button ion-button color="light" icon-start (click)="alreadyHaveAccount()" clear>
+      <ion-icon name="arrow-round-forward"></ion-icon>&nbsp;{{ 'REGISTER1_PAGE.alreadyHaveAccount' | translate }}
+    </button>
 </ion-content>

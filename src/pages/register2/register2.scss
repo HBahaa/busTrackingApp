@@ -47,9 +47,10 @@ page-register2 {
        border-radius: 5px;
        border-bottom-width: 0;
 
-       .text-input{
-         color: #fff;
-       }
+        .text-input{
+          color: #fff;
+          direction: inherit;
+        }
        input::-moz-placeholder{
          color: #fff!important;
        }

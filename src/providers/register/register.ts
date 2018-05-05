@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
+
 import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
 
@@ -7,16 +8,18 @@ import * as $ from 'jquery';
 @Injectable()
 export class RegisterProvider {
 
-	constructor(private storage: Storage) {}
+	constructor(private translate: TranslateService) {}
 
 	Register(nid, secureCode, location, user){
+
+		// alert("location"+ JSON.stringify(location))
 
 		return new Promise((resolve, reject) => {
 
 			var settings1 = {
 			"async": true,
 				"crossDomain": true,
-				"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/register?nid="+nid+"&secureCode="+secureCode+"&name="+user._value.name+"&locLat="+location.lat+"&locLong="+location.lng+"&locDesc="+user._value.address+"&password="+user._value.password,
+				"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notsecure/register?nid="+nid+"&secureCode="+secureCode+"&name="+user._value.name+"&locLat="+location.lat+"&locLong="+location.lng+"&locDesc="+user._value.address+"&password="+user._value.password+"&email="+user._value.email+"&phone="+user._value.mob,
 				"method": "POST",
 				"headers": {
 					"content-type": "application/json",
@@ -32,15 +35,20 @@ export class RegisterProvider {
 
 				if(response.success)
 				{
-			        this.storage.set("token", response.token);
+					console.log("response", JSON.stringify(response));
+			        // this.storage.set("token", response.token);
 					resolve(response.token);
 				}
 				else{
-					reject("User registration is currently not allowed");
+					this.translate.get('REGISTER2_PAGE.error').subscribe((error)=>{
+			        	reject(error);
+			        });
 				}
 
 			}).fail((error)=>{
-				reject("User registration is currently not allowed");
+				this.translate.get('REGISTER2_PAGE.error').subscribe((error)=>{
+		        	reject(error);
+		        });
 			});
 
 		});

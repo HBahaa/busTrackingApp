@@ -1,11 +1,34 @@
+
 page-profile {
-
-	ion-card-title{
-		text-align: center;
+    ion-card-title{
+        text-align: center;
+    }
+    .list[inset]{
+        margin: 0;
+    }
+    .editForm .scroll-content{
+    	top: 60px;
+    }
+    .profileData{
+    	margin: 5px;
+    	width: calc(100% - 10px);
+    }
+    .settings .label{
+		font-size: 17px;
+    }
+    .settings .card-content{
+    	padding: 5px;
+    }
+    .settings .card-title{
+    	padding: 8px 0 0;
+    }
+    .settings .select {
+	    padding: 16px 13px 13px 7px;
 	}
-
-	// ion-grid {
-	//     height: 100%;
-	//     justify-content: center;
-	// }
+	.select-text{
+		padding: 0 10px;
+	}
+    .input .text-input{
+        direction: inherit;
+    }
 }

@@ -26,17 +26,20 @@ import { LoginPage } from '../pages/login/login';
 import { Register1Page } from '../pages/register1/register1';
 import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
+import { MapModalPage } from '../pages/map-modal/map-modal';
+
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
 import { GetChildrenProvider } from '../providers/get-children/get-children';
 import { LoginProvider } from '../providers/login/login';
 import { RegisterProvider } from '../providers/register/register';
 
 import { DatePipe } from '../pipes/date/date'
+import { ResetPasswordProvider } from '../providers/reset-password/reset-password';
+import { EditProfileProvider } from '../providers/edit-profile/edit-profile';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 
 @NgModule({
   declarations: [
@@ -51,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfilePage,
     ChildrenPage,
     MapPage,
+    MapModalPage,
     DatePipe
   ],
   imports: [
@@ -79,7 +83,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DetailsPage,
     ProfilePage,
     ChildrenPage,
-    MapPage
+    MapPage,
+    MapModalPage
   ],
   providers: [
     StatusBar,
@@ -93,7 +98,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GetNotificationProvider,
     GetChildrenProvider,
     LoginProvider,
-    RegisterProvider
+    RegisterProvider,
+    ResetPasswordProvider,
+    EditProfileProvider
   ]
 })
 export class AppModule {}

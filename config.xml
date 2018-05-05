@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="bus.tracking.app" version="1.3.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MyApp</name>
     <description>Bus Tracking App</description>
     <author email="" href="" />
@@ -90,22 +90,24 @@
     <allow-navigation href="http://192.168.1.2:8100" />
     <allow-navigation href="http://192.168.1.2:8101" />
     <allow-navigation href="http://192.168.1.3:8100" />
+    <allow-navigation href="http://192.168.1.4:8100" />
+    <allow-navigation href="http://192.168.1.7:8100" />
+    <allow-navigation href="http://192.168.1.5:8100" />
+    <allow-navigation href="http://192.168.1.6:8100" />
+    <allow-navigation href="http://192.168.1.8:8100" />
+    <engine name="android" spec="^6.2.3" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
+    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCu56D4qgNvIbI0DOHf-a5VSTMadDVPOhA" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCu56D4qgNvIbI0DOHf-a5VSTMadDVPOhA" />
     </plugin>
-    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.1" />
-    <allow-navigation href="http://192.168.1.4:8100" />
-    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="^0.8.5" />
-    <allow-navigation href="http://192.168.1.7:8100" />
-    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
-    <engine name="android" spec="~6.2.3" />
-    <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
-    <allow-navigation href="http://192.168.1.5:8100" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
 </widget>

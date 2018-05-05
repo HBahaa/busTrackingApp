@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 
 
 @Component({
@@ -10,10 +10,12 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic
 export class NotificationPage {
 
 	notification:any;
+	lang: string;
 	map;
 
 	constructor(public navParams: NavParams, private googleMaps: GoogleMaps) {
 		this.notification = this.navParams.get("param1");
+		this.lang = this.navParams.get("param2");
 		this.loadMap(this.notification["locLat"], this.notification["locLong"], this.notification["locDesc"]);
 	}
 

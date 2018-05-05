@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ 'NOTIFICATION_PAGE.title' | translate }}</ion-title>
+    <ion-title>{{ 'NOTIFICATIONS_PAGE.title' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -23,14 +23,17 @@
         color="mainColor" *ngIf="rooms.geo == item.sid" ios="ios-home-outline" md="md-home" item-start>
       </ion-icon>
 
-      <h3 *ngIf="item.name">child name: {{item.name.toString()}}</h3>
+      <h3 *ngIf="item.name">{{ 'NOTIFICATIONS_PAGE.childName' | translate }}: {{item.name.toString()}}</h3>
+
       <h2 *ngIf="item.msg.length == 30 || item.msg.length < 30;else msg">{{item.msg}}</h2>
+
       <ng-template #msg><h2>{{item.msg.substr(0, 30) +"..."}}</h2></ng-template>
       
-      <p *ngIf="(item.time | customDate) != item.time; else temp" text-right>
-        <span>{{ item.time | customDate }}</span>
-        <span *ngIf="(item.time | customDate).includes('day')">, {{item.time | date:'shortTime'}}</span>
+      <p *ngIf="(item.time | customDate: lang) != item.time; else temp" text-right>
+        <span>{{ item.time | customDate: lang }}</span>
+        <span *ngIf="(item.time | customDate: lang).includes('day')">, {{item.time | date:'shortTime'}}</span>
       </p>
+
       <ng-template #temp>
         <p text-right>{{item.time | date:'short'}}</p>
       </ng-template>

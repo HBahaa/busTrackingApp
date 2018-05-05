@@ -1,28 +1,16 @@
 {
-	"BUTTONS" : {
-		"btn_eng" : "English",
-		"btn_ar" : "Arabic",
-		"alreadyHaveAccount": "Already Have Account",
-		"dontHaveAccount" 	: "Don't Have Account"
+	"LANGUAGE" : {
+		"selectLanguage" : "Select Language",
+		"en" 			 : "English",
+		"ar" 			 : "Arabic",
+		"ok"			 : "Ok",
+		"cancel"		 : "Cancel"
 	},
-	"FORM":{
-		"name" 	  	 : "Name",
-		"email"	   	 : "Email",
-		"password" 	 : "Password",
-		"address" 	 : "Address",
-		"secertKey"	 : "Secert Key",
-		"idNumber"	 : "ID Number",
-		"send"		 : "Send",
-		"login"		 : "Login",
-		"register"	 : "Register",
-		"phone"		 : "Phone Number",
-		"locateMe"	 : "Change My Address"
-	}, 
 	"ERROR_MESSAGES":{
 		"register1": {
 			"id":{
-				"required": "ID Number is required.",
-				"pattern" : "Please enter valid ID Number."
+				"required" : "ID Number is required.",
+				"pattern"  : "Please enter valid ID Number."
 			},
 			"skey": {
 				"required" : "Secert key is required.",
@@ -31,20 +19,29 @@
 			}
 		},
 		"register2" : {
+			"name": {
+				"required"  : "Name is required.",
+				"minlength" : "Name must be minimum of 4 characters"
+			},
 			"email": {
-				"required": "Email is required.",
-				"pattern" : "Please enter valid email."
+				"required"  : "Email is required.",
+				"pattern"   : "Please enter valid email."
 			},
 			"password": {
-				"required" : "Password is required.",
-				"minlength": "Password must be at least 5 characters long.",
-				"pattern"  : "Your password must contain at least one uppercase, one lowercase, and one number."
+				"required"  : "Password is required.",
+				"minlength" : "Password must be at least 5 characters long.",
+				"pattern"   : "Your password must contains uppercase, lowercase, and numbers."
 			},
 			"mobile": {
-				"required": "Mobile no. is required",
-				"pattern" : "Please enter valid mobile number"
+				"required" : "Mobile no. is required",
+				"pattern"  : "Please enter valid mobile number"
 			}
 		}
+	},
+	"APP_PAGE" : {
+		"menu" 	 : "Menu",
+		"logout" : "Logout",
+		"load" 	 : "Authenticating..."
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
@@ -53,30 +50,99 @@
 		"details" 	: "Details"
 	},
 	"HOME_PAGE":  	 {
-		"title"		: "Your Bus School",
 		"or" 		: "OR",
 		"login" 	: "Login",
 		"register"	: "Register"
 	},
 	"LOGIN_PAGE"	: {
-		"title"		: "Login"
+		"title"				: "Login",
+		"idNumber"	 		: "ID Number",
+		"password"			: "Password",
+		"forgetPassword" 	: "Forget Password",
+		"resetPassword"		: "Reset Password",
+		"login"		 		: "Login",
+		"send"		 		: "Send",
+		"dontHaveAccount" 	: "Don't Have Account",
+		"error1" 			: "ID or Password is incorrect.",
+		"error2" 			: "ID or Password is incorrect and Please check internet connection.",
+		"loading"			: "Loading..."
 	},
 	"REGISTER1_PAGE"	: {
-		"title"		: "Registration"
+		"title"				: "Registration",
+		"secertKey"	 		: "Secert Key",
+		"idNumber"	 		: "ID Number",
+		"send"		 		: "Send",
+		"alreadyHaveAccount": "Already Have Account",
+		"error" 			: "User registration is currently not allowed"
 	},
 	"REGISTER2_PAGE"	: {
-		"title"		: "Registration"
+		"title"			: "Registration",
+		"name" 	  		: "Name",
+		"email"	    	: "Email",
+		"password"		: "Password",
+		"address"   	: "Address",
+		"phone"			: "Phone Number",
+		"locateMe"		: "Change My Address",
+		"register"		: "Register",
+		"error" 		: "User registration is currently not allowed",
+		"loader"		: "Creating account...",
+		"alertTitle" 	: "Registration successeded",
+		"alertSubtitle" : "Your accout has bees created, Please verify your email to activate you accout then login.",
+		"alertBtn"		: "OK"
 	},
 	"DETAILS_PAGE" : {
 		"title"			: "Details",
 		"childID"		: "Child ID",
-		"status"		: "Status",
+		"childStatus"	: "Child Status",
 		"busNumber"		: "Bus Number",
+		"busID"			: "Bus ID",
+		"busSpeed"		: "Bus Speed",
 		"driverName"	: "Driver Name",
-		"driverPhone"	: "Driver Phone"
+		"driverPhone"	: "Driver Phone",
+		"notifications" : "NotificationS"
+	},
+	"NOTIFICATIONS_PAGE" : {
+		"title" : "Notifications",
+		"childName" : "Child Name"
 	},
 	"NOTIFICATION_PAGE" : {
-		"title" : "Notification"
+		"title" 	: "Notification",
+		"childName" : "Child Name",
+		"busSpeed" 	: "Bus Speed",
+		"status" 	: "Status"
+	},
+	"MAP_PAGE" : {
+		"title"		: "Select your home",
+		"next"		: "Next",
+		"search"	: "Search",
+		"toast1"	: "Select your location, you can click on map to select you home or from search box  then click Next",
+		"toast2"	: "Please enter address in search box or click Next"
+	},
+	"PROFILE_PAGE" : {
+		"title"			: "Profile",
+		"subTitle"		: "Profile Data",
+		"settings"		: "Settings",
+		"name"			: "Name",
+		"email"			: "Email",
+		"password"		: "Password",
+		"phone"			: "Phone",
+		"address"		: "Address",
+		"update"		: "Update",
+		"cancel"		: "Cancel",
+		"edit" 			: "Edit",
+		"changeAddress"	: "Change Address",
+		"updated"		: "Your Data Updated, Please Verify your email and relogin",
+		"error"			: "Error while update data",
+		"updating"		: "Updating...",
+		"alertSubtitle" : "Your email has bees changed successfully, Please verify your email then login.",
+		"alertBtn"		: "OK"
+	},
+	"MAPMODAL_PAGE": {
+		"sesionNotAuthenticated"	: "Session isn't authenticated",
+		"errorOnUpdateAddress"		: "Error on updating your address",
+		"loading"					: "Updating...",
+		"save"						: "save",
+		"map"						: "Map",
+		"search"					: "Search"
 	}
-
-}
+} 

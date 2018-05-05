@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery';
-
 
 
 @Injectable()
 export class LoginProvider {
 
-	constructor(public storage: Storage) {
-		console.log('Hello LoginProvider Provider');
-	}
+	user: any = {'loc': {}};
+
+	constructor(public storage: Storage, private translate: TranslateService) {}
 
 	Login(id, password){
 		return new Promise((resolve, reject) => {
@@ -34,19 +34,23 @@ export class LoginProvider {
 	    	$.ajax(settings).then((response)=> {
 				if(response.success)
 				{
+					this.user.password = password;
 			        this.storage.set("token", response.token);
+			        this.storage.set("userData", this.user);
+
 			        resolve(response.token);			  
 				}
 				else{
-					reject("ID or Password is incorrect.");
+					this.translate.get('LOGIN_PAGE.error1').subscribe((error1)=>{
+			        	reject(error1);
+			        })
 				}
 
 			}).catch((err)=>{
-				reject("ID or Password is incorrect and Please check internet connection.");
+				this.translate.get('LOGIN_PAGE.error2').subscribe((error2)=>{
+		         	reject(error2);
+		        })
 			});
 		});
-	
 	}
-
-
 }
