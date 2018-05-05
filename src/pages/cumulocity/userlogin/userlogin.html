@@ -1,0 +1,34 @@
+
+<ion-content class="login">
+  <div class="login-box">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+      <ion-row>
+        <ion-col>
+          <h3>Login</h3>
+          <ion-label>Please Enter Your<br> Cumulocity Credentials</ion-label>
+
+          <ion-list inset>
+            <ion-item>
+              <ion-input type="text" placeholder="Tenant" name="tenant" [(ngModel)]="tenant" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+
+            <button ion-button type="submit" [disabled]="!loginForm.form.valid"><ion-icon ios="ios-exit" md="md-exit"></ion-icon> Login</button>
+
+            
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+    </form>
+    <button ion-button icon-start color="light" clear (click)="backToIntro()">
+      <ion-icon name="arrow-round-back"></ion-icon>&nbsp; Back
+    </button>
+  </div>
+</ion-content>

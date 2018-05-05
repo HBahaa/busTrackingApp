@@ -28,4 +28,7 @@ ion-app._gmaps_cdv_ .nav-decor{
 	ion-footer .toolbar{
 		min-height: 20px;
 	}
+	button:focus{
+		background-color: transparent !important;
+	}
 }
