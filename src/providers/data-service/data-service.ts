@@ -76,10 +76,6 @@ export class DataServiceProvider {
                 "unit":unit
               }
             }
-
-            this.deviceMeasurements(id, newItem);
-            this.loader.dismiss();
-            resolve(true);
           }
           else if(response.measurements.length == 0){
 
@@ -98,11 +94,11 @@ export class DataServiceProvider {
                 "value":""
               }
             }
+          }
 
-            this.deviceMeasurements(id, newItem);
+          this.deviceMeasurements(id, newItem);
             this.loader.dismiss();
             resolve(true);
-          }
 
         }else{
           let current = response.statistics.totalPages;

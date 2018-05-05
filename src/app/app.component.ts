@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
 import { ChildrenPage } from '../pages/children/children';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
-import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
 // import { UserHomePage } from '../pages/cumulocity/home/home';
 
