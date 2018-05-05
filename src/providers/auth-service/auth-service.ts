@@ -41,7 +41,7 @@ export class AuthServiceProvider {
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://"+tenant+".cumulocity.com/measurement/measurements?source="+id+"&type="+type+"&currentPage="+currentPage,
+        "url": "https://"+tenant+".cumulocity.com/measurement/measurements?source="+id+"&type="+type+"&currentPage="+currentPage,
         "method": "GET",
         "headers": {
           "authorization": token,

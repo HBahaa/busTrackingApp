@@ -22,8 +22,25 @@
              <hr>
            </div>
            <h3 ion-text color="{{colors[item.type]}}">{{item.name}}</h3>
-           <p><span class="val">{{item.value}}</span><span class="unit"> {{item.unit}}</span></p>
-           <ion-icon color="{{colors[item.type]}}" name="{{icons[item.type]}}" end></ion-icon>
+           <p *ngIf="item.type != 'c8y_Position'">
+            <span *ngIf="!item.value">
+              <span class="lat">No Reading</span>
+            </span>
+            <span *ngIf="item.value">
+              <span class="val">{{item.value}}</span><span class="unit"> {{item.unit}}</span>
+            </span>
+           </p>
+           <p *ngIf="item.type == 'c8y_Position'">
+            <span *ngIf="!item.lat">
+              <span class="lat">No Reading</span>
+            </span>
+            <span *ngIf="item.lat">
+              <span class="lat">lat: {{item.lat}}</span>
+              <span class="lat">lng: {{item.lng}}</span>
+            </span>
+           </p>
+           <ion-icon *ngIf="icons[item.type]" color="{{colors[item.type]}}" name="{{icons[item.type]}}" end></ion-icon>
+           <ion-icon *ngIf="!icons[item.type]" name="information-circle" end></ion-icon>
          </div>
 
      </ion-item>

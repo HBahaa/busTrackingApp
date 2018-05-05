@@ -98,7 +98,7 @@ export class UserLoginPage {
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": `http://${this.tenent}.cumulocity.com/inventory/managedObjects?owner=${this.username}&pageSize=`+totalSize+"&currentPage=1",
+          "url": `https://${this.tenent}.cumulocity.com/inventory/managedObjects?owner=${this.username}&pageSize=`+totalSize+"&currentPage=1",
           "method": "GET",
           "headers": {
             "authorization": `${this.token}`,

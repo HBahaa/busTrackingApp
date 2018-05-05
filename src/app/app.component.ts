@@ -11,7 +11,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
 import { IntroPage } from '../pages/intro/intro';
-// import { HomePage } from '../pages/home/home';
+import { UserHomePage } from '../pages/cumulocity/home/home';
 
 
 declare var cordova:any;
@@ -24,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = IntroPage;
+  rootPage: any = UserHomePage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -43,7 +43,7 @@ export class MyApp {
 
       this.keyboard.disableScroll(true);
 
-      this.storage.clear();
+      // this.storage.clear();
 
       statusBar.styleDefault();
       splashScreen.hide();
@@ -68,7 +68,7 @@ export class MyApp {
 
   userLogout(){
     this.storage.clear().then(()=>{
-      this.nav.setRoot(LoginPage);
+      this.nav.setRoot(HomePage);
     });
   }
 
