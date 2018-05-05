@@ -11,7 +11,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
 import { IntroPage } from '../pages/intro/intro';
-import { UserHomePage } from '../pages/cumulocity/home/home';
+// import { UserHomePage } from '../pages/cumulocity/home/home';
 
 
 declare var cordova:any;
@@ -24,7 +24,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = UserHomePage;
+  rootPage: any = IntroPage;
   isLoggedIn:boolean;
   loader:any;
 
