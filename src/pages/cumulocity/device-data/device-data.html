@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Device Measurements</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item detail-none *ngFor="let item of device.c8y_SupportedMeasurements" [disabled]="disableBTN" (click)="selectedItem(device.id,item)">
+      
+        <ion-icon *ngIf="icons[item]" name="{{icons[item]}}" color="{{colors[item]}}" item-start></ion-icon>
+        <ion-icon *ngIf="!icons[item]" name="information-circle" item-start></ion-icon>
+        <h2 ion-text color="{{colors[item]}}">{{item}}</h2>
+        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" item-end></ion-icon>
+    </button>
+  </ion-list>
+</ion-content>

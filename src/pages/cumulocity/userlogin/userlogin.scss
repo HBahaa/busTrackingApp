@@ -1,0 +1,87 @@
+page-userlogin {
+
+  .login{
+    background-image: url(../assets/bg.jpg);
+    background-size: cover;
+
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    .login-box {
+      box-shadow: none;
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 20px 0px 20px;
+      margin: 10px;
+    }
+
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+
+
+     .scroll-content{
+       text-align: center;
+       justify-content: center;
+       align-content: center;
+       display: flex;
+       flex-direction: column;
+     }
+     .list-md .item-block .item-inner {
+       border-bottom: 0px solid #dedede;
+     }
+     .list-md .item-block .item-inner:focus {
+       border-bottom: 0px solid #dedede;
+     }
+     ion-item.item.item-block.item-input{
+       border-bottom-width: 0px;
+     }
+     .item{
+       background: rgba(225, 225, 225, 0.2);
+       margin-bottom: 10px;
+       border-radius: 5px;
+       border-bottom-width: 0;
+
+       .text-input{
+         color: #fff;
+       }
+       input::-moz-placeholder{
+         color: #fff!important;
+       }
+       input:-moz-placeholder{
+         color: #fff!important;
+       }
+       *::-webkit-input-placeholder{
+         color: #fff!important;
+       }
+     }
+
+     ion-item {
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+     }
+     ion-col h3{
+       color: #fff;
+       font-size: 20px;
+     }
+     ion-col ion-label{
+       font-size: 18px;
+       padding-top: 10px;
+       color: #fff !important;
+     }
+
+     .btn{
+       margin-top: 30px;
+       margin-bottom: 40px;
+     }
+     ion-icon{
+       margin-right: 5px;
+     }
+
+  }
+
+}

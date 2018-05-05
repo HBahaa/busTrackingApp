@@ -1,0 +1,17 @@
+
+<ion-header>
+
+  <ion-navbar>
+  <ion-title>Devices</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="content">
+  <ion-list>
+    <button ion-item detail-none *ngFor="let device of devices; let i=index;" (click)="deviceDate(device)">
+        <p ion-text><span class="devID">{{device.id}}</span> {{device.name}}</p>
+      <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" item-end></ion-icon>
+    </button>
+  </ion-list>
+</ion-content>

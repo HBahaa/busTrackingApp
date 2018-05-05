@@ -52,7 +52,8 @@
 	"HOME_PAGE":  	 {
 		"or" 		: "أو",
 		"login" 	: "تسجيل الدخول",
-		"register"	: "تسجيل"
+		"register"	: "تسجيل",
+		"back"		: "رجوع"
 	},
 	"LOGIN_PAGE"	: {
 		"title"				: "تسجيل الدخول",

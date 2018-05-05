@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 
 import { LoginPage } from '../login/login';
 import { Register1Page } from '../register1/register1';
+import { IntroPage } from '../intro/intro';
+
 
 @Component({
   selector: 'page-home',
@@ -13,12 +15,15 @@ import { Register1Page } from '../register1/register1';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private platform: Platform, private translateService: TranslateService,
-              private menuCtrl: MenuController, private storage: Storage) {
+  constructor(public navCtrl: NavController, private platform: Platform, private storage: Storage,
+              private translateService: TranslateService, private menuCtrl: MenuController){}
+
+  ionViewDidEnter() {
+    this.menuCtrl.enable(false);
   }
 
-   ionViewDidEnter() {
-    this.menuCtrl.enable(false);
+  backToIntro(){
+    this.navCtrl.setRoot(IntroPage);
   }
 
   changeLanguage(language){
@@ -44,7 +49,6 @@ export class HomePage {
   }
 
   segmentChanged(event) {
-    console.log("event._value", event._value);
     this.translateService.use(event._value);
     if(event._value == 'ar'){
       this.platform.setDir('rtl', true);
