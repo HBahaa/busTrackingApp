@@ -34,19 +34,16 @@ export class ItemDataPage {
       this.token = data.token;
       this.tenant = data.tenant;
 
-      this.dataService.getDataService(this.tenant, this.id, this.type, this.token, this.itemName).then((flag)=>{
-        if(flag == true){
-          this.navCtrl.push(UserHomePage)
-        }else{
-          this.navCtrl.push(DeviceDataPage)
-        }
-      });
+      // this.dataService.getDataService(this.tenant, this.id, this.type, this.token, this.itemName).then((flag)=>{
+      //   if(flag == true){
+      //     this.navCtrl.push(UserHomePage)
+      //   }else{
+      //     this.navCtrl.push(DeviceDataPage)
+      //   }
+      // });
 
     });
 
   }
-
-
-
 
 }

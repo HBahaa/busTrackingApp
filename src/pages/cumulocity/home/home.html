@@ -7,50 +7,69 @@
 
 
 <ion-content class="content">
-  <button ion-button color="danger" (click)="showDevices()" class="addBtn">
+
+<div class="fixed-action-btn">
+  <a class="btn-floating medium red">
+    <i class="medium material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red" (click)="showDevices()"><i class="material-icons">create</i></a></li>
+    <li><a class="btn-floating yellow darken-1" (click)="presentAlert()">
+      <i class="material-icons">help_outline</i></a>
+    </li>
+    <li><a class="btn-floating green" (click)="switchTrackingApp()"><i class="material-icons">swap_horiz</i></a></li>
+    <li><a class="btn-floating blue" (click)="Logout()"><i class="material-icons">exit_to_app</i></a></li>
+  </ul>
+</div>
+  <!-- <button ion-button color="danger" (click)="showDevices()" class="addBtn">
     <ion-icon name="md-create"></ion-icon></button>
+     <button ion-button color="primary" (click)="presentAlert()" class="helpBtn">
+    <ion-icon name="help"></ion-icon></button> -->
   <ion-list no-lines>
     <!-- <ion-icon name="trash"></ion-icon> -->
 
-    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event);">
+    <ion-item-group>
       <ion-item-sliding *ngFor="let item of items;let i=index">
+        <ion-item class="card horizontal">
+          <ion-icon name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
+          <div class="card-content">
+            <div class="card-title">
+              {{names[ids[i]] }}
+              <hr>
+            </div>
+            <div *ngFor="let sensor of item[ids[i]];let j=index">
+              <h3 ion-text color="{{colors[sensor.type]}}">{{sensor.name}}</h3>
+              <p *ngIf="sensor.type != 'c8y_Position'">
+                <span *ngIf="!sensor.value">
+                  <span class="lat">No Reading</span>
+                </span>
+                <span *ngIf="sensor.value">
+                  <span class="val">{{sensor.value}}</span><span class="unit"> {{sensor.unit}}</span>
+                </span>
+              </p>
+              <p *ngIf="sensor.type == 'c8y_Position'">
+                <span *ngIf="!sensor.lat">
+                  <span class="lat">No Reading</span>
+                </span>
+                <span *ngIf="sensor.lat">
+                  <span class="lat">lat: {{sensor.lat}}</span>
+                  <span class="lat">lng: {{sensor.lng}}</span>
+                </span>
+              </p>
+              <ion-icon *ngIf="icons[sensor.type]" color="{{colors[sensor.type]}}" name="{{icons[sensor.type]}}" end></ion-icon>
+              <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon>
+            </div>
+            <hr style="margin-top: 20px; background-color: #aaa" />
+          </div>
 
-       <ion-item class="card horizontal">
-         <ion-icon name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
-         <div class="card-content">
-           <div class="card-title">
-             <hr>
-           </div>
-           <h3 ion-text color="{{colors[item.type]}}">{{item.name}}</h3>
-           <p *ngIf="item.type != 'c8y_Position'">
-            <span *ngIf="!item.value">
-              <span class="lat">No Reading</span>
-            </span>
-            <span *ngIf="item.value">
-              <span class="val">{{item.value}}</span><span class="unit"> {{item.unit}}</span>
-            </span>
-           </p>
-           <p *ngIf="item.type == 'c8y_Position'">
-            <span *ngIf="!item.lat">
-              <span class="lat">No Reading</span>
-            </span>
-            <span *ngIf="item.lat">
-              <span class="lat">lat: {{item.lat}}</span>
-              <span class="lat">lng: {{item.lng}}</span>
-            </span>
-           </p>
-           <ion-icon *ngIf="icons[item.type]" color="{{colors[item.type]}}" name="{{icons[item.type]}}" end></ion-icon>
-           <ion-icon *ngIf="!icons[item.type]" name="information-circle" end></ion-icon>
-         </div>
-
-     </ion-item>
-     <ion-item-options side="right">
-       <button ion-button default color="danger" (click)="removeItem(i)">
-         <ion-icon name="ios-trash-outline" style="font-size: 50px"></ion-icon>
-         delete
-       </button>
-     </ion-item-options>
-   </ion-item-sliding>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button default color="danger" (click)="removeItem(i)">
+            <ion-icon name="ios-trash-outline" style="font-size: 50px"></ion-icon>
+            delete
+          </button>
+        </ion-item-options>
+    </ion-item-sliding>
 
     </ion-item-group>
 

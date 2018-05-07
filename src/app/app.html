@@ -10,8 +10,11 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name={{p.icon}}></ion-icon> {{ p.title | translate }}
       </button>
+      <button menuClose ion-item (click)="switchMySensors()">
+        <ion-icon name="swap"></ion-icon> {{ 'APP_PAGE.switchApp' | translate }}
+      </button>
       <button menuClose ion-item (click)="userLogout()">
-        <ion-icon name="log-out"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
+        <ion-icon name="exit"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
       </button>
     </ion-list>
   </ion-content>
@@ -30,9 +33,12 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name={{p.icon}}></ion-icon> {{ p.title | translate }}
       </button>
+      <button menuClose ion-item (click)="switchMySensors()">
+        <ion-icon name="swap"></ion-icon> {{ 'APP_PAGE.switchApp' | translate }}
+      </button>
       <button menuClose ion-item (click)="userLogout()">
-        <ion-icon name="log-out"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
-      </button>      
+        <ion-icon name="exit"></ion-icon> {{ 'APP_PAGE.logout' | translate }}
+      </button>
     </ion-list>
   </ion-content>
   

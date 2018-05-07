@@ -39,9 +39,10 @@
 		}
 	},
 	"APP_PAGE" : {
-		"menu" 	 : "القائمة",
-		"logout" : "خروج",
-		"load" 	 : "... تحميل"
+		"menu" 	 	: "القائمة",
+		"logout" 	: "خروج",
+		"switchApp" : "انتقال الي My Sensors",
+		"load" 	 	: "... تحميل"
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "اﻷطفال",
@@ -101,6 +102,9 @@
 		"driverName"	: "اسم السائق",
 		"driverPhone"	: "تلفون السائق",
 		"notifications" : "الإشعارات"
+	},
+	"MESSAGES_PAGE" : {
+		"title" : "رسائل"
 	},
 	"NOTIFICATIONS_PAGE" : {
 		"title" : "كل الإشعارات",

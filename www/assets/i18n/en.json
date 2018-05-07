@@ -39,9 +39,10 @@
 		}
 	},
 	"APP_PAGE" : {
-		"menu" 	 : "Menu",
-		"logout" : "Logout",
-		"load" 	 : "Authenticating..."
+		"menu" 	 	: "Menu",
+		"logout" 	: "Logout",
+		"switchApp" : "Switch To My Sensors",
+		"load" 	    : "Authenticating..."
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
@@ -101,6 +102,9 @@
 		"driverName"	: "Driver Name",
 		"driverPhone"	: "Driver Phone",
 		"notifications" : "NotificationS"
+	},
+	"MESSAGES_PAGE" : {
+		"title" : "Messages"
 	},
 	"NOTIFICATIONS_PAGE" : {
 		"title" : "Notifications",

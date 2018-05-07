@@ -28020,6 +28020,12 @@ ion-app._gmaps_cdv_ .nav-decor {
   background-color: transparent !important;
 }
 
+.md .row,
+.ios .row,
+.wp .row {
+  margin-bottom: 0px;
+}
+
 page-children {
   background-color: transparent !important;
 }
@@ -28067,6 +28073,10 @@ page-children ion-card .card-title {
   font-size: 2.1rem;
 }
 
+page-children ion-card .row {
+  margin-bottom: 0px;
+}
+
 page-children ion-card .card-header {
   font-size: 1.8rem;
   padding-bottom: 10px;
@@ -28105,7 +28115,7 @@ page-userhome {
 
 page-userhome .content button.addBtn {
   border-radius: 50%;
-  padding: 22px 12px;
+  padding: 20.5px 12.25px;
   -webkit-box-shadow: 1px 1px 5px #222;
   box-shadow: 1px 1px 5px #222;
   position: fixed;
@@ -28115,7 +28125,30 @@ page-userhome .content button.addBtn {
 }
 
 page-userhome .content button.addBtn ion-icon {
-  font-size: 25px;
+  font-size: 22px;
+}
+
+page-userhome .content button.helpBtn {
+  border-radius: 50%;
+  padding: 20.5px 15px;
+  -webkit-box-shadow: 1px 1px 5px #222;
+  box-shadow: 1px 1px 5px #222;
+  position: fixed;
+  z-index: 99;
+  right: 10px;
+  bottom: 70px;
+}
+
+page-userhome .content button.helpBtn ion-icon {
+  font-size: 22px;
+}
+
+page-userhome .content .fixed-action-btn ul {
+  bottom: 45px;
+}
+
+page-userhome .content .fixed-action-btn ul li {
+  margin-bottom: 8px;
 }
 
 page-userhome .content ion-item-group {
@@ -28143,6 +28176,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content {
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .card-title {
   width: 100%;
   padding-bottom: 15px;
+  font-size: 19px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .card-title hr {
@@ -28153,7 +28187,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content .ca
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content h3 {
   padding-bottom: 5px;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p {
@@ -28161,12 +28195,12 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content p {
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p .val {
-  font-size: 22px;
+  font-size: 20px;
   padding-left: 20px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p .lat {
-  font-size: 19px;
+  font-size: 17px;
   padding-left: 20px;
   display: block;
 }
@@ -28176,10 +28210,10 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content p s
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content ion-icon {
-  font-size: 55px;
+  font-size: 44px;
   position: absolute;
   right: 20px;
-  bottom: 15px;
+  bottom: 40px;
 }
 
 page-userhome .content ion-item-group .card-image ion-icon {
@@ -28199,7 +28233,7 @@ page-userhome ion-item.item .item-block {
 }
 
 ion-reorder {
-  margin-top: -95px;
+  margin-top: -144px;
   margin-right: 20px;
 }
 
@@ -28363,14 +28397,30 @@ page-details {
   text-align: center;
 }
 
-page-details .card-title {
+page-details .card .card-content {
+  padding: 24px 10px;
+}
+
+page-details .card .card-title {
   text-align: center;
 }
 
-page-details img {
+page-details .card img {
   width: 40%;
   margin-left: 30%;
   border-radius: 50%;
+  margin-top: 10px;
+}
+
+page-details .card .button {
+  margin-top: 10px;
+  text-transform: capitalize !important;
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
+
+page-details .card .button:focus, page-details .card .button:hover {
+  color: #F08080;
 }
 
 page-details .list {

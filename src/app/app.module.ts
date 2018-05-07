@@ -28,6 +28,7 @@ import { Register1Page } from '../pages/register1/register1';
 import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
 import { MapModalPage } from '../pages/map-modal/map-modal';
+import { MessagesPage } from '../pages/messages/messages';
 
 
 /**** cumuulocity ***/
@@ -61,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     IntroPage,
     HomePage,
+    MessagesPage,
     NotificationsPage,
     NotificationPage,
     Register1Page,
@@ -98,6 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     IntroPage,
     HomePage,
+    MessagesPage,
     NotificationsPage,
     NotificationPage,
     Register1Page,

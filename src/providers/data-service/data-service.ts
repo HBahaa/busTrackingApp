@@ -14,13 +14,18 @@ export class DataServiceProvider {
   constructor(public storage: Storage, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
-  getDataService(tenant,id, type, token, userMeasurementName, currentPage=1){
+  getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=1){
+
+    console.log("type", type)
 
     if (type === "c8y_Temperature") {
       type = "c8y_TemperatureMeasurement";
     }
 
     return new Promise((resolve)=>{
+
+      console.log("type", type)
+      console.log("id", id)
 
       let value;
       let unit;
@@ -40,29 +45,44 @@ export class DataServiceProvider {
 
       $.ajax(settings).done((response) => {
 
+        console.log("response", response);
+
         if(response.statistics.totalPages == null){
 
+          var obj = {};
+          obj[id] = [];
           var newItem;
+          var sName = userMeasurementName.substring(4);
+          
+          let n = sName.indexOf("Measurement");
+          if (n > 0) {
+            console.log('iiif')
+            sName = sName.substring(0, n);
+          }
 
           if(response.measurements.length >= 1){
 
             let l = response.measurements.length;
-            var obj = response.measurements[l-1];
+            var resp = response.measurements[l-1];
+
+
 
             if (type == "c8y_Position") {
-              lat = obj[type]["lat"];
-              lng = obj[type]["lng"];
+              console.log("resp", resp)
+              lat = resp[type]["lat"];
+              lng = resp[type]["lng"];
             }else{
-              let internalObj = obj[type];
 
-              value = obj[type][Object.keys(internalObj)[0]]["value"];
-              unit = obj[type][Object.keys(internalObj)[0]]["unit"];
+              let respType = resp[type];
+              value = resp[type][Object.keys(respType)[0]]["value"];
+              unit = resp[type][Object.keys(respType)[0]]["unit"];
             }
 
             if (type == "c8y_Position") {
+              console.log("resp", sName, id, type, lat, lng)
               newItem = {
                 "deviceID":id,
-                "name":userMeasurementName,
+                "name":sName,
                 "type":type,
                 "lat":lat,
                 "lng":lng
@@ -70,39 +90,43 @@ export class DataServiceProvider {
             }else{
               newItem = {
                 "deviceID":id,
-                "name":userMeasurementName,
+                "name":sName,
                 "type":type,
                 "value":value,
                 "unit":unit
               }
             }
+
+            obj[id].push(newItem);
           }
           else if(response.measurements.length == 0){
 
             if (type == "c8y_Position") {
               newItem = {
                 "deviceID":id,
-                "name":userMeasurementName,
+                "name":sName,
                 "type":type,
                 "lat":""
               }
             }else{
               newItem = {
                 "deviceID":id,
-                "name":userMeasurementName,
+                "name":sName,
                 "type":type,
                 "value":""
               }
             }
+            obj[id].push(newItem);
           }
 
-          this.deviceMeasurements(id, newItem);
+          this.deviceMeasurements(id, obj);
             this.loader.dismiss();
             resolve(true);
 
         }else{
           let current = response.statistics.totalPages;
-          this.getDataService(id, type, token, userMeasurementName, currentPage=current)
+          this.getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=current)
+          // this.getDataService(id, type, token, userMeasurementName, deviceName, currentPage=current)
         }
 
       }).fail((error)=>{

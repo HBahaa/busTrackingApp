@@ -11,8 +11,9 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
-// import { UserHomePage } from '../pages/cumulocity/home/home';
-
+import { UserHomePage } from '../pages/cumulocity/home/home';
+import { UserLoginPage } from '../pages/cumulocity/userlogin/userlogin';
+import { MessagesPage } from '../pages/messages/messages';
 
 declare var cordova:any;
 declare var window:any;
@@ -24,7 +25,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = IntroPage;
+  rootPage: any = ChildrenPage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -57,6 +58,7 @@ export class MyApp {
     this.pages = [
       { icon: 'contacts',title: 'CHILDREN_PAGE.title', component: ChildrenPage },
       { icon: 'notifications',title: 'NOTIFICATIONS_PAGE.title', component: NotificationsPage },
+      { icon: 'chatboxes',title: 'MESSAGES_PAGE.title', component: MessagesPage },
       { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage }
     ];
 
@@ -69,6 +71,16 @@ export class MyApp {
   userLogout(){
     this.storage.clear().then(()=>{
       this.nav.setRoot(HomePage);
+    });
+  }
+
+  switchMySensors(){
+    this.storage.get("devicesMeasurements").then((data)=>{
+      if (data != null) {
+        this.nav.setRoot(UserHomePage);
+      }else{
+        this.nav.setRoot(UserLoginPage);
+      }
     });
   }
 
@@ -95,26 +107,26 @@ export class MyApp {
   //   })
   // }
 
-  // setLanguage(){
-  //   this.storage.get("language").then(lang =>{
-  //     if (lang === 'ar') {
-  //       this.platform.setDir('ltr', false);
-  //       this.platform.setDir('rtl', true);
-  //     }
-  //     this.translateService.use(lang);
-  //   }).catch(err =>{
+  setLanguage(){
+    this.storage.get("language").then(lang =>{
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', false);
+        this.platform.setDir('rtl', true);
+      }
+      this.translateService.use(lang);
+    }).catch(err =>{
       
-  //     this.translateService.use('en');
-  //   });
-  // }
+      this.translateService.use('en');
+    });
+  }
 
-  // presentLoading() {
-  //   // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
-  //     this.loader = this.loadingCtrl.create({
-  //       content: "Authenticating..."
-  //     });
-  //     this.loader.present();
-  //   // });
+  presentLoading() {
+    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
+      this.loader = this.loadingCtrl.create({
+        content: "Authenticating..."
+      });
+      this.loader.present();
+    // });
 
-  // }
+  }
 }

@@ -32,7 +32,6 @@ export class DetailsPage {
 			this.tag = this.navParams.get("param1");
 			this.childData = this.navParams.get("param2");
 			
-			
 			this.storage.get(this.tag).then((messages)=>{
 				this.messages = messages;
 			}).catch((error2) => {
@@ -50,6 +49,14 @@ export class DetailsPage {
 
 	moreNotifications(){
 		this.navCtrl.setRoot(NotificationsPage);
+	}
+
+	viewScore(){
+		
+	}
+
+	driverBehaviour(){
+
 	}
 
 }

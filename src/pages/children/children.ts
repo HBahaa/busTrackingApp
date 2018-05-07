@@ -29,7 +29,7 @@ export class ChildrenPage {
 				private platform: Platform, private getNotificationProvider: GetNotificationProvider,
 				private loginProvider: LoginProvider) {	
 
-		this.serverConnection();
+		// this.serverConnection();
 
 		this.platform.ready().then(() => {
 
@@ -156,7 +156,7 @@ export class ChildrenPage {
 
 	getNewToken(){
 		//get new token
-		this.storage.get("userData").then((user)=>{
+		this.storage.get("userProfile").then((user)=>{
 			this.loginProvider.Login(user.id, user.password).then((token)=>{
 				this.getNotificationProvider.getNotification(token).then((data) => {
 

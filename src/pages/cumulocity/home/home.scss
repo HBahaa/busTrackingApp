@@ -3,7 +3,7 @@ page-userhome {
 
     button.addBtn{
       border-radius:50%;
-      padding:22px 12px;
+      padding:20.5px 12.25px;
       box-shadow:1px 1px 5px #222;
       position:fixed;
       z-index:99;
@@ -11,9 +11,30 @@ page-userhome {
       bottom:20px;
 
       ion-icon{
-        font-size: 25px;
+        font-size: 22px;
       }
     }
+    button.helpBtn{
+      border-radius:50%;
+      padding:20.5px 15px;
+      box-shadow:1px 1px 5px #222;
+      position:fixed;
+      z-index:99;
+      right:10px;
+      bottom:70px;
+
+      ion-icon{
+        font-size: 22px;
+      }
+    }
+
+    .fixed-action-btn ul{
+      bottom: 45px;
+    }
+    .fixed-action-btn ul li{
+      margin-bottom: 8px;
+    }
+
 
     ion-item-group{
       margin:10px;
@@ -36,6 +57,7 @@ page-userhome {
           .card-title{
             width:100%;
             padding-bottom: 15px;
+            font-size: 19px;
 
             hr{
               background-color:#EBA220;
@@ -45,17 +67,17 @@ page-userhome {
           }
           h3{
             padding-bottom:5px;
-            font-size:24px;
+            font-size:21px;
           }
           p{
             color:#6d4c41;
 
             .val{
-              font-size: 22px;
+              font-size: 20px;
               padding-left:20px;
             }
             .lat{
-              font-size: 19px;
+              font-size: 17px;
               padding-left:20px;
               display: block;
             }
@@ -65,11 +87,11 @@ page-userhome {
             }
           }
           ion-icon{
-            font-size:55px;
+            font-size:44px;
             // color:#DB5050;
             position: absolute;
             right: 20px;
-            bottom:15px
+            bottom:40px
           }
         }
       }
@@ -98,7 +120,7 @@ page-userhome {
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 ion-reorder{
-  margin-top: -95px;
+  margin-top: -144px;
   margin-right: 20px;
 }
 .list-md ion-item-options .button{

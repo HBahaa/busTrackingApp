@@ -167,7 +167,7 @@ export class MapModalPage {
 	dismiss() {
 
 		this.presentLoading();
-		this.storage.get("userData").then((user)=>{
+		this.storage.get("userProfile").then((user)=>{
 			
 			this.loginProvider.Login(user.nid, user.password).then(token=>{
 				
@@ -180,7 +180,7 @@ export class MapModalPage {
 				}else{
 					user.loc = this.location;
 				}
-				this.storage.set("userData", user);
+				this.storage.set("userProfile", user);
 
 				var settings = {
 					"async": true,
