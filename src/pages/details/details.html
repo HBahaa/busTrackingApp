@@ -30,6 +30,9 @@
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busID' | translate }}:</h2></ion-col>
 	        	<ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
+
+	        	<ion-col col-6><h2>{{ 'DETAILS_PAGE.busTemp' | translate }}:</h2></ion-col>
+	        	<ion-col col-6><h2>20</h2></ion-col>
 	        	
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busSpeed' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
@@ -40,7 +43,7 @@
 	        			<h2>{{childData["lastMsg"]["speed"]}}</h2>
 	        		</ng-template>
 	        	</ion-col>
-	        	<ion-col> <button ion-button clear color="primary" (click)="viewScore()">View Score</button> </ion-col>
+	        	<ion-col> <button ion-button clear color="primary" (click)="tripTrack()">Bus Trip Track</button> </ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverName' | translate }}:</h2></ion-col>

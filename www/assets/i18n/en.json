@@ -98,6 +98,7 @@
 		"childStatus"	: "Child Status",
 		"busNumber"		: "Bus Number",
 		"busID"			: "Bus ID",
+		"busTemp"		: "Bus Temperture",
 		"busSpeed"		: "Bus Speed",
 		"driverName"	: "Driver Name",
 		"driverPhone"	: "Driver Phone",

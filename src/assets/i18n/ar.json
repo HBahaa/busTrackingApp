@@ -98,6 +98,7 @@
 		"childStatus"	: "حالة الطفل",
 		"busNumber"		: "رقم اﻷتوبيس",
 		"busID"			: "رقم التعريفي للاتوبيس",
+		"busTemp"		: "درجة الحراره",
 		"busSpeed"		: "سرعة اﻷتوبيس",
 		"driverName"	: "اسم السائق",
 		"driverPhone"	: "تلفون السائق",

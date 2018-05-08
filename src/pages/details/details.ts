@@ -55,6 +55,10 @@ export class DetailsPage {
 		
 	}
 
+	tripTrack(){
+		
+	}
+
 	driverBehaviour(){
 
 	}
