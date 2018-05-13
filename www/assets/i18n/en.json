@@ -50,6 +50,28 @@
 		"status" 	: "Status",
 		"details" 	: "Details"
 	},
+	"CHILDGRADES_PAGE": {
+		"title"			: "Child Grades",
+		"subject"  		: "Subject",
+		"childMarks" 	: "Child Marks",
+		"totalMarks" 	: "Total Marks",
+		"grade"			: "Grade"
+	},
+	"BUSTRACK_PAGE" : {
+		"title" : "Bus Track",
+		"subTitle" : "Select Date To display bus Track",
+		"date"  : "Date",
+		"today" : "Today",
+		"or"	: "OR",
+		"cancel": "Cancel",
+		"done"  : "Done"
+	},
+	"DRIVER_PAGE": {
+		"title" : "Driver Behaviour",
+		"speed"	: "Speed",
+		"stops"	: "Stops",
+		"break" : "Break"
+	},
 	"HOME_PAGE":  	 {
 		"or" 		: "OR",
 		"login" 	: "Login",

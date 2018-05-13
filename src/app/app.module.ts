@@ -29,6 +29,10 @@ import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
 import { MapModalPage } from '../pages/map-modal/map-modal';
 import { MessagesPage } from '../pages/messages/messages';
+import { DriverPage } from '../pages/driver/driver';
+import { BusTrackPage } from '../pages/bus-track/bus-track';
+import { ChildGradesPage } from '../pages/child-grades/child-grades';
+import { SemestersPage } from '../pages/semesters/semesters';
 
 
 /**** cumuulocity ***/
@@ -39,8 +43,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 import { UserHomePage } from '../pages/cumulocity/home/home';
 import { UserLoginPage } from '../pages/cumulocity/userlogin/userlogin';
 import { DevicesPage } from '../pages/cumulocity/devices/devices';
-import { DeviceDataPage } from '../pages/cumulocity/device-data/device-data';
-import { ItemDataPage } from '../pages/cumulocity/item-data/item-data';
+// import { DeviceDataPage } from '../pages/cumulocity/device-data/device-data';
+// import { ItemDataPage } from '../pages/cumulocity/item-data/item-data';
 
 /** wialon **/
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
@@ -73,12 +77,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChildrenPage,
     MapPage,
     MapModalPage,
+    DriverPage,
+    ChildGradesPage,
+    BusTrackPage,
+    SemestersPage,
     DatePipe,
     UserLoginPage,
     UserHomePage,
     DevicesPage,
-    DeviceDataPage,
-    ItemDataPage,
+    // DeviceDataPage,
+    // ItemDataPage,
     PopoverComponent
   ],
   imports: [
@@ -111,11 +119,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChildrenPage,
     MapPage,
     MapModalPage,
+    DriverPage,
+    ChildGradesPage,
+    BusTrackPage,
+    SemestersPage,
     UserLoginPage,
     UserHomePage,
     DevicesPage,
-    DeviceDataPage,
-    ItemDataPage
+    // DeviceDataPage,
+    // ItemDataPage
   ],
   providers: [
     StatusBar,

@@ -4,6 +4,9 @@ import { Storage } from '@ionic/storage';
 
 import { NotificationPage } from '../notification/notification';
 import { NotificationsPage } from '../notifications/notifications';
+import { DriverPage } from '../driver/driver';
+import { BusTrackPage } from '../bus-track/bus-track';
+import { SemestersPage } from '../semesters/semesters';
 
 @Component({
   selector: 'page-details',
@@ -51,16 +54,17 @@ export class DetailsPage {
 		this.navCtrl.setRoot(NotificationsPage);
 	}
 
-	viewScore(){
-		
+	selectSemester(){
+		this.navCtrl.push(SemestersPage);
 	}
 
 	tripTrack(){
-		
+		this.navCtrl.push(BusTrackPage);
 	}
 
 	driverBehaviour(){
-
+		// this.navCtrl.push(DriverPage, {'param1': name});
+		this.navCtrl.push(DriverPage);
 	}
 
 }

@@ -9,11 +9,12 @@ import { Storage } from '@ionic/storage';
 import { ChildrenPage } from '../pages/children/children';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
+import { MessagesPage } from '../pages/messages/messages';
+
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
 import { UserHomePage } from '../pages/cumulocity/home/home';
 import { UserLoginPage } from '../pages/cumulocity/userlogin/userlogin';
-import { MessagesPage } from '../pages/messages/messages';
 
 declare var cordova:any;
 declare var window:any;
@@ -25,7 +26,7 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ChildrenPage;
+  rootPage: any = IntroPage;
   isLoggedIn:boolean;
   loader:any;
 
@@ -75,7 +76,11 @@ export class MyApp {
   }
 
   switchMySensors(){
-    this.storage.get("devicesMeasurements").then((data)=>{
+    this.storage.get("devices").then((data)=>{
+      this.platform.setDir('rtl', false);
+      this.platform.setDir('ltr', true);
+        this.translateService.use('en');
+
       if (data != null) {
         this.nav.setRoot(UserHomePage);
       }else{

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, MenuController } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { LocalNotifications } from 'ionic-native';
 import { Storage } from '@ionic/storage';
@@ -27,9 +27,9 @@ export class ChildrenPage {
 
 	constructor(public navCtrl: NavController, private storage: Storage, public backgroundMode: BackgroundMode,
 				private platform: Platform, private getNotificationProvider: GetNotificationProvider,
-				private loginProvider: LoginProvider) {	
+				private loginProvider: LoginProvider, private menuCtrl: MenuController) {	
 
-		// this.serverConnection();
+		this.serverConnection();
 
 		this.platform.ready().then(() => {
 
@@ -44,6 +44,10 @@ export class ChildrenPage {
 		}).catch((error) => {
 			alert("error 1: "+ error);
 		});
+	}
+
+	ionViewDidEnter() {
+		this.menuCtrl.enable(true);
 	}
 
 	ionViewDidLoad(){

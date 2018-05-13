@@ -50,6 +50,28 @@
 		"status" 	: "الحالة",
 		"details" 	: "التفاصيل"
 	},
+	"CHILDGRADES_PAGE": {
+		"title"			: "نتيجة",
+		"subject"  		: "المادة",
+		"childMarks" 	: "درجات الطالب",
+		"totalMarks" 	: "الدرجة الكلية",
+		"grade"			: "التقدير"
+	},
+	"BUSTRACK_PAGE" : {
+		"title" : "مسار اﻷتوبيس",
+		"subTitle" : "اختر التاريخ لعرض المسار",
+		"date"  : "التاريخ",
+		"today" : "اليوم",
+		"or"	: "أو",
+		"cancel": "إلغاء",
+		"done"  : "تم"
+	},
+	"DRIVER_PAGE": {
+		"title" : "سلوك السائق",
+		"speed"	: "السرعة",
+		"break" : "استراحة",
+		"stops" : "توقف"
+	},
 	"HOME_PAGE":  	 {
 		"or" 		: "أو",
 		"login" 	: "تسجيل الدخول",

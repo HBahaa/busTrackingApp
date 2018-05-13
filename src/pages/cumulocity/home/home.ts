@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, ViewController , NavParams, reorderArray} from 'ionic-angular';
+import { NavController, AlertController, ViewController, MenuController, NavParams, reorderArray} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ChildrenPage } from '../../children/children';
@@ -26,36 +26,46 @@ export class UserHomePage {
   item:any;
 
     constructor(public navCtrl: NavController,public navParams: NavParams,private alertCtrl:AlertController,
-              private viewCtrl: ViewController,public storage: Storage,
+              private viewCtrl: ViewController,public storage: Storage, private menuCtrl: MenuController,
               public authService : AuthServiceProvider) 
-    {
-      this.diplayItems();
-      this.doRefresh(0);
-      var my = this;
+      {
+        this.diplayItems();
+        this.doRefresh(0);
+        var my = this;
+        
 
+        setTimeout(function(){
+          my.storage.get("userData").then((data)=>{
+            let tenant = data.tenant;
+             let token = data.token;
 
-      setTimeout(function(){
-        my.storage.get("userData").then((data)=>{
-          let tenant = data.tenant;
-           let token = data.token;
-
-          if(my.items != null){
-            for(let item of my.items){
-              let deviceID = item.deviceID;
-              let type = item.type;
-              let userMeasurementName = item.name;
-              my.authService.reloadAll(tenant,deviceID, type, token, userMeasurementName).then(()=>{
-                my.storage.get("devicesMeasurements").then((data)=>{
-                  my.items = data;
-                })
-              });
+            if(my.items != null){
+              for(let item of my.items){
+                let deviceID = item.deviceID;
+                let type = item.type;
+                let userMeasurementName = item.name;
+                my.authService.reloadAll(tenant,deviceID, type, token, userMeasurementName).then(()=>{
+                  my.storage.get("devicesMeasurements").then((data)=>{
+                    my.items = data;
+                  })
+                });
+              }
             }
-          }
 
-        })
+          })
 
-      }, 3000);
-    }
+        }, 3000);
+      }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false);
+    this.diplayItems()
+    this.doRefresh(0);
+  }
+  ionViewDidEnter() {
+    this.diplayItems()
+    this.menuCtrl.enable(false);
+  }
 
   diplayItems(){
     this.storage.get('devicesMeasurements').then((data)=>{
@@ -89,16 +99,6 @@ export class UserHomePage {
   reorderItems(indexes){
     this.items = reorderArray(this.items, indexes);
     this.storage.set("devicesMeasurements", this.items);
-  }
-
-  ionViewWillEnter() {
-      this.viewCtrl.showBackButton(false);
-      this.diplayItems()
-      this.doRefresh(0);
-  }
-  ionViewDidEnter() {
-      this.diplayItems()
-
   }
 
   removeItem(index){

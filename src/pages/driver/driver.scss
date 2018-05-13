@@ -1,0 +1,52 @@
+page-driver {
+	.card{
+		text-align: center;
+
+		.card-header{
+			font-size: 20px;
+		}
+
+		.card-content{
+			padding: 5px;
+			margin-bottom: 20px;
+
+			.circle{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				border: 5px solid color($colors, mainColor);
+				margin: 0 auto;
+
+				h2{
+					text-align: center;
+					line-height: 86px;
+				    background-color: #eee;
+				    border-radius: 50%;
+				    width: 86px;
+				    margin-left: 2px;
+				    font-size: 34px;
+				    font-weight: bold;
+				    color: color($colors, mainColor);
+				}
+			}
+
+			.row{
+				margin-top: 30px;
+				font-size: 16px;
+				color: #333;
+				.col{
+					h3{
+						color: color($colors, mainColor);
+						font-size: 20px;
+					}
+				}
+
+				[col-4]:not(#last){
+					border-right: 1px solid #ddd;
+				}
+
+			}
+		}
+	
+	}
+}
