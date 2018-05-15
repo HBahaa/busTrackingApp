@@ -28014,10 +28014,36 @@ ion-app._gmaps_cdv_ .nav-decor {
   min-height: 20px;
 }
 
-.md button:focus,
-.ios button:focus,
-.wp button:focus {
-  background-color: transparent !important;
+.md .row,
+.ios .row,
+.wp .row {
+  margin-bottom: 0px;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 0px solid #26a69a;
+  -webkit-box-shadow: 0 1px 0 0 transparent;
+  box-shadow: 0 1px 0 0 transparent;
+}
+
+page-bus-track .card .card-title {
+  font-size: 20px;
+}
+
+page-bus-track .card h2 {
+  text-align: center;
+}
+
+page-bus-track #map {
+  height: 400px;
+}
+
+page-child-grades .card .title {
+  color: #F08080;
+}
+
+page-child-grades .card .row {
+  margin-bottom: 5px;
 }
 
 page-children {
@@ -28067,6 +28093,10 @@ page-children ion-card .card-title {
   font-size: 2.1rem;
 }
 
+page-children ion-card .row {
+  margin-bottom: 0px;
+}
+
 page-children ion-card .card-header {
   font-size: 1.8rem;
   padding-bottom: 10px;
@@ -28085,10 +28115,6 @@ page-children ion-card ion-item ion-row span.chData {
   font-size: 16px;
 }
 
-page-device-data ion-content .item-md h2 {
-  font-size: 1.7rem;
-}
-
 page-devices .content p {
   font-size: 1.6rem;
   font-weight: 600;
@@ -28105,7 +28131,7 @@ page-userhome {
 
 page-userhome .content button.addBtn {
   border-radius: 50%;
-  padding: 22px 12px;
+  padding: 20.5px 12.25px;
   -webkit-box-shadow: 1px 1px 5px #222;
   box-shadow: 1px 1px 5px #222;
   position: fixed;
@@ -28115,7 +28141,30 @@ page-userhome .content button.addBtn {
 }
 
 page-userhome .content button.addBtn ion-icon {
-  font-size: 25px;
+  font-size: 22px;
+}
+
+page-userhome .content button.helpBtn {
+  border-radius: 50%;
+  padding: 20.5px 15px;
+  -webkit-box-shadow: 1px 1px 5px #222;
+  box-shadow: 1px 1px 5px #222;
+  position: fixed;
+  z-index: 99;
+  right: 10px;
+  bottom: 70px;
+}
+
+page-userhome .content button.helpBtn ion-icon {
+  font-size: 22px;
+}
+
+page-userhome .content .fixed-action-btn ul {
+  bottom: 45px;
+}
+
+page-userhome .content .fixed-action-btn ul li {
+  margin-bottom: 8px;
 }
 
 page-userhome .content ion-item-group {
@@ -28143,6 +28192,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content {
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .card-title {
   width: 100%;
   padding-bottom: 15px;
+  font-size: 19px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .card-title hr {
@@ -28153,7 +28203,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content .ca
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content h3 {
   padding-bottom: 5px;
-  font-size: 24px;
+  font-size: 21px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p {
@@ -28161,12 +28211,12 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content p {
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p .val {
-  font-size: 22px;
+  font-size: 20px;
   padding-left: 20px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content p .lat {
-  font-size: 19px;
+  font-size: 17px;
   padding-left: 20px;
   display: block;
 }
@@ -28176,10 +28226,10 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content p s
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content ion-icon {
-  font-size: 55px;
+  font-size: 44px;
   position: absolute;
   right: 20px;
-  bottom: 15px;
+  bottom: 40px;
 }
 
 page-userhome .content ion-item-group .card-image ion-icon {
@@ -28199,56 +28249,12 @@ page-userhome ion-item.item .item-block {
 }
 
 ion-reorder {
-  margin-top: -95px;
+  margin-top: -144px;
   margin-right: 20px;
 }
 
 .list-md ion-item-options .button {
   height: calc(100% - 6px);
-}
-
-page-item-data .content ion-grid {
-  height: 100%;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-page-item-data .content ion-grid .box {
-  -webkit-box-shadow: 1px 1px 8px #555;
-  box-shadow: 1px 1px 8px #555;
-  padding: 30px 20px;
-  border-radius: 5px;
-}
-
-page-item-data .content ion-grid .box h2 {
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-page-item-data .content ion-grid .box .item-input ion-input {
-  background-color: #f5f5f5;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  color: #333;
-  margin: 20px 0;
-}
-
-page-item-data .content ion-grid .box button {
-  margin-top: 20px;
-}
-
-.item-md.item-input.item-input-has-focus .item-inner,
-.item-md.item-input.input-has-focus .item-inner {
-  border-bottom-color: transparent;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.label-md[stacked] {
-  font-size: 1.7rem;
 }
 
 page-userlogin .login {
@@ -28363,14 +28369,26 @@ page-details {
   text-align: center;
 }
 
-page-details .card-title {
+page-details .card .card-content {
+  padding: 24px 10px;
+}
+
+page-details .card .card-title {
   text-align: center;
 }
 
-page-details img {
+page-details .card img {
   width: 40%;
   margin-left: 30%;
   border-radius: 50%;
+  margin-top: 10px;
+}
+
+page-details .card .button {
+  margin-top: 10px;
+  text-transform: capitalize !important;
+  text-decoration: underline;
+  font-size: 1.6rem;
 }
 
 page-details .list {
@@ -28379,6 +28397,54 @@ page-details .list {
 
 page-details .list h2 {
   font-size: 19px;
+}
+
+page-driver .card {
+  text-align: center;
+}
+
+page-driver .card .card-header {
+  font-size: 20px;
+}
+
+page-driver .card .card-content {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+page-driver .card .card-content .circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #F08080;
+  margin: 0 auto;
+}
+
+page-driver .card .card-content .circle h2 {
+  text-align: center;
+  line-height: 86px;
+  background-color: #eee;
+  border-radius: 50%;
+  width: 86px;
+  margin-left: 2px;
+  font-size: 34px;
+  font-weight: bold;
+  color: #F08080;
+}
+
+page-driver .card .card-content .row {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #333;
+}
+
+page-driver .card .card-content .row .col h3 {
+  color: #F08080;
+  font-size: 20px;
+}
+
+page-driver .card .card-content .row [col-4]:not(#last) {
+  border-right: 1px solid #ddd;
 }
 
 page-home .home {
@@ -28655,6 +28721,14 @@ page-map-modal #over_map {
 
 page-map-modal #over_map ion-label {
   color: #aaa;
+}
+
+page-messages .card .card-content .card-title {
+  font-size: 2rem;
+}
+
+page-messages .card .card-content p {
+  font-size: 1.6rem;
 }
 
 page-notification #map {
@@ -28944,4 +29018,33 @@ page-register2 .login-content .btn {
 page-register2 .login-content ion-icon {
   margin-right: 5px;
   color: #fff;
+}
+
+page-semesters .content {
+  background-color: #fff;
+}
+
+page-semesters .content button {
+  font-size: 1.7rem;
+  text-transform: capitalize;
+}
+
+page-semesters .content .scroll-content {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }

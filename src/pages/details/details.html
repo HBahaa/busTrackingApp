@@ -12,7 +12,7 @@
 		<ion-card-content>
 			<ion-card-title color="mainColor">{{childData.name}}</ion-card-title>
 			<ion-row>
-	        	<ion-col col-12><br /></ion-col>
+	        	<!-- <ion-col col-12><br /></ion-col> -->
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.childID' | translate }}:</h2></ion-col>
 
 	        	<ion-col col-7><h2>{{childData.tag}}</h2></ion-col>
@@ -22,6 +22,7 @@
 	        		<h2 *ngIf="childData.childLastMsg != undefined">{{childData["childLastMsg"]["status"]}}</h2>
 	        		<h2 *ngIf="childData.childLastMsg == undefined">No Status</h2>
 	        	</ion-col>
+	        	<ion-col> <button ion-button clear color="primary" (click)="selectSemester()">View Grades</button> </ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busNumber' | translate }}:</h2></ion-col>
@@ -29,6 +30,9 @@
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busID' | translate }}:</h2></ion-col>
 	        	<ion-col col-7><h2>{{childData.bus_id}}</h2></ion-col>
+
+	        	<ion-col col-6><h2>{{ 'DETAILS_PAGE.busTemp' | translate }}:</h2></ion-col>
+	        	<ion-col col-6><h2>20</h2></ion-col>
 	        	
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busSpeed' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
@@ -39,6 +43,7 @@
 	        			<h2>{{childData["lastMsg"]["speed"]}}</h2>
 	        		</ng-template>
 	        	</ion-col>
+	        	<ion-col> <button ion-button clear color="primary" (click)="tripTrack()">Bus Trip Track</button> </ion-col>
 	        	<ion-col col-12><hr /></ion-col>
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverName' | translate }}:</h2></ion-col>
@@ -52,7 +57,7 @@
 	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverPhone"]}}</h2>
 	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverPhone"]}}</h2>
 	        	</ion-col>
-
+	        	<ion-col> <button ion-button clear color="primary" (click)="driverBehaviour()">Driver Behaviour</button> </ion-col>
 	        </ion-row>
 		</ion-card-content>
 	</ion-card>

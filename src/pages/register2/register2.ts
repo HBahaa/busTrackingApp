@@ -54,7 +54,7 @@ export class Register2Page {
 
   onSubmit(user){
     this.presentLoading();
-    this.storage.get('userData').then((data)=> {
+    this.storage.get('userProfile').then((data)=> {
 
       let nid= data.id;
       let secureCode = data.skey

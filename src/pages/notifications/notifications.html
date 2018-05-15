@@ -10,6 +10,25 @@
 <ion-content>
 
   <ion-list>
+    <button ion-item (click)="childScore()">
+      <ion-icon color="mainColor" ios="ios-paper" md="md-paper" item-start></ion-icon>
+      <h3>{{ 'NOTIFICATIONS_PAGE.childName' | translate }}: Ahmed</h3>
+      <h2>New Test Score</h2>
+      <p text-right> <span>{{ newDate | customDate: lang }}</span> </p>
+    </button>
+    <button ion-item (click)="busTrack()">
+      <ion-icon color="mainColor" ios="ios-bus-outline" md="md-bus" item-start></ion-icon>
+      <h3>{{ 'NOTIFICATIONS_PAGE.childName' | translate }}: Ahmed</h3>
+      <h2>Bus out of track</h2>
+      <p text-right> <span>{{ newDate | customDate: lang }}</span> </p>
+    </button>
+    <button ion-item (click)="showMessage()">
+      <ion-icon color="mainColor" ios="ios-chatboxes" md="md-chatboxes" item-start></ion-icon>
+      <h3>{{ 'NOTIFICATIONS_PAGE.childName' | translate }}: Ahmed</h3>
+      <h2>New Message form School</h2>
+      <p text-right> <span>{{ newDate | customDate: lang }}</span> </p>
+    </button>
+
     <button ion-item *ngFor="let item of items" (click)="notificationDetails(item)">
       <ion-icon 
         color="mainColor" *ngIf="rooms.tag.indexOf(item.sid) >= 0" ios="ios-pricetag-outline" md="md-pricetag" item-start>
@@ -37,8 +56,8 @@
       <ng-template #temp>
         <p text-right>{{item.time | date:'short'}}</p>
       </ng-template>
-
     </button>
+
   </ion-list>
 
 </ion-content>

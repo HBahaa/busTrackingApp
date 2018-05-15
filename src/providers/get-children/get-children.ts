@@ -45,7 +45,7 @@ export class GetChildrenProvider {
 		      		this.topics = [];
 					this.rooms = {};
 					this.roomsData = {};
-					this.storage.get("userData").then((parent)=>{
+					this.storage.get("userProfile").then((parent)=>{
 						parent.nid = response.data['nid'];
 			      		parent.name = response.data['name'];
 			      		parent.email = response.data['email'];
@@ -53,7 +53,7 @@ export class GetChildrenProvider {
 			      		parent.address = response.data['loc']['locDesc'];
 			      		parent.loc["locLat"] = response.data['loc']['locLat'];
 			      		parent.loc["locLong"] = response.data['loc']['locLong'];
-			      		this.storage.set("userData", parent);
+			      		this.storage.set("userProfile", parent);
 
 					})
 		      		

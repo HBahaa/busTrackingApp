@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController  } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, MenuController  } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
@@ -19,8 +19,12 @@ export class UserLoginPage {
   loader:any;
   devices:any;
 
-  constructor(public alertCtrl: AlertController, public navCtrl: NavController,
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController,private menuCtrl: MenuController,
               public storage: Storage, public loadingCtrl: LoadingController) {
+  }
+
+  ionViewDidEnter() {
+    this.menuCtrl.enable(false);
   }
 
   backToIntro(){
@@ -46,9 +50,12 @@ export class UserLoginPage {
     this.token = "Basic " + window.btoa(this.username+':'+this.password);
     
     function myFilter(objs){
+      console.log("filter objs", objs);
       return objs.filter((obj)=>{
+        console.log("obj", obj)
         return obj['c8y_SupportedMeasurements'];
       }).map((obj)=>{
+
         return (({ id, name, c8y_SupportedMeasurements }) => ({ id, name, c8y_SupportedMeasurements }))(obj)
       })
     }
@@ -70,6 +77,7 @@ export class UserLoginPage {
 
     $.ajax(settings).done(function (response) {
 
+      console.log("response", response);
       storage.set("userData", {
         'tenant':my.tenant,
         'username': my.username,
@@ -80,7 +88,9 @@ export class UserLoginPage {
       if(response.statistics.totalPages == undefined || response.statistics.totalPages == null)
       {
         var objs = response.managedObjects;
+        console.log("response.managedObjects", response.managedObjects)
         var devices = myFilter(objs);
+        console.log("devices", devices)
         for(let i in devices){
           devices[i]["disableBTN"] = false;
         }

@@ -1,0 +1,18 @@
+page-semesters {
+	.content {
+	    background-color: #fff;
+
+		button{
+			font-size: 1.7rem;
+			text-transform: capitalize;
+		}
+
+		.scroll-content{
+			text-align: center;
+			justify-content: center;
+			align-content: center;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}

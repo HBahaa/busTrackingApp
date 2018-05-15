@@ -48,7 +48,7 @@ export class ProfilePage {
 			this.storage.get("language").then((lang)=>{
 				this.language = lang; 
 			});
-			this.storage.get("userData").then((data)=>{
+			this.storage.get("userProfile").then((data)=>{
 				// alert("data = "+ JSON.stringify(data));
 				this.nid = data.nid;
 				this.name = data.name;
@@ -97,7 +97,7 @@ export class ProfilePage {
 	} 
 
 	editProfile(data){
-		this.storage.get("userData").then((user)=>{
+		this.storage.get("userProfile").then((user)=>{
 
 			this.loginProvider.Login(user.nid, user.password).then(log=>{
 				if (user.email == data.value.email) {

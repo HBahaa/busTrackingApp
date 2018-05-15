@@ -36,7 +36,7 @@ export class LoginProvider {
 				{
 					this.user.password = password;
 			        this.storage.set("token", response.token);
-			        this.storage.set("userData", this.user);
+			        this.storage.set("userProfile", this.user);
 
 			        resolve(response.token);			  
 				}

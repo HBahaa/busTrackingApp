@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'MESSAGES_PAGE.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-card>
+	    <ion-card-content>
+			<ion-card-title>
+				New Message
+			</ion-card-title>
+			<p>
+				This is the content of message. This is the content of message
+			</p>
+	    </ion-card-content>
+
+	    <ion-row>
+			<ion-col>
+				<button ion-button clear color="mainColor" icon-start>
+					<ion-icon name="attach"></ion-icon>
+				  	&nbsp;file
+				</button>
+			</ion-col>
+	    </ion-row>
+
+	</ion-card>
+</ion-content>

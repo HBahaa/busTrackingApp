@@ -39,15 +39,38 @@
 		}
 	},
 	"APP_PAGE" : {
-		"menu" 	 : "القائمة",
-		"logout" : "خروج",
-		"load" 	 : "... تحميل"
+		"menu" 	 	: "القائمة",
+		"logout" 	: "خروج",
+		"switchApp" : "انتقال الي My Sensors",
+		"load" 	 	: "... تحميل"
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "اﻷطفال",
 		"name"  	: "اﻷسم",
 		"status" 	: "الحالة",
 		"details" 	: "التفاصيل"
+	},
+	"CHILDGRADES_PAGE": {
+		"title"			: "نتيجة",
+		"subject"  		: "المادة",
+		"childMarks" 	: "درجات الطالب",
+		"totalMarks" 	: "الدرجة الكلية",
+		"grade"			: "التقدير"
+	},
+	"BUSTRACK_PAGE" : {
+		"title" : "مسار اﻷتوبيس",
+		"subTitle" : "اختر التاريخ لعرض المسار",
+		"date"  : "التاريخ",
+		"today" : "اليوم",
+		"or"	: "أو",
+		"cancel": "إلغاء",
+		"done"  : "تم"
+	},
+	"DRIVER_PAGE": {
+		"title" : "سلوك السائق",
+		"speed"	: "السرعة",
+		"break" : "استراحة",
+		"stops" : "توقف"
 	},
 	"HOME_PAGE":  	 {
 		"or" 		: "أو",
@@ -97,10 +120,14 @@
 		"childStatus"	: "حالة الطفل",
 		"busNumber"		: "رقم اﻷتوبيس",
 		"busID"			: "رقم التعريفي للاتوبيس",
+		"busTemp"		: "درجة الحراره",
 		"busSpeed"		: "سرعة اﻷتوبيس",
 		"driverName"	: "اسم السائق",
 		"driverPhone"	: "تلفون السائق",
 		"notifications" : "الإشعارات"
+	},
+	"MESSAGES_PAGE" : {
+		"title" : "رسائل"
 	},
 	"NOTIFICATIONS_PAGE" : {
 		"title" : "كل الإشعارات",
