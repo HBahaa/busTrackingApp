@@ -1,12 +1,49 @@
 <ion-content class="content" padding>
-
-	<button ion-button color="primary" round block (click)="mySensors()">
-    	My Sensors
-    </button>
-
-    <h3>OR</h3>
-
-    <button ion-button color="primary" round block (click)="busTrackingApp()">
-    	Bus Tracking App
-    </button>
+	<h3>MW3 PLATFORM</h3>
+	<h3>My Apps</h3>
+	<ion-list>
+		<ion-item (click)="mySensors()">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/home.jpeg">
+			</ion-avatar>
+			<h2>My Home</h2>
+		</ion-item>
+		<ion-item (click)="busTrackingApp()">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/icon.png">
+			</ion-avatar>
+			<h2>My School Bus</h2>
+		</ion-item>
+	</ion-list>
+	<h3>Other Apps</h3>
+	<ion-list>
+		<ion-item class="otherApps">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/home.png">
+			</ion-avatar>
+			<h2>Home Safe</h2>
+			<a class="download">Download</a>
+		</ion-item>
+		<ion-item class="otherApps">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/freeTracking.jpeg">
+			</ion-avatar>
+			<h2>Free Tracking</h2>
+			<a class="download">Download</a>
+		</ion-item>
+		<ion-item class="otherApps">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/logistics.png">
+			</ion-avatar>
+			<h2>Logistics</h2>
+			<a class="download">Download</a>
+		</ion-item>
+		<ion-item class="otherApps">
+			<ion-avatar item-start>
+			  <img src="assets/imgs/crm.png">
+			</ion-avatar>
+			<h2>CRM</h2>
+			<a class="download">Download</a>
+		</ion-item>
+	</ion-list>
 </ion-content>

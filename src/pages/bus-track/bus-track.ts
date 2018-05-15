@@ -8,8 +8,9 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic
 export class BusTrackPage {
 
 	map: GoogleMap;
-	x = {"lat": 25.5, "lng": 30.7};
-	y = {"lat": 30, "lng": 30.7};
+	x = {"lat": 25.5, "lng": 29.2};
+	y = {"lat": 27.7, "lng": 29.7};
+	z = {"lat": 30, "lng": 30};
 	date: string;
 
 	constructor() {
@@ -22,10 +23,9 @@ export class BusTrackPage {
 	}
 
 	loadMap() {
-
 	    let mapOptions: GoogleMapOptions = {
 	    	camera: {
-		        target: {lat: 27, lng: 30.7},
+		        target: {lat: 27.7, lng: 29.7},
 		        zoom: 6,
 		        tilt: 20
 		    }
@@ -37,7 +37,8 @@ export class BusTrackPage {
 			this.map.addPolyline({
 				points: [
 				  this.x,
-				  this.y
+				  this.y,
+				  this.z
 				],
 				'color' : '#AA00FF',
 				'width': 5,

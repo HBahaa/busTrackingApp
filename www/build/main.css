@@ -28537,18 +28537,17 @@ page-home .alert-radio-icon {
 }
 
 page-intro .content {
-  background-image: url(../assets/imgs/3.jpg);
-  background-size: cover;
+  background-color: #F08080;
+}
+
+page-intro .content h3:first-child {
+  text-decoration: underline;
+  font-family: cursive;
 }
 
 page-intro .content h3 {
   color: #fff;
-  font-family: cursive;
-}
-
-page-intro .content button {
-  font-size: 1.7rem;
-  text-transform: capitalize;
+  font-weight: 400;
 }
 
 page-intro .content .scroll-content {
@@ -28571,7 +28570,34 @@ page-intro .content .scroll-content {
   flex-direction: column;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+page-intro .content .list .item {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+page-intro .content .list .item .item-inner {
+  border-bottom: 0px;
+}
+
+page-intro .content .list .item .item-inner h2 {
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+page-intro .content .list .item.otherApps {
+  cursor: auto;
+}
+
+page-intro .content .list .item.otherApps a {
+  color: #0065af;
+  float: right;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 page-login .login-content {

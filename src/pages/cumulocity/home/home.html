@@ -21,10 +21,6 @@
     <li><a class="btn-floating blue" (click)="logout()"><i class="material-icons">exit_to_app</i></a></li>
   </ul>
 </div>
-  <!-- <button ion-button color="danger" (click)="showDevices()" class="addBtn">
-    <ion-icon name="md-create"></ion-icon></button>
-     <button ion-button color="primary" (click)="presentAlert()" class="helpBtn">
-    <ion-icon name="help"></ion-icon></button> -->
   <ion-list no-lines>
     <!-- <ion-icon name="trash"></ion-icon> -->
 
@@ -38,7 +34,7 @@
               <hr>
             </div>
             <div *ngFor="let sensor of item[ids[i]];let j=index">
-              <h3 ion-text color="{{colors[sensor.type]}}">{{sensor.name}}</h3>
+              <h3 ion-text>{{sensor.name}}</h3>
               <p *ngIf="sensor.type != 'c8y_Position'">
                 <span *ngIf="!sensor.value">
                   <span class="lat">No Reading</span>
@@ -56,7 +52,7 @@
                   <span class="lat">lng: {{sensor.lng}}</span>
                 </span>
               </p>
-              <ion-icon *ngIf="icons[sensor.type]" color="{{colors[sensor.type]}}" name="{{icons[sensor.type]}}" end></ion-icon>
+              <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon>
               <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon>
             </div>
             <hr style="margin-top: 20px; background-color: #aaa" />
