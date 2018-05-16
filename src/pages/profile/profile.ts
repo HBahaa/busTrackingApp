@@ -70,13 +70,11 @@ export class ProfilePage {
 		if (language === 'ar') {
 		  this.platform.setDir('ltr', false);
 		  this.platform.setDir('rtl', true);
-		  this.translate.use(language);
-		  
 		} else {
 		  this.platform.setDir('rtl', false);
 		  this.platform.setDir('ltr', true);
-		  this.translate.use(language);
 		}
+		this.translate.use(language);
 		this.storage.set("language", language);
 	}
 

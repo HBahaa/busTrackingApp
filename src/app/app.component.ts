@@ -48,7 +48,6 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.translateService.use('en');
-
       // this.presentLoading();
       // this.loadingPage();
                 
@@ -80,14 +79,18 @@ export class MyApp {
     //   this.translateService.use('en');
 
     //   if (data != null) {
-    //     this.nav.setRoot(UserHomePage);
+    //     this.nav.setRoot(IntroPage);
     //   }else{
-    //     this.nav.setRoot(UserLoginPage);
+    //     this.nav.setRoot(IntroPage);
     //   }
     // });
-    this.platform.setDir('rtl', false);
-    this.platform.setDir('ltr', true);
-    this.translateService.use('en');
+
+    this.storage.get("language").then(lang=>{
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', true);
+        this.platform.setDir('rtl', false);
+      }
+    })
     this.nav.setRoot(IntroPage);
   }
 

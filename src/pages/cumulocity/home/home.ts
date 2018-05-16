@@ -33,7 +33,6 @@ export class UserHomePage {
       this.diplayItems();
       this.doRefresh(0);
       var my = this;
-      
 
       setTimeout(function(){
         my.storage.get("userData").then((data)=>{
@@ -134,6 +133,7 @@ export class UserHomePage {
   }
 
   switchTrackingApp(){
+
     this.navCtrl.setRoot(IntroPage);
   }
 
