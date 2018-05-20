@@ -26,6 +26,7 @@ export class DevicesPage {
 
 
   addDevice(device){
+    console.log("device", device)
 
     this.storage.get("devices").then(devices=>{
       for(let x of devices){

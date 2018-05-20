@@ -6,7 +6,7 @@ import * as $ from 'jquery';
 import { IntroPage } from '../../intro/intro';
 import { UserLoginPage } from '../userlogin/userlogin';
 import { DevicesPage } from '../devices/devices';
-import { AuthServiceProvider } from '../../../providers/auth-service/auth-service';
+import { DataServiceProvider } from '../../../providers/data-service/data-service';
 
 @Component({
   selector: 'page-userhome',
@@ -29,33 +29,38 @@ export class UserHomePage {
               };
 
   constructor(public navCtrl: NavController, private alertCtrl:AlertController, private viewCtrl: ViewController,
-            public storage: Storage, private menuCtrl: MenuController, public authService : AuthServiceProvider) 
+            public storage: Storage, private menuCtrl: MenuController, public dataService : DataServiceProvider) 
     {
+      this.menuCtrl.enable(false);
+      this.viewCtrl.showBackButton(false);
+      this.storage.get("devices").then(devices=>{
+        this.devices = devices;
+        this.diplayItems();
+      });
       setTimeout(()=>{
         this.storage.get("userData").then((data)=>{
           let tenant = data.tenant;
           let token = data.token;
-          if(this.items != null){
+          if(this.items.length > 0){
             for(let item of this.items){
-              let deviceID = item.deviceID;
-              let type = item.type;
-              let userMeasurementName = item.name;
-              this.authService.reloadAll(tenant,deviceID, type, token, userMeasurementName).then(()=>{
-                this.storage.get("devicesMeasurements").then((data)=>{
-                  if(data != null){
-                    $.each(data, (i, resp)=>{
-                      console.log("resp", resp)
-                      this.ids.push(i);
-                      this.items.push(resp);
-                      for(let dev of this.devices){
-                        if (dev["id"] == i) {
-                          this.names[i] =dev["name"];
-                        }
-                      }
-                    });
+              for (let sensor of item ) {
+                this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
+                  if (sensor.type.indexOf("Position") >= 0) {
+                    if (sensor["lat"] != resp["lat"]) {
+                      sensor["lat"] = resp["lat"]
+                    }else if (sensor["lng"] != resp["lng"]){
+                      sensor["lng"] = resp["lng"]
+                    }
                   }
+                  else{
+                    if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
+                      sensor.value = resp[Object.keys(resp)[0]]["value"];
+                    }
+                  }
+                }).catch(error=>{
+                  console.log("dataservice error", error)
                 })
-              });
+              }
             }
           }
         })
@@ -63,14 +68,7 @@ export class UserHomePage {
 
     }
 
-  ionViewDidEnter() {
-    this.menuCtrl.enable(false);
-    this.viewCtrl.showBackButton(false);
-    this.storage.get("devices").then(devices=>{
-      this.devices = devices;
-      this.diplayItems();
-    });
-  }
+  ionViewDidEnter() {}
 
   diplayItems(){
     this.storage.get('devicesMeasurements').then((data)=>{

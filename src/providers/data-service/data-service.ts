@@ -5,15 +5,45 @@ import * as $ from 'jquery';
 
 @Injectable()
 export class DataServiceProvider {
+
   devices:any;
   loader:any;
 
   constructor(public storage: Storage, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
   }
 
-  getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=1){
+  updateData(tenant,id, type, token, userMeasurementName, deviceName){
+    return new Promise((resolve, reject)=>{
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://"+tenant+".cumulocity.com/measurement/measurements?source="+id+"&type="+type,
+        "method": "GET",
+        "headers": {
+          "authorization": token,
+          "cache-control": "no-cache",
+        }
+      }
 
-    console.log("type", type)
+      $.ajax(settings).done(response => {
+
+        console.log("response from update", response)
+        if(response.measurements.length >= 1){
+          let l = response.measurements.length;
+          var resp = response.measurements[l-1];
+
+          resolve(resp[type]);
+
+        }
+
+      }).fail(error=>{
+        reject()
+      })
+
+    })
+  }
+
+  getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=1){
 
     if (type === "c8y_Temperature") {
       type = "c8y_TemperatureMeasurement";
@@ -55,7 +85,8 @@ export class DataServiceProvider {
             let l = response.measurements.length;
             var resp = response.measurements[l-1];
 
-            if (type == "c8y_Position") {
+            // if (type == "c8y_Position") 
+            if (type.indexOf("c8y_Position") >= 0){
               lat = resp[type]["lat"];
               lng = resp[type]["lng"];
             }else{
@@ -65,7 +96,7 @@ export class DataServiceProvider {
               unit = resp[type][Object.keys(respType)[0]]["unit"];
             }
 
-            if (type == "c8y_Position") {
+            if (type.indexOf("c8y_Position") >= 0){
               newItem = {
                 "deviceID":id,
                 "name":sName,
@@ -87,7 +118,7 @@ export class DataServiceProvider {
           }
           else if(response.measurements.length == 0){
 
-            if (type == "c8y_Position") {
+            if (type.indexOf("c8y_Position") >= 0) {
               newItem = {
                 "deviceID":id,
                 "name":sName,
@@ -111,7 +142,8 @@ export class DataServiceProvider {
 
         }else{
           let current = response.statistics.totalPages;
-          this.getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=current)
+          this.getDataService(tenant,id, type, token, userMeasurementName, currentPage=current)
+          // this.getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=current)
         }
 
       }).fail((error)=>{
@@ -125,13 +157,10 @@ export class DataServiceProvider {
 
   deviceMeasurements(id, item){
     this.storage.get('devicesMeasurements').then((data)=>{
-      console.log("data data ", data)
       
       if(data == null || data.length == 0){
         var arr = {};
         arr[id] = [item];
-
-        console.log("array", arr);
         
         this.storage.set('devicesMeasurements', arr);
       }
@@ -142,7 +171,6 @@ export class DataServiceProvider {
         else{
           data[id] = [item];
         }
-        console.log("array data", data);
 
         this.storage.set("devicesMeasurements", data)
       }
@@ -156,6 +184,7 @@ export class DataServiceProvider {
     });
     this.loader.present();
   }
+
   showAlert(title) {
     let alert = this.alertCtrl.create({
       title: 'Error',
@@ -164,4 +193,5 @@ export class DataServiceProvider {
     });
     alert.present();
   }
+
 }
