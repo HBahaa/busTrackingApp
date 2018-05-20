@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
 
 
@@ -52,8 +50,10 @@ export class AuthServiceProvider {
       $.ajax(settings).done(function (response) {
         if(response.statistics.totalPages == null){
           if(response.measurements.length > 1){
+
             let l = response.measurements.length
             var obj = response.measurements[l-1];
+            
             if(type == "c8y_TemperatureMeasurement"){
               value = obj[type]["T"]["value"];
             }else if(type == "c8y_LightMeasurement"){
@@ -61,14 +61,6 @@ export class AuthServiceProvider {
             }else if(type == "c8y_AccelerationMeasurement"){
               value = obj[type]["acceleration"]["value"];
             }
-
-            // var newItem = {
-            //   "deviceID":id,
-            //   "name":userMeasurementName,
-            //   "type":type,
-            //   "value":value,
-            //   "unit":unit
-            // }
 
             my.storage.get('devicesMeasurements').then((data)=>{
               for(let item in data){

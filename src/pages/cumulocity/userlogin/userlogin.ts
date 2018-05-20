@@ -50,9 +50,7 @@ export class UserLoginPage {
     this.token = "Basic " + window.btoa(this.username+':'+this.password);
     
     function myFilter(objs){
-      console.log("filter objs", objs);
       return objs.filter((obj)=>{
-        console.log("obj", obj)
         return obj['c8y_SupportedMeasurements'];
       }).map((obj)=>{
 
@@ -77,7 +75,7 @@ export class UserLoginPage {
 
     $.ajax(settings).done(function (response) {
 
-      console.log("response", response);
+      // console.log("response", response);
       storage.set("userData", {
         'tenant':my.tenant,
         'username': my.username,
@@ -88,14 +86,14 @@ export class UserLoginPage {
       if(response.statistics.totalPages == undefined || response.statistics.totalPages == null)
       {
         var objs = response.managedObjects;
-        console.log("response.managedObjects", response.managedObjects)
+        // console.log("response.managedObjects", response.managedObjects)
         var devices = myFilter(objs);
-        console.log("devices", devices)
+        // console.log("devices", devices)
         for(let i in devices){
           devices[i]["disableBTN"] = false;
         }
         storage.set('devices', devices).then(()=>{
-          console.log("from set devices", devices)
+          // console.log("from set devices", devices)
         });
         navCtrl.push(UserHomePage);
         my.loader.dismiss();
@@ -127,7 +125,7 @@ export class UserLoginPage {
             devices[i]["disableBTN"] = false;
           }
           storage.set('devices', devices).then(()=>{
-            console.log("from set devices", devices)
+            // console.log("from set devices", devices)
           });
           navCtrl.push(UserHomePage);
           my.loader.dismiss();

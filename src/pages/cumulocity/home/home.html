@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <!-- <ion-navbar hideBackButton="true"> -->
+  <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
 
 </ion-header>
-
 
 <ion-content class="content">
 
@@ -30,10 +30,10 @@
           <ion-icon name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
           <div class="card-content">
             <div class="card-title">
-              {{names[ids[i]] }}
+              {{ names[ids[i]] }}
               <hr>
             </div>
-            <div *ngFor="let sensor of item[ids[i]];let j=index">
+            <div class="measures" *ngFor="let sensor of item;let j=index">
               <h3 ion-text>{{sensor.name}}</h3>
               <p *ngIf="sensor.type != 'c8y_Position'">
                 <span *ngIf="!sensor.value">
@@ -54,8 +54,8 @@
               </p>
               <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon>
               <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon>
+              <!-- <hr style="margin-top: 20px; background-color: #aaa" /> -->
             </div>
-            <hr style="margin-top: 20px; background-color: #aaa" />
           </div>
 
         </ion-item>
@@ -65,8 +65,7 @@
             delete
           </button>
         </ion-item-options>
-    </ion-item-sliding>
-
+      </ion-item-sliding>
     </ion-item-group>
 
   </ion-list>

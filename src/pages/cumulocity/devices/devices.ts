@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-// import { DeviceDataPage } from '../device-data/device-data';
 import { DataServiceProvider } from '../../../providers/data-service/data-service';
 import { UserHomePage } from '../home/home';
 
@@ -14,10 +13,8 @@ import { UserHomePage } from '../home/home';
 export class DevicesPage {
 
   devices:any;
-  // colors:any = ["color1", "color2", "color3", "color4", "color5", "color6"];
   token:any;
   tenant:string;
-  loader:any;
   flag:any;
   disableBTN:any;
 
@@ -44,28 +41,18 @@ export class DevicesPage {
       this.token = data.token;
       this.tenant = data.tenant;
 
-      console.log("device", device)
-
-      // for(let device of this.devices){
-
-        for(let sensor of device["c8y_SupportedMeasurements"]){
-          this.dataService.getDataService(this.tenant, device["id"], sensor, this.token, sensor, device["name"])
-          .then((flag)=>{
-            if(flag == true){
-              this.navCtrl.push(UserHomePage)
-            }else{
-            }
-          });
-        }
-
-      // }
+      let len = device["c8y_SupportedMeasurements"].length;
+      for (let i=0; i<len; i++) {
+        this.dataService.getDataService(this.tenant, device["id"], device["c8y_SupportedMeasurements"][i], this.token, device["c8y_SupportedMeasurements"][i], device["name"])
+        .then((flag)=>{
+          if (i == len-1) {
+            this.navCtrl.push(UserHomePage)
+          }
+        });
+      }
 
     });
 
   }
-
-  // deviceDate(device){
-  //   this.navCtrl.push(DeviceDataPage,{'param1': device});
-  // }
 
 }

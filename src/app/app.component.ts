@@ -25,7 +25,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = IntroPage;
-  isLoggedIn:boolean;
+  // isLoggedIn:boolean;
   loader:any;
 
   pages: Array<{icon: string, title: string, component: any}>;
@@ -49,7 +49,6 @@ export class MyApp {
       splashScreen.hide();
       this.translateService.use('en');
       // this.presentLoading();
-      // this.loadingPage();
                 
     });
 
@@ -73,18 +72,6 @@ export class MyApp {
   }
 
   switchMySensors(){
-    // this.storage.get("devices").then((data)=>{
-    //   this.platform.setDir('rtl', false);
-    //   this.platform.setDir('ltr', true);
-    //   this.translateService.use('en');
-
-    //   if (data != null) {
-    //     this.nav.setRoot(IntroPage);
-    //   }else{
-    //     this.nav.setRoot(IntroPage);
-    //   }
-    // });
-
     this.storage.get("language").then(lang=>{
       if (lang === 'ar') {
         this.platform.setDir('ltr', true);
@@ -93,29 +80,6 @@ export class MyApp {
     })
     this.nav.setRoot(IntroPage);
   }
-
-  // loadingPage(){
-  //   this.storage.ready().then(()=>{
-
-  //     this.storage.get("children").then((data)=>{
-  //       this.loader.dismiss();
-        
-  //       if(data != null){
-
-  //         this.setLanguage()
-
-  //         this.rootPage = ChildrenPage;
-  //         // this.loader.dismiss();
-
-  //       }else if(data == null){
-  //         // this.loader.dismiss();
-  //         this.storage.set("language", "en");
-  //         this.translateService.use('en');
-  //         this.rootPage = HomePage;
-  //       }
-  //     })
-  //   })
-  // }
 
   setLanguage(){
     this.storage.get("language").then(lang =>{
@@ -131,12 +95,9 @@ export class MyApp {
   }
 
   presentLoading() {
-    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
       this.loader = this.loadingCtrl.create({
         content: "Authenticating..."
       });
       this.loader.present();
-    // });
-
   }
 }

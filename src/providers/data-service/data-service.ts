@@ -1,10 +1,7 @@
 import { AlertController, LoadingController  } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import 'rxjs/add/operator/map';
 import * as $ from 'jquery';
-
-
 
 @Injectable()
 export class DataServiceProvider {
@@ -24,9 +21,6 @@ export class DataServiceProvider {
 
     return new Promise((resolve)=>{
 
-      console.log("type", type)
-      console.log("id", id)
-
       let value;
       let unit;
       let lat;
@@ -45,18 +39,14 @@ export class DataServiceProvider {
 
       $.ajax(settings).done((response) => {
 
-        console.log("response", response);
-
         if(response.statistics.totalPages == null){
 
           var obj = {};
-          obj[id] = [];
           var newItem;
           var sName = userMeasurementName.substring(4);
           
           let n = sName.indexOf("Measurement");
           if (n > 0) {
-            console.log('iiif')
             sName = sName.substring(0, n);
           }
 
@@ -65,10 +55,7 @@ export class DataServiceProvider {
             let l = response.measurements.length;
             var resp = response.measurements[l-1];
 
-
-
             if (type == "c8y_Position") {
-              console.log("resp", resp)
               lat = resp[type]["lat"];
               lng = resp[type]["lng"];
             }else{
@@ -79,7 +66,6 @@ export class DataServiceProvider {
             }
 
             if (type == "c8y_Position") {
-              console.log("resp", sName, id, type, lat, lng)
               newItem = {
                 "deviceID":id,
                 "name":sName,
@@ -97,7 +83,7 @@ export class DataServiceProvider {
               }
             }
 
-            obj[id].push(newItem);
+            obj = newItem;
           }
           else if(response.measurements.length == 0){
 
@@ -116,7 +102,7 @@ export class DataServiceProvider {
                 "value":""
               }
             }
-            obj[id].push(newItem);
+            obj = newItem;
           }
 
           this.deviceMeasurements(id, obj);
@@ -126,7 +112,6 @@ export class DataServiceProvider {
         }else{
           let current = response.statistics.totalPages;
           this.getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=current)
-          // this.getDataService(id, type, token, userMeasurementName, deviceName, currentPage=current)
         }
 
       }).fail((error)=>{
@@ -140,22 +125,26 @@ export class DataServiceProvider {
 
   deviceMeasurements(id, item){
     this.storage.get('devicesMeasurements').then((data)=>{
-      if(data == null){
-        var arr = [item]
+      console.log("data data ", data)
+      
+      if(data == null || data.length == 0){
+        var arr = {};
+        arr[id] = [item];
+
+        console.log("array", arr);
+        
         this.storage.set('devicesMeasurements', arr);
-      }else{
-        data.push(item);
-        this.storage.set("devicesMeasurements", data)
       }
-    })
-    this.storage.get("devices").then((data)=>{
-      for(let i in data){
-        if(data[i]["id"] == id){
-          data[i]["disableBTN"]=true;
-          this.storage.set("devices", data).then(()=>{
-          });
-          break;
+      else{
+        if (data[id]) {
+          data[id].push(item);
         }
+        else{
+          data[id] = [item];
+        }
+        console.log("array data", data);
+
+        this.storage.set("devicesMeasurements", data)
       }
     })
   }

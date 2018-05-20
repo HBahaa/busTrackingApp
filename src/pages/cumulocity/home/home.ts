@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, ViewController, MenuController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
 
 import { IntroPage } from '../../intro/intro';
 import { UserLoginPage } from '../userlogin/userlogin';
@@ -13,10 +14,10 @@ import { AuthServiceProvider } from '../../../providers/auth-service/auth-servic
 })
 
 export class UserHomePage {
-  items:any[];
+  items = [];
   item:any;
   ids:any = [];
-  names:any = {};
+  names:object = {};
   devices:any;
   token:string;
   icons:any = {"c8y_TemperatureMeasurement": "ios-thermometer",
@@ -30,87 +31,82 @@ export class UserHomePage {
   constructor(public navCtrl: NavController, private alertCtrl:AlertController, private viewCtrl: ViewController,
             public storage: Storage, private menuCtrl: MenuController, public authService : AuthServiceProvider) 
     {
-      this.diplayItems();
-      this.doRefresh(0);
-      var my = this;
-
-      setTimeout(function(){
-        my.storage.get("userData").then((data)=>{
+      setTimeout(()=>{
+        this.storage.get("userData").then((data)=>{
           let tenant = data.tenant;
-           let token = data.token;
-
-          if(my.items != null){
-            for(let item of my.items){
+          let token = data.token;
+          if(this.items != null){
+            for(let item of this.items){
               let deviceID = item.deviceID;
               let type = item.type;
               let userMeasurementName = item.name;
-              my.authService.reloadAll(tenant,deviceID, type, token, userMeasurementName).then(()=>{
-                my.storage.get("devicesMeasurements").then((data)=>{
-                  my.items = data;
+              this.authService.reloadAll(tenant,deviceID, type, token, userMeasurementName).then(()=>{
+                this.storage.get("devicesMeasurements").then((data)=>{
+                  if(data != null){
+                    $.each(data, (i, resp)=>{
+                      console.log("resp", resp)
+                      this.ids.push(i);
+                      this.items.push(resp);
+                      for(let dev of this.devices){
+                        if (dev["id"] == i) {
+                          this.names[i] =dev["name"];
+                        }
+                      }
+                    });
+                  }
                 })
               });
             }
           }
-
         })
-
       }, 3000);
+
     }
 
-  ionViewWillEnter() {
-    this.viewCtrl.showBackButton(false);
-    this.diplayItems()
-    this.doRefresh(0);
-  }
   ionViewDidEnter() {
-    this.diplayItems()
     this.menuCtrl.enable(false);
+    this.viewCtrl.showBackButton(false);
+    this.storage.get("devices").then(devices=>{
+      this.devices = devices;
+      this.diplayItems();
+    });
   }
 
   diplayItems(){
     this.storage.get('devicesMeasurements').then((data)=>{
       if(data != null){
-        this.items = data;
-        for (let i of data) {
-          if (this.ids.indexOf(...Object.keys(i)) == -1) {
-            this.ids.push(...Object.keys(i));
-            this.storage.get("devices").then(devices=>{
-              for(let dev of devices){
-                if (dev["id"] == Object.keys(i)[0]) {
-                    let did = dev["id"];
-                    this.names[did] =dev["name"];
-                }
-              }
-            })
+        $.each(data, (i, resp)=>{
+          this.ids.push(i);
+          this.items.push(resp);
+          for(let dev of this.devices){
+            if (dev["id"] == i) {
+              this.names[i] =dev["name"];
+            }
           }
-        }
+        });
       }
     })
   }
-  
-  doRefresh(refresher){
-      this.storage.get('devicesMeasurements').then((data) => {
-        this.items = data;
-        if(refresher != 0)
-           refresher.complete();
-      });
-  }
-
-  // reorderItems(indexes){
-  //   this.items = reorderArray(this.items, indexes);
-  //   this.storage.set("devicesMeasurements", this.items);
-  // }
 
   removeItem(index){
+    
     if(index > -1){
       this.storage.get("devices").then((data)=>{
         for(let i in data){
-          if(data[i]["id"] == Object.keys(this.items[index])[0]){
+          if(data[i]["id"] == this.items[index][0]['deviceID']){
             data[i]["disableBTN"]=false;
             this.storage.set("devices", data).then(()=>{
+
               this.items.splice(index, 1);
-              this.navCtrl.setRoot(this.navCtrl.getActive().component); // to refresh page
-              this.storage.set("devicesMeasurements", this.items)
+              this.ids.splice(data[i]["id"] , 1)
+              delete this.names[data[i]["id"]];
+
+              this.storage.get("devicesMeasurements").then(resp=>{
+                delete resp[data[i]["id"]];
+                this.navCtrl.setRoot(this.navCtrl.getActive().component); // to refresh page
+                this.storage.set("devicesMeasurements", resp)
+
+              })
             });
             break
           }
@@ -133,7 +129,6 @@ export class UserHomePage {
   }
 
   switchTrackingApp(){
-
     this.navCtrl.setRoot(IntroPage);
   }
 

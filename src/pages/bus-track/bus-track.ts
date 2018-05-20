@@ -23,6 +23,7 @@ export class BusTrackPage {
 	}
 
 	loadMap() {
+		// alert("loadMap")
 	    let mapOptions: GoogleMapOptions = {
 	    	camera: {
 		        target: {lat: 27.7, lng: 29.7},
@@ -34,6 +35,7 @@ export class BusTrackPage {
 	   	this.map = GoogleMaps.create('map', mapOptions);
 	    this.map.one(GoogleMapsEvent.MAP_READY)
 		.then(() => {
+			// alert("map ready")
 			this.map.addPolyline({
 				points: [
 				  this.x,
