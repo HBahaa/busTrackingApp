@@ -26,7 +26,6 @@ export class DevicesPage {
 
 
   addDevice(device){
-    console.log("device", device)
 
     this.storage.get("devices").then(devices=>{
       for(let x of devices){
@@ -47,12 +46,15 @@ export class DevicesPage {
         this.dataService.getDataService(this.tenant, device["id"], device["c8y_SupportedMeasurements"][i], this.token, device["c8y_SupportedMeasurements"][i], device["name"])
         .then((flag)=>{
           if (i == len-1) {
+            this.dataService.loader.dismiss();
             this.navCtrl.push(UserHomePage)
           }
+        }).catch(error=>{
+          this.dataService.loader.dismiss();
         });
       }
 
-    });
+    })
 
   }
 
