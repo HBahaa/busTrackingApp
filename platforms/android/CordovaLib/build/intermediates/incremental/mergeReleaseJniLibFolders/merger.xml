@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/heba/Downloads/mw3_task/busTrackingApp/platforms/android/CordovaLib/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/home/heba/Downloads/mw3_task/busTrackingApp/platforms/android/CordovaLib/src/release/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/heba/Documents/work/MW3/busTrackingApp/platforms/android/CordovaLib/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/home/heba/Documents/work/MW3/busTrackingApp/platforms/android/CordovaLib/src/release/jniLibs"/></dataSet></merger>

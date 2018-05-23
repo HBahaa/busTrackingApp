@@ -26,16 +26,12 @@ export class DataServiceProvider {
       }
 
       $.ajax(settings).done(response => {
-
-        console.log("response from update", response)
         if(response.measurements.length >= 1){
           let l = response.measurements.length;
           var resp = response.measurements[l-1];
 
           resolve(resp[type]);
-
         }
-
       }).fail(error=>{
         reject()
       })
@@ -68,6 +64,7 @@ export class DataServiceProvider {
       }
 
       $.ajax(settings).done((response) => {
+        // console.log("responsse", response)
 
         if(response.statistics.totalPages == null){
 
@@ -137,8 +134,8 @@ export class DataServiceProvider {
           }
 
           this.deviceMeasurements(id, obj);
-            this.loader.dismiss();
-            resolve(true);
+          // this.loader.dismiss();
+          resolve(true);
 
         }else{
           let current = response.statistics.totalPages;
@@ -147,7 +144,7 @@ export class DataServiceProvider {
         }
 
       }).fail((error)=>{
-        this.loader.dismiss();
+        // this.loader.dismiss();
         this.showAlert("Error while saving data, Check your internet connection!")
       });
 

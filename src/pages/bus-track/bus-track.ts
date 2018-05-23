@@ -8,9 +8,16 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic
 export class BusTrackPage {
 
 	map: GoogleMap;
-	x = {"lat": 25.5, "lng": 29.2};
-	y = {"lat": 27.7, "lng": 29.7};
-	z = {"lat": 30, "lng": 30};
+	p0 = {"lat": 30.044270, "lng": 31.218796};
+	p1 = {"lat": 30.046555, "lng": 31.218270};
+	p2 = {"lat": 30.047864, "lng": 31.217980};
+	p3 = {"lat": 30.048458, "lng": 31.218999};
+	p4 = {"lat": 30.048634, "lng": 31.220265};
+	p5 = {"lat": 30.048857, "lng": 31.222153};
+	p6 = {"lat": 30.048996, "lng": 31.225543};
+	p7 = {"lat": 30.049191, "lng": 31.229899};
+	p8 = {"lat": 30.049117, "lng": 31.231058};
+	p9 = {"lat": 30.048160, "lng": 31.231487};
 	date: string;
 
 	constructor() {
@@ -26,8 +33,8 @@ export class BusTrackPage {
 		// alert("loadMap")
 	    let mapOptions: GoogleMapOptions = {
 	    	camera: {
-		        target: {lat: 27.7, lng: 29.7},
-		        zoom: 6,
+		        target: {lat: 30.048996, lng: 31.225543},
+		        zoom: 15,
 		        tilt: 20
 		    }
 	    };
@@ -38,9 +45,7 @@ export class BusTrackPage {
 			// alert("map ready")
 			this.map.addPolyline({
 				points: [
-				  this.x,
-				  this.y,
-				  this.z
+				  this.p0, this.p1, this.p2, this.p3, this.p4, this.p5, this.p6, this.p7, this.p8, this.p9
 				],
 				'color' : '#AA00FF',
 				'width': 5,
@@ -51,25 +56,21 @@ export class BusTrackPage {
 
     showTodayTrack(){
     	this.map.clear().then(()=> 
-			this.ployLine(this.x, this.y, '#AA00FF')
+			this.ployLine([this.p0, this.p1, this.p2, this.p3, this.p4, this.p5, this.p6, this.p7, this.p8, this.p9], '#AA00FF')
 		);
     }
 
 	handleChangeDate(date) {
 		// console.log("showlast", date)
 		this.map.clear().then(()=> 
-			this.ployLine({"lat": 24.0283, "lng": 30.7}, {"lat": 29.01929, "lng": 30.7}, '#FF0000')
+			this.ployLine([this.p0, this.p1, this.p2, this.p3, this.p4, this.p5, this.p6, this.p7, this.p8, this.p9], '#FF0000')
 		);
-		
 	}    
 
-	ployLine(x, y, color){
+	ployLine(points, color){
 		this.map.addPolyline(
 		{
-			points: [
-			  x,
-			  y
-			],
+			points: points,
 			'color' : color,
 			'width': 5,
 			'geodesic': true

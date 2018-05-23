@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, MenuController  } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 
 import { IntroPage } from '../../intro/intro';
 import { UserHomePage } from '../home/home';
