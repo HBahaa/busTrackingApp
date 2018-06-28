@@ -69,7 +69,7 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
-    <name>MyApp</name>
+    <name>MW3 Platform</name>
     <description>Bus Tracking App</description>
     <author email="" href="" />
     <content src="index.html" />

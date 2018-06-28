@@ -51,7 +51,7 @@ export class Register1Page {
     $.ajax(settings).done((response)=>{
 
       if (response.success) {
-        this.storage.set("userData", data._value).then(()=>{
+        this.storage.set("userProfile", data._value).then(()=>{
           this.navCtrl.setRoot(MapPage);
         })
       }

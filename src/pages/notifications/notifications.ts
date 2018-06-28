@@ -4,6 +4,9 @@ import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
 import { NotificationPage } from '../notification/notification';
+import { ChildGradesPage } from '../child-grades/child-grades';
+import { BusTrackPage } from '../bus-track/bus-track';
+import { MessagesPage } from '../messages/messages';
 
 
 @Component({
@@ -65,4 +68,17 @@ export class NotificationsPage {
   notificationDetails(item){
     this.navCtrl.push(NotificationPage, {'param1': item, 'param2': this.lang})
   }
+
+  childScore(){
+    this.navCtrl.push(ChildGradesPage);
+  }
+
+  busTrack(){
+    this.navCtrl.push(BusTrackPage);
+  }
+
+  showMessage(){
+    this.navCtrl.push(MessagesPage);
+  }
+
 }

@@ -35,6 +35,7 @@ export class MapModalPage {
 	}
 
 	loadMap(x,y) {
+		// alert("load Mappp")
 		let mapOptions: GoogleMapOptions = {
 			camera: {
 				target: {
@@ -49,7 +50,7 @@ export class MapModalPage {
         this.map = GoogleMaps.create('map', mapOptions);
         this.map.one(GoogleMapsEvent.MAP_READY)
       	.then(() => {
-      		console.log("map ready")
+      		// alert("map ready")
 	        this.map.addMarker({
 	            title: 'Your Previous Address',
 	            icon: 'red',
@@ -62,7 +63,7 @@ export class MapModalPage {
 	    });
 
 	    this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-	    	console.log('Map is ready!');
+	    	alert('Map is ready!');
 	        this.map.addEventListener(GoogleMapsEvent.MAP_CLICK).subscribe((data)=>{
 
 	          	this.map.clear().then(()=>{
@@ -167,7 +168,7 @@ export class MapModalPage {
 	dismiss() {
 
 		this.presentLoading();
-		this.storage.get("userData").then((user)=>{
+		this.storage.get("userProfile").then((user)=>{
 			
 			this.loginProvider.Login(user.nid, user.password).then(token=>{
 				
@@ -180,7 +181,7 @@ export class MapModalPage {
 				}else{
 					user.loc = this.location;
 				}
-				this.storage.set("userData", user);
+				this.storage.set("userProfile", user);
 
 				var settings = {
 					"async": true,

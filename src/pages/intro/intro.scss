@@ -1,0 +1,54 @@
+page-intro {
+	.content {
+	    background-color: #F08080;
+
+		h3:first-child{
+			text-decoration: underline;
+			font-family: cursive;
+		}
+	    h3{
+			color:#fff;
+			font-weight: 400
+		}
+
+		.scroll-content{
+			text-align: center;
+			justify-content: center;
+			align-content: center;
+			display: flex;
+			flex-direction: column;
+			box-shadow: none;
+			background-color: rgba(0, 0, 0, 0.2);
+
+			.list{
+
+				.item{
+					background-color: rgba(255, 255, 255, 0.2);
+					margin-bottom: 3px;
+					cursor: pointer;
+
+					.item-inner{
+						border-bottom: 0px;
+
+						h2{
+							font-size: 1.7rem;
+							color: #fff;
+						}
+					}
+				}
+			}
+			.list.otherApps > .item{
+				cursor: auto;
+
+				a{
+					color: #0065af;
+				    float: right;
+				    font-size: 13px;
+				    text-decoration: underline;
+				    cursor: pointer;
+				}
+			}
+		}
+
+	}
+}

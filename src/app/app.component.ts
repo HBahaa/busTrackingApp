@@ -7,11 +7,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
 import { ChildrenPage } from '../pages/children/children';
-import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
-import { LoginPage } from '../pages/login/login';
+import { MessagesPage } from '../pages/messages/messages';
 
+import { HomePage } from '../pages/home/home';
+import { IntroPage } from '../pages/intro/intro';
 
 declare var cordova:any;
 declare var window:any;
@@ -23,8 +24,8 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
-  isLoggedIn:boolean;
+  rootPage: any = IntroPage;
+  // isLoggedIn:boolean;
   loader:any;
 
   pages: Array<{icon: string, title: string, component: any}>;
@@ -42,19 +43,19 @@ export class MyApp {
 
       this.keyboard.disableScroll(true);
 
+      // this.storage.clear();
+
       statusBar.styleDefault();
       splashScreen.hide();
-
-      // this.translateService.setDefaultLang(en);
-
-      this.presentLoading();
-      this.loadingPage();
+      this.translateService.use('en');
+      // this.presentLoading();
                 
     });
 
     this.pages = [
       { icon: 'contacts',title: 'CHILDREN_PAGE.title', component: ChildrenPage },
       { icon: 'notifications',title: 'NOTIFICATIONS_PAGE.title', component: NotificationsPage },
+      { icon: 'chatboxes',title: 'MESSAGES_PAGE.title', component: MessagesPage },
       { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage }
     ];
 
@@ -66,31 +67,18 @@ export class MyApp {
 
   userLogout(){
     this.storage.clear().then(()=>{
-      this.nav.setRoot(LoginPage);
+      this.nav.setRoot(HomePage);
     });
   }
 
-  loadingPage(){
-    this.storage.ready().then(()=>{
-
-      this.storage.get("children").then((data)=>{
-        this.loader.dismiss();
-        
-        if(data != null){
-
-          this.setLanguage()
-
-          this.rootPage = ChildrenPage;
-          // this.loader.dismiss();
-
-        }else if(data == null){
-          // this.loader.dismiss();
-          this.storage.set("language", "en");
-          this.translateService.use('en');
-          this.rootPage = HomePage;
-        }
-      })
+  switchMySensors(){
+    this.storage.get("language").then(lang=>{
+      if (lang === 'ar') {
+        this.platform.setDir('ltr', true);
+        this.platform.setDir('rtl', false);
+      }
     })
+    this.nav.setRoot(IntroPage);
   }
 
   setLanguage(){
@@ -107,12 +95,9 @@ export class MyApp {
   }
 
   presentLoading() {
-    // this.translateService.get('APP_PAGE.load').subscribe((load)=>{
       this.loader = this.loadingCtrl.create({
         content: "Authenticating..."
       });
       this.loader.present();
-    // });
-
   }
 }

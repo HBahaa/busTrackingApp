@@ -1,0 +1,34 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'BUSTRACK_PAGE.title' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+	<ion-card>
+	    <ion-card-content>
+			<ion-card-title>
+				{{ 'BUSTRACK_PAGE.subTitle' | translate }}:
+			</ion-card-title>
+
+		    <ion-item>
+				<ion-label>{{ 'BUSTRACK_PAGE.date' | translate }}</ion-label>
+				<ion-datetime displayFormat="MM/DD/YYYY" (ionChange)="handleChangeDate(date)"[(ngModel)]="date"  [cancelText] ="'BUSTRACK_PAGE.cancel' | translate" [doneText]="'BUSTRACK_PAGE.done' | translate"></ion-datetime>
+			</ion-item>
+	
+			<h2>{{ 'BUSTRACK_PAGE.or' | translate }}</h2>
+
+			<button ion-button color="mainColor" block (click)="showTodayTrack()">{{ 'BUSTRACK_PAGE.today' | translate }}</button>
+		
+	    </ion-card-content>
+
+	</ion-card>
+
+	<div id="map"></div>
+
+</ion-content>

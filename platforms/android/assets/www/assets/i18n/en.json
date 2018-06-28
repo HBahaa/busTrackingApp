@@ -39,9 +39,10 @@
 		}
 	},
 	"APP_PAGE" : {
-		"menu" 	 : "Menu",
-		"logout" : "Logout",
-		"load" 	 : "Authenticating..."
+		"menu" 	 	: "Menu",
+		"logout" 	: "Logout",
+		"switchApp" : "Switch To My Sensors",
+		"load" 	    : "Authenticating..."
 	},
 	"CHILDREN_PAGE": {
 		"title"		: "My Children",
@@ -49,10 +50,33 @@
 		"status" 	: "Status",
 		"details" 	: "Details"
 	},
+	"CHILDGRADES_PAGE": {
+		"title"			: "Child Grades",
+		"subject"  		: "Subject",
+		"childMarks" 	: "Child Marks",
+		"totalMarks" 	: "Total Marks",
+		"grade"			: "Grade"
+	},
+	"BUSTRACK_PAGE" : {
+		"title" : "Bus Track",
+		"subTitle" : "Select Date To display bus Track",
+		"date"  : "Date",
+		"today" : "Today",
+		"or"	: "OR",
+		"cancel": "Cancel",
+		"done"  : "Done"
+	},
+	"DRIVER_PAGE": {
+		"title" : "Driver Behaviour",
+		"speed"	: "Speed",
+		"stops"	: "Stops",
+		"break" : "Break"
+	},
 	"HOME_PAGE":  	 {
 		"or" 		: "OR",
 		"login" 	: "Login",
-		"register"	: "Register"
+		"register"	: "Register",
+		"back"		: "Back"
 	},
 	"LOGIN_PAGE"	: {
 		"title"				: "Login",
@@ -96,10 +120,14 @@
 		"childStatus"	: "Child Status",
 		"busNumber"		: "Bus Number",
 		"busID"			: "Bus ID",
+		"busTemp"		: "Bus Temperture",
 		"busSpeed"		: "Bus Speed",
 		"driverName"	: "Driver Name",
 		"driverPhone"	: "Driver Phone",
 		"notifications" : "NotificationS"
+	},
+	"MESSAGES_PAGE" : {
+		"title" : "Messages"
 	},
 	"NOTIFICATIONS_PAGE" : {
 		"title" : "Notifications",

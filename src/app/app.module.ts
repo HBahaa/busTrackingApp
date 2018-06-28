@@ -16,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MyApp } from './app.component';
+import { IntroPage } from '../pages/intro/intro';
 import { HomePage } from '../pages/home/home';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { NotificationPage } from '../pages/notification/notification';
@@ -27,11 +28,30 @@ import { Register1Page } from '../pages/register1/register1';
 import { Register2Page } from '../pages/register2/register2';
 import { MapPage } from '../pages/map/map';
 import { MapModalPage } from '../pages/map-modal/map-modal';
+import { MessagesPage } from '../pages/messages/messages';
+import { DriverPage } from '../pages/driver/driver';
+import { BusTrackPage } from '../pages/bus-track/bus-track';
+import { ChildGradesPage } from '../pages/child-grades/child-grades';
+import { SemestersPage } from '../pages/semesters/semesters';
 
+
+/**** cumuulocity ***/
+import { PopoverComponent } from '../components/popover/popover';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { DataServiceProvider } from '../providers/data-service/data-service';
+
+import { UserHomePage } from '../pages/cumulocity/home/home';
+import { UserLoginPage } from '../pages/cumulocity/userlogin/userlogin';
+import { DevicesPage } from '../pages/cumulocity/devices/devices';
+// import { DeviceDataPage } from '../pages/cumulocity/device-data/device-data';
+// import { ItemDataPage } from '../pages/cumulocity/item-data/item-data';
+
+/** wialon **/
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
 import { GetChildrenProvider } from '../providers/get-children/get-children';
 import { LoginProvider } from '../providers/login/login';
 import { RegisterProvider } from '../providers/register/register';
+
 
 import { DatePipe } from '../pipes/date/date'
 import { ResetPasswordProvider } from '../providers/reset-password/reset-password';
@@ -44,7 +64,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     MyApp,
+    IntroPage,
     HomePage,
+    MessagesPage,
     NotificationsPage,
     NotificationPage,
     Register1Page,
@@ -55,7 +77,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChildrenPage,
     MapPage,
     MapModalPage,
-    DatePipe
+    DriverPage,
+    ChildGradesPage,
+    BusTrackPage,
+    SemestersPage,
+    DatePipe,
+    UserLoginPage,
+    UserHomePage,
+    DevicesPage,
+    // DeviceDataPage,
+    // ItemDataPage,
+    PopoverComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +106,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    IntroPage,
     HomePage,
+    MessagesPage,
     NotificationsPage,
     NotificationPage,
     Register1Page,
@@ -84,7 +118,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfilePage,
     ChildrenPage,
     MapPage,
-    MapModalPage
+    MapModalPage,
+    DriverPage,
+    ChildGradesPage,
+    BusTrackPage,
+    SemestersPage,
+    UserLoginPage,
+    UserHomePage,
+    DevicesPage,
+    // DeviceDataPage,
+    // ItemDataPage
   ],
   providers: [
     StatusBar,
@@ -100,7 +143,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginProvider,
     RegisterProvider,
     ResetPasswordProvider,
-    EditProfileProvider
+    EditProfileProvider,
+    AuthServiceProvider,
+    DataServiceProvider
   ]
 })
 export class AppModule {}
