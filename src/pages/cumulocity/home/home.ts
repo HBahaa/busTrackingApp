@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, ViewController, MenuController} from 'ionic-angular';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
 import * as $ from 'jquery';
 
@@ -14,6 +15,8 @@ import { DataServiceProvider } from '../../../providers/data-service/data-servic
 })
 
 export class UserHomePage {
+  map: GoogleMap;
+
   items = [];
   item:any;
   ids:any = [];
@@ -35,6 +38,7 @@ export class UserHomePage {
       this.viewCtrl.showBackButton(false);
       this.storage.get("devices").then(devices=>{
         this.devices = devices;
+        console.log("dev", devices);
         this.diplayItems();
       });
       setTimeout(()=>{
@@ -72,10 +76,18 @@ export class UserHomePage {
 
   diplayItems(){
     this.storage.get('devicesMeasurements').then((data)=>{
+      console.log("devices", data)
       if(data != null){
         $.each(data, (i, resp)=>{
+          console.log("resp", resp)
           this.ids.push(i);
           this.items.push(resp);
+          // for(let i of resp){
+          //   if (i["type"].indexOf("Position") > 0) {
+          //     console.log("position", i)
+          //     this.loadMap();
+          //   }
+          }
           for(let dev of this.devices){
             if (dev["id"] == i) {
               this.names[i] =dev["name"];
@@ -85,6 +97,7 @@ export class UserHomePage {
       }
     })
   }
+
 
   removeItem(index){
     
@@ -135,5 +148,37 @@ export class UserHomePage {
       this.navCtrl.setRoot(UserLoginPage);
     });
   }
+
+  // loadMap() {
+
+  //   let mapOptions: GoogleMapOptions = {
+  //     camera: {
+  //       target: {
+  //         lat: 43.0741904,
+  //         lng: -89.3809802
+  //       },
+  //       zoom: 18,
+  //       tilt: 30
+  //     }
+  //   };
+
+  //  this.map = GoogleMaps.create('map', mapOptions);
+
+  //  // Wait the MAP_READY before using any methods.
+  //   this.map.one(GoogleMapsEvent.MAP_READY)
+  //     .then(() => {
+  //       console.log('Map is ready!');
+  //       // Now you can use all methods safely.
+  //       this.map.addMarker({
+  //         title: 'Ionic',
+  //         icon: 'blue',
+  //         animation: 'DROP',
+  //         position: {
+  //           lat: 43.0741904,
+  //           lng: -89.3809802
+  //         }
+  //       })
+  //     });
+  // }
 
 }
