@@ -44,22 +44,58 @@ export class UserHomePage {
           if(this.items.length > 0){
             for(let item of this.items){
               for (let sensor of item ) {
-                this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
+                // this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
+                //   if (sensor.type.indexOf("Position") >= 0) {
+                //     if (sensor["lat"] != resp["lat"]) {
+                //       sensor["lat"] = resp["lat"]
+                //     }else if (sensor["lng"] != resp["lng"]){
+                //       sensor["lng"] = resp["lng"]
+                //     }
+                //   }
+                //   else{
+                //     if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
+                //       sensor.value = resp[Object.keys(resp)[0]]["value"];
+                //     }
+                //   }
+                // }).catch(error=>{
+                //   console.log("dataservice error", error)
+                // })
+
+
+                
                   if (sensor.type.indexOf("Position") >= 0) {
-                    if (sensor["lat"] != resp["lat"]) {
-                      sensor["lat"] = resp["lat"]
-                    }else if (sensor["lng"] != resp["lng"]){
-                      sensor["lng"] = resp["lng"]
-                    }
+                    this.dataService.updatePostionData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name).then(resp=>{
+                      resp = resp[sensor.type];
+                      if (sensor["lat"] != resp["lat"]) {
+                        sensor["lat"] = resp["lat"]
+                      }
+                      if (sensor["lng"] != resp["lng"]){
+                        sensor["lng"] = resp["lng"]
+                      }
+                    })
+                    
+                  }else if (sensor.type.indexOf("custom") >= 0) {
+                    console.log("custom")
+                    this.dataService.updatePostionData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name).then(resp=>{
+                      console.log("custom", resp);
+                      sensor["AbsolutePressure"] = resp["AbsolutePressure"].value;
+                      sensor["CO2"] = resp["CO2"].value;
+                      sensor["Noise"] = resp["Noise"].value;
+                      sensor["Humidity"] = resp["Humidity"].value;
+                    })
+                    
                   }
                   else{
-                    if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
-                      sensor.value = resp[Object.keys(resp)[0]]["value"];
-                    }
+                    this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
+                      if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
+                        sensor.value = resp[Object.keys(resp)[0]]["value"];
+                      }
+                    }).catch(error=>{
+                      console.log("dataservice error", error)
+                    })
                   }
-                }).catch(error=>{
-                  console.log("dataservice error", error)
-                })
+                
+
               }
             }
           }
@@ -67,6 +103,11 @@ export class UserHomePage {
       }, 3000);
 
     }
+
+  ionViewWillEnter() {
+
+   
+  }
 
   ionViewDidEnter() {}
 

@@ -18,10 +18,11 @@
       <ion-row>
         <ion-col col-5><span>{{ 'CHILDREN_PAGE.name' | translate }}:</span></ion-col>
         <ion-col col-7><span class="chData">{{child.name}}</span></ion-col>
-        <ion-col col-5><span>{{ 'CHILDREN_PAGE.status' | translate }}:</span></ion-col>
+        <ion-col col-5><span>{{ 'CHILDREN_PAGE.status' | translate }}: </span></ion-col>
         <ion-col col-7>
-          <span class="chData" *ngIf="child.childLastMsg != undefined">{{child.childLastMsg?.status}}</span>
-          <span class="chData" *ngIf="child.childLastMsg == undefined">No Status</span>
+          <span class="chData"> {{ child.childLastMsg?.length > 0 ? child.childLastMsg.status : 'No Status'}}</span>
+          <!-- <span class="chData" *ngIf="child.childLastMsg?.length > 0">{{child.childLastMsg?.status}}</span>
+          <span class="chData" *ngIf="child.childLastMsg?.length == 0">No Status</span> -->
         </ion-col>
       </ion-row>
       <button ion-button color="mainColor" (click)="childDetails(child.tag, child)" >{{ 'CHILDREN_PAGE.details' | translate }}</button>

@@ -33,6 +33,8 @@ import { DriverPage } from '../pages/driver/driver';
 import { BusTrackPage } from '../pages/bus-track/bus-track';
 import { ChildGradesPage } from '../pages/child-grades/child-grades';
 import { SemestersPage } from '../pages/semesters/semesters';
+import { MyDevicesPage } from '../pages/my-devices/my-devices';
+import { DeviceTrackPage } from './../pages/device-track/device-track';
 
 
 /**** cumuulocity ***/
@@ -51,7 +53,6 @@ import { GetNotificationProvider } from '../providers/get-notification/get-notif
 import { GetChildrenProvider } from '../providers/get-children/get-children';
 import { LoginProvider } from '../providers/login/login';
 import { RegisterProvider } from '../providers/register/register';
-
 
 import { DatePipe } from '../pipes/date/date'
 import { ResetPasswordProvider } from '../providers/reset-password/reset-password';
@@ -87,7 +88,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     DevicesPage,
     // DeviceDataPage,
     // ItemDataPage,
-    PopoverComponent
+    PopoverComponent,
+    MyDevicesPage,
+    DeviceTrackPage
   ],
   imports: [
     BrowserModule,
@@ -126,6 +129,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserLoginPage,
     UserHomePage,
     DevicesPage,
+    MyDevicesPage,
+    DeviceTrackPage
     // DeviceDataPage,
     // ItemDataPage
   ],

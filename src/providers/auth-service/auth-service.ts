@@ -30,6 +30,7 @@ export class AuthServiceProvider {
 
 
   Login(tenant, username, password, currentPage=1){
+    console.log("login", tenant, username, password)
     return new Promise((resolve)=>{
 
       var token = "Basic " + window.btoa(username+':'+password);
@@ -38,6 +39,7 @@ export class AuthServiceProvider {
         "async": true,
         "crossDomain": true,
         "url": `https://${tenant}.cumulocity.com/inventory/managedObjects?owner=${username}&pageSize=10&currentPage=${currentPage}`,
+        
         "method": "GET",
         "headers": {
           "authorization": `${token}`,
@@ -50,10 +52,9 @@ export class AuthServiceProvider {
 
 
       $.ajax(settings).done(response=> {
-
         if(response.managedObjects.length > 0)
         {
-
+          
           this.managedDevices = this.managedDevices.concat(response.managedObjects);
 
           let page = response.statistics.currentPage + 1;

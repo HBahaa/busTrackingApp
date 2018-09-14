@@ -33,7 +33,6 @@ export class DataServiceProvider {
           var resp = response.measurements[l-1];
 
           resolve(resp[type]);
-
         }
 
       }).fail(error=>{
@@ -42,6 +41,31 @@ export class DataServiceProvider {
 
     })
   }
+
+
+  updatePostionData(tenant,id, type, token, userMeasurementName, deviceName){
+    return new Promise((resolve, reject)=>{
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://"+tenant+".cumulocity.com/inventory/managedObjects/"+id,
+        "method": "GET",
+        "headers": {
+          "authorization": token,
+          "cache-control": "no-cache",
+        }
+      }
+
+      $.ajax(settings).done(response => {
+        console.log("resp", response)
+        resolve(response);
+      }).fail(error=>{
+        reject()
+      })
+
+    })
+  }
+
 
   getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=1){
 

@@ -17,7 +17,7 @@
       <i class="material-icons">help_outline</i></a>
     </li>
     <li><a class="btn-floating green" (click)="switchTrackingApp()"><i class="material-icons">swap_horiz</i></a></li>
-    <li><a class="btn-floating blue" (click)="logout()"><i class="material-icons">exit_to_app</i></a></li>
+    <!-- <li><a class="btn-floating blue" (click)="logout()"><i class="material-icons">exit_to_app</i></a></li> -->
   </ul>
 </div>
   <ion-list no-lines>
@@ -33,24 +33,50 @@
               <hr>
             </div>
             <div class="measures" *ngFor="let sensor of item;let j=index">
-              <h3 ion-text>{{sensor.name}}</h3>
-              <p *ngIf="sensor.type != 'c8y_Position'">
-                <span *ngIf="!sensor.value">
-                  <span class="lat">No Reading</span>
+              <span  *ngIf="sensor.type == 'c8y_Position'; else anotherData">
+                <h3 ion-text>{{sensor.name}}</h3>
+                
+                <p>
+                  <span *ngIf="!sensor.lat">
+                    <span class="lat">No Reading</span>
+                  </span>
+                  <span *ngIf="sensor.lat">
+                    <span class="lat">lat: {{sensor.lat}}</span>
+                    <span class="lat">lng: {{sensor.lng}}</span>
+                  </span>
+                </p>
+              </span>
+              <ng-template #anotherData>
+                <p *ngIf="sensor.type == 'custom'">
+                  <span>
+                      <h3 ion-text>CO2:</h3>
+                      <span class="val">{{sensor.CO2}}</span>
+                  </span>
+                  <span>
+                      <h3 ion-text>Noise:</h3>
+                      <span class="val"> {{sensor.Noise}}</span>
+                  </span>
+                  <span>
+                      <h3 ion-text>Humidity:</h3>
+                      <span class="val"> {{sensor.Humidity}}</span>
+                  </span>
+                  <span>
+                      <h3 ion-text>AbsolutePressure:</h3>
+                      <span class="val"> {{sensor.AbsolutePressure}}</span>
+                  </span>
+                </p>
+                <span *ngIf="sensor.type != 'c8y_Position' && sensor.type != 'custom'">
+                  <h3 ion-text>{{sensor.name}}</h3>
+                  <p>
+                    <span *ngIf="!sensor.value">
+                      <span class="lat">No Reading</span>
+                    </span>
+                    <span *ngIf="sensor.value">
+                      <span class="val">{{sensor.value}}</span><span class="unit"> {{sensor.unit}}</span>
+                    </span>
+                  </p>
                 </span>
-                <span *ngIf="sensor.value">
-                  <span class="val">{{sensor.value}}</span><span class="unit"> {{sensor.unit}}</span>
-                </span>
-              </p>
-              <p *ngIf="sensor.type == 'c8y_Position'">
-                <span *ngIf="!sensor.lat">
-                  <span class="lat">No Reading</span>
-                </span>
-                <span *ngIf="sensor.lat">
-                  <span class="lat">lat: {{sensor.lat}}</span>
-                  <span class="lat">lng: {{sensor.lng}}</span>
-                </span>
-              </p>
+              </ng-template>
               <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon>
               <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon>
               <!-- <hr style="margin-top: 20px; background-color: #aaa" /> -->

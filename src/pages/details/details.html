@@ -36,11 +36,12 @@
 	        	
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.busSpeed' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
-	        		<h2 *ngIf="childData['childLastMsg']['speed'] != undefined; else lastMsgSpeed ">
+	        		<h2 *ngIf="childData.childLastMsg?.speed != undefined; else lastMsgSpeed ">
 	        			{{childData["childLastMsg"]["speed"]}}
 	        		</h2>
 	        		<ng-template #lastMsgSpeed>
-	        			<h2>{{childData["lastMsg"]["speed"]}}</h2>
+	        			<h2 *ngIf="childData.lastMsg?.speed != undefined">{{childData["lastMsg"]["speed"]}}</h2>
+	        			<h2 *ngIf="childData.lastMsg?.speed == undefined">No Reading</h2>
 	        		</ng-template>
 	        	</ion-col>
 	        	<ion-col> <button ion-button clear color="primary" (click)="tripTrack()">Bus Trip Track</button> </ion-col>
@@ -48,14 +49,14 @@
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverName' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
-	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverName"]}}</h2>
-	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverName"]}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]?.driverName}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]?.driverName}}</h2>
 	        	</ion-col>
 
 	        	<ion-col col-5><h2>{{ 'DETAILS_PAGE.driverPhone' | translate }}:</h2></ion-col>
 	        	<ion-col col-7>
-	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]["driverPhone"]}}</h2>
-	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]["driverPhone"]}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] != undefined'>{{childData["childLastMsg"]?.driverPhone}}</h2>
+	        		<h2 *ngIf='childData["ChildLastMsg"] == undefined'>{{childData["lastMsg"]?.driverPhone}}</h2>
 	        	</ion-col>
 	        	<ion-col> <button ion-button clear color="primary" (click)="driverBehaviour()">Driver Behaviour</button> </ion-col>
 	        </ion-row>
