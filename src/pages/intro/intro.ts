@@ -10,6 +10,7 @@ import { UserHomePage } from '../cumulocity/home/home';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginProvider } from '../../providers/login/login';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
+import { MyDevicesPage } from '../trackingApp/my-devices/my-devices';
 
 @Component({
   selector: 'page-intro',
@@ -42,6 +43,10 @@ export class IntroPage {
 		// });
 	}
 
+	trackingApp(){
+		this.navCtrl.setRoot(MyDevicesPage);
+	}
+
 	busTrackingApp(){
 		this.loginProvider.Login("12345", "Mh12345").then((token)=>{
       this.getChildrenProvider.getAllChildren(token).then((flag)=>{
@@ -56,6 +61,8 @@ export class IntroPage {
     }).catch((error2)=>{
       alert(error2)
 		});
+
+	
 		
 		//****************//
     // this.storage.ready().then(()=>{

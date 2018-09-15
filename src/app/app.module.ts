@@ -33,8 +33,8 @@ import { DriverPage } from '../pages/driver/driver';
 import { BusTrackPage } from '../pages/bus-track/bus-track';
 import { ChildGradesPage } from '../pages/child-grades/child-grades';
 import { SemestersPage } from '../pages/semesters/semesters';
-import { MyDevicesPage } from '../pages/my-devices/my-devices';
-import { DeviceTrackPage } from './../pages/device-track/device-track';
+import { MyDevicesPage } from '../pages/trackingApp/my-devices/my-devices';
+import { DeviceTrackPage } from './../pages/trackingApp/device-track/device-track';
 
 
 /**** cumuulocity ***/

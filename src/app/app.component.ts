@@ -10,7 +10,6 @@ import { ChildrenPage } from '../pages/children/children';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
 import { MessagesPage } from '../pages/messages/messages';
-import { MyDevicesPage } from '../pages/my-devices/my-devices';
 
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
@@ -57,8 +56,7 @@ export class MyApp {
       { icon: 'contacts',title: 'CHILDREN_PAGE.title', component: ChildrenPage },
       { icon: 'notifications',title: 'NOTIFICATIONS_PAGE.title', component: NotificationsPage },
       { icon: 'chatboxes',title: 'MESSAGES_PAGE.title', component: MessagesPage },
-      { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage },
-      { icon: 'build',title: 'My Devices', component: MyDevicesPage }
+      { icon: 'person',title: 'PROFILE_PAGE.title', component: ProfilePage }
     ];
 
   }

@@ -1,0 +1,59 @@
+<ion-header >
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Devices</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating medium red">
+      <i class="medium material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating green" (click)="switchTrackingApp()"><i class="material-icons">swap_horiz</i></a></li>
+    </ul>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <ion-icon ios="ios-car" md="md-car"></ion-icon>
+      </ion-thumbnail>
+      <h3><ion-row><ion-col col-5>9am</ion-col><ion-col col-7> Maadi</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>10am</ion-col><ion-col col-7> Nasr City</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>7pm</ion-col><ion-col col-7> Maadi</ion-col></ion-row></h3>
+      <button ion-button clear item-end (click)="deviceDetails()">View</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <ion-icon name="woman"></ion-icon>
+      </ion-thumbnail>
+      <h3><ion-row><ion-col col-5>1pm</ion-col><ion-col col-7> Giza</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>1:30pm</ion-col><ion-col col-7> Dokki</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>2pm</ion-col><ion-col col-7> Mohandseen</ion-col></ion-row></h3>
+      <button ion-button clear item-end (click)="deviceDetails()">View</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <ion-icon name="man"></ion-icon>
+      </ion-thumbnail>
+      <h3><ion-row><ion-col col-5>9am</ion-col><ion-col col-7> Maadi</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>10am</ion-col><ion-col col-7> Nasr City</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>7pm</ion-col><ion-col col-7> Maadi</ion-col></ion-row></h3>
+      <button ion-button clear item-end (click)="deviceDetails()">View</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <ion-icon name="list"></ion-icon>
+      </ion-thumbnail>
+      <h3><ion-row><ion-col col-5>1pm</ion-col><ion-col col-7> Giza</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>1:30pm</ion-col><ion-col col-7> Dokki</ion-col></ion-row></h3>
+      <h3><ion-row><ion-col col-5>2pm</ion-col><ion-col col-7> Mohandseen</ion-col></ion-row></h3>
+      <button ion-button clear item-end (click)="deviceDetails()">View</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

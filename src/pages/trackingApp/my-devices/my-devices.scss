@@ -1,0 +1,29 @@
+page-my-devices {
+    .list > .item-block{
+        border-bottom: 0.55px solid #c8c7cc !important;
+    }
+    .list .item-block .item-inner{
+        border: 0
+    }
+    .item{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .item ion-avatar[item-left], .item ion-thumbnail[item-left], .item ion-avatar[item-start], .item ion-thumbnail[item-start]{
+        margin: 8px 0px;
+    }
+    ion-icon{
+        font-size: 2.7em;
+    }
+    .item ion-thumbnail {
+        min-width: 45px;
+        min-height: 45px;
+    }
+
+    .fixed-action-btn ul{
+        bottom: 45px;
+    }
+    .fixed-action-btn ul li{
+        margin-bottom: 8px;
+    }
+}
