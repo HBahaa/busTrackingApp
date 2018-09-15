@@ -18,7 +18,7 @@
         <ion-icon ios="ios-bus" md="md-bus"></ion-icon>
       </ion-thumbnail>
       <h2>My Bus</h2>
-      <ion-fab right>
+      <!-- <ion-fab right>
         <button class="action" ion-fab item-end>Actions</button>
         <ion-fab-list side="left">
           <button ion-fab><ion-icon name="pause"></ion-icon></button>
@@ -26,7 +26,8 @@
           <button ion-fab><ion-icon name="information"></ion-icon></button>
           <button ion-fab><ion-icon name="play"></ion-icon></button>
         </ion-fab-list>
-      </ion-fab>
+      </ion-fab> -->
+      <button ion-button clear item-end (click)="openMenu()">Actions</button>
     </ion-item>
 
     <ion-item>
@@ -34,15 +35,7 @@
         <ion-icon ios="ios-car" md="md-car"></ion-icon>
       </ion-thumbnail>
       <h2>Car</h2>
-      <ion-fab right>
-        <button class="action" ion-fab item-end>Actions</button>
-        <ion-fab-list side="left">
-          <button ion-fab><ion-icon name="pause"></ion-icon></button>
-          <button ion-fab><ion-icon name="help"></ion-icon></button>
-          <button ion-fab><ion-icon name="information"></ion-icon></button>
-          <button ion-fab><ion-icon name="play"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab>
+      <button ion-button clear item-end (click)="openMenu()">Actions</button>
     </ion-item>
   </ion-list>
 </ion-content>
