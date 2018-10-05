@@ -29129,6 +29129,12 @@ page-device-track .action, page-device-track .action.activated {
   height: 50px;
 }
 
+page-device-track #pet {
+  width: 30px;
+  height: 30px;
+  margin-top: 8px;
+}
+
 page-my-devices .list > .item-block {
   border-bottom: 0.55px solid #c8c7cc !important;
 }
