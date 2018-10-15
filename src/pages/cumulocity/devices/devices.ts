@@ -43,15 +43,27 @@ export class DevicesPage {
 
       let len = device["c8y_SupportedMeasurements"].length;
       for (let i=0; i<len; i++) {
-        this.dataService.getDataService(this.tenant, device["id"], device["c8y_SupportedMeasurements"][i], this.token, device["c8y_SupportedMeasurements"][i], device["name"])
-        .then((flag)=>{
-          if (i == len-1) {
+        if (device["c8y_SupportedMeasurements"][i].startsWith("c8y")) {
+          this.dataService.getDataService(this.tenant, device["id"], device["c8y_SupportedMeasurements"][i], this.token, device["c8y_SupportedMeasurements"][i], device["name"])
+          .then((flag)=>{
+            if (i == len-1) {
+              this.dataService.loader.dismiss();
+              this.navCtrl.push(UserHomePage)
+            }
+          }).catch(error=>{
             this.dataService.loader.dismiss();
-            this.navCtrl.push(UserHomePage)
-          }
-        }).catch(error=>{
-          this.dataService.loader.dismiss();
-        });
+            
+          });
+        }else{
+          this.dataService.service(this.tenant, device["id"], device["c8y_SupportedMeasurements"][i], this.token, device["c8y_SupportedMeasurements"][i], device["name"]).then(data=>{
+            if (i == len-1) {
+              this.dataService.loader.dismiss();
+              this.navCtrl.push(UserHomePage)
+            }
+          }).catch(error=>{
+            this.dataService.loader.dismiss();
+          })
+        }
       }
 
     })

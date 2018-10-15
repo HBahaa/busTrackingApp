@@ -51,8 +51,7 @@ export class DataServiceProvider {
         "url": "https://"+tenant+".cumulocity.com/inventory/managedObjects/"+id,
         "method": "GET",
         "headers": {
-          "authorization": token,
-          "cache-control": "no-cache",
+          "authorization": token
         }
       }
 
@@ -86,8 +85,7 @@ export class DataServiceProvider {
         "url": "https://"+tenant+".cumulocity.com/measurement/measurements?source="+id+"&type="+type+"&currentPage="+currentPage,
         "method": "GET",
         "headers": {
-          "authorization": token,
-          "cache-control": "no-cache",
+          "authorization": token
         }
       }
 
@@ -108,7 +106,6 @@ export class DataServiceProvider {
 
             let l = response.measurements.length;
             var resp = response.measurements[l-1];
-
             // if (type == "c8y_Position") 
             if (type.indexOf("c8y_Position") >= 0){
               lat = resp[type]["lat"];
@@ -169,6 +166,69 @@ export class DataServiceProvider {
           this.getDataService(tenant,id, type, token, userMeasurementName, currentPage=current)
           // this.getDataService(tenant,id, type, token, userMeasurementName, deviceName, currentPage=current)
         }
+
+      }).fail((error)=>{
+        this.loader.dismiss();
+        this.showAlert("Error while saving data, Check your internet connection!")
+      });
+
+    })
+
+  }
+
+  service(tenant,id, type, token, userMeasurementName, deviceName, currentPage=1){
+
+    return new Promise((resolve)=>{
+      let value;
+      let unit;
+      let lat;
+      let lng;
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://"+tenant+".cumulocity.com/inventory/managedObjects/"+id,
+        "method": "GET",
+        "headers": {
+          "authorization": token
+        }
+      }
+
+      $.ajax(settings).done((response) => {
+        console.log("response  ====", userMeasurementName, response)
+
+          var obj = {};
+          var newItem;
+            if (type.indexOf("Position") >= 0){
+              lat = response[type]["lat"];
+              lng = response[type]["lng"];
+            }else{
+              console.log("response[type]", response[type])
+              value = response[type]["value"];
+              unit = response[type]["unit"];
+            }
+            if (type.indexOf("Position") >= 0){
+              newItem = {
+                "deviceID":id,
+                "name":userMeasurementName,
+                "type":type,
+                "lat":lat,
+                "lng":lng
+              }
+            }else{
+              newItem = {
+                "deviceID":id,
+                "name":userMeasurementName,
+                "type":type,
+                "value":value,
+                "unit":unit
+              }
+            }
+            obj = newItem;
+
+          this.deviceMeasurements(id, obj);
+            this.loader.dismiss();
+            resolve(true);
 
       }).fail((error)=>{
         this.loader.dismiss();

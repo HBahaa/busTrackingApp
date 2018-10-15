@@ -35,7 +35,6 @@
             <div class="measures" *ngFor="let sensor of item;let j=index">
               <span  *ngIf="sensor.type == 'c8y_Position'; else anotherData">
                 <h3 ion-text>{{sensor.name}}</h3>
-                
                 <p>
                   <span *ngIf="!sensor.lat">
                     <span class="lat">No Reading</span>
@@ -47,6 +46,7 @@
                 </p>
               </span>
               <ng-template #anotherData>
+                  
                 <p *ngIf="sensor.type == 'custom'">
                   <span>
                       <h3 ion-text>CO2:</h3>
@@ -67,6 +67,7 @@
                 </p>
                 <span *ngIf="sensor.type != 'c8y_Position' && sensor.type != 'custom'">
                   <h3 ion-text>{{sensor.name}}</h3>
+                  
                   <p>
                     <span *ngIf="!sensor.value">
                       <span class="lat">No Reading</span>
@@ -77,9 +78,9 @@
                   </p>
                 </span>
               </ng-template>
-              <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon>
-              <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon>
-              <!-- <hr style="margin-top: 20px; background-color: #aaa" /> -->
+              <!-- <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon> -->
+              <!-- <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon> -->
+              <span *ngIf="measures.indexOf((sensor.name).toLowerCase()) > -1"> <img [ngClass]="(sensor.name).toLowerCase() == 'co2' ? 'pImg': ''" src="assets/imgs/cumulocity/{{(sensor.name).toLowerCase()}}.png" [alt]="sensor.name" ></span>
             </div>
           </div>
 

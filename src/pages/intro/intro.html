@@ -1,28 +1,53 @@
 <ion-content class="content" padding>
-	<h3>MW3 PLATFORM</h3>
-	<h3>My Apps</h3>
-	<ion-list>
-		<ion-item (click)="mySensors()">
+	<h3>MW3 PLATFORM {{showMyAppList}}</h3>
+	<!-- <div *ngIf="showMyAppList"> -->
+		<h3 [hidden]="!showMyAppList">My Apps</h3>
+		<ion-list>
+			<ion-item [hidden]="!showMySensorApp">
+				<ion-avatar item-start (click)="mySensors()">
+					<img src="assets/imgs/home.jpeg">
+				</ion-avatar>
+				<h2>My Home</h2>
+				<a class="download" (click)="unsubscribeService('showMySensorApp')">Unsubscribe</a>
+			</ion-item>
+			<ion-item [hidden]="!showMyBusApp">
+				<ion-avatar item-start (click)="busTrackingApp()">
+					<img src="assets/imgs/icon.png">
+				</ion-avatar>
+				<h2>My School Bus</h2>
+				<a class="download" (click)="unsubscribeService('showMyBusApp')">Unsubscribe</a>
+			</ion-item>
+			<ion-item [hidden]="!showMyTrackingApp">
+				<ion-avatar item-start (click)="trackingApp()">
+					<img src="assets/imgs/freeTracking.jpeg">
+				</ion-avatar>
+				<h2>Tracking</h2>
+				<a class="download" (click)="unsubscribeService('showMyTrackingApp')">Unsubscribe</a>
+			</ion-item>
+		</ion-list>
+	<!-- </div> -->
+	<h3>Other Apps</h3>
+	<ion-list class="otherApps">
+		<ion-item [hidden]="showMySensorApp" (click)="serviceLicense('showMySensorApp')">
 			<ion-avatar item-start>
-			  <img src="assets/imgs/home.jpeg">
+				<img src="assets/imgs/home.jpeg">
 			</ion-avatar>
 			<h2>My Home</h2>
 		</ion-item>
-		<ion-item (click)="busTrackingApp()">
+		<ion-item [hidden]="showMyBusApp" (click)="serviceLicense('showMyBusApp')">
 			<ion-avatar item-start>
-			  <img src="assets/imgs/icon.png">
+				<img src="assets/imgs/icon.png">
 			</ion-avatar>
 			<h2>My School Bus</h2>
 		</ion-item>
-		<ion-item (click)="trackingApp()">
+		<ion-item [hidden]="showMyTrackingApp" (click)="serviceLicense('showMyTrackingApp')">
 			<ion-avatar item-start>
-			  <img src="assets/imgs/freeTracking.jpeg">
+				<img src="assets/imgs/freeTracking.jpeg">
 			</ion-avatar>
 			<h2>Tracking</h2>
 		</ion-item>
-	</ion-list>
-	<h3>Other Apps</h3>
-	<ion-list class="otherApps">
+
+		<!-- other apps -->
 		<ion-item>
 			<ion-avatar item-start>
 			  <img src="assets/imgs/home.png">
@@ -30,13 +55,6 @@
 			<h2>Home Safe</h2>
 			<a class="download">Download</a>
 		</ion-item>
-		<!-- <ion-item>
-			<ion-avatar item-start>
-			  <img src="assets/imgs/freeTracking.jpeg">
-			</ion-avatar>
-			<h2>Free Tracking</h2>
-			<a class="download">Download</a>
-		</ion-item> -->
 		<ion-item>
 			<ion-avatar item-start>
 			  <img src="assets/imgs/logistics.png">

@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, Platform } from 'ionic-angular';
+import { NavController, MenuController, Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { TranslateService } from '@ngx-translate/core';
-
-// import { HomePage } from '../home/home';
 import { ChildrenPage } from '../children/children';
-// import { UserLoginPage } from '../cumulocity/userlogin/userlogin';
 import { UserHomePage } from '../cumulocity/home/home';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginProvider } from '../../providers/login/login';
@@ -18,16 +14,118 @@ import { MyDevicesPage } from '../trackingApp/my-devices/my-devices';
 })
 export class IntroPage {
 
+	showMyApplist = false;
+	showMySensorApp = false;
+	showMyBusApp = false;
+	showMyTrackingApp = false;
+
 	constructor(public navCtrl: NavController, private menuCtrl: MenuController, private storage: Storage,
-		private translateService: TranslateService, private platform: Platform, private authService: AuthServiceProvider,
-		private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider) {
+		private platform: Platform, private authService: AuthServiceProvider,
+		private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider,
+    public alertCtrl: AlertController)
+  {
+    this.storage.get("myApps").then(data=>{
+      console.log("data", data)
+      if(data != null){
+        this.showMyApplist= data.showMyApplist ? data.showMyApplist : false
+        this.showMyTrackingApp= data.showMyTrackingApp ? data.showMyTrackingApp : false
+        this.showMyBusApp= data.showMyBusApp ? data.showMyBusApp : false
+        this.showMySensorApp = data.showMySensorApp ? data.showMySensorApp : false
+      }else{
+        let myApps = {
+          showMyApplist : false,
+          showMyTrackingApp : false,
+          showMyBusApp : false,
+          showMySensorApp : false
+        }
+        this.storage.set("myApps", myApps)
+      }
+    }).catch(error=>{
+      console.log("error")
+    })
 	}
 	ionViewDidEnter() {
 		this.menuCtrl.enable(false);
-	}
+  }
+  
+  unsubscribeService(name){
+    const confirm = this.alertCtrl.create({
+      message: 'Are you sure to unsubscribe this sevice',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            //console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.showMyApplist = true;
+            this.storage.get("myApps").then(data=>{
+              if (data) {
+                data['showMyApplist'] = false;
+                if (name == 'showMyTrackingApp') {
+                  this.showMyTrackingApp = false
+                  data['showMyTrackingApp'] = false
+                }else if (name == 'showMyBusApp') {
+                  this.showMyBusApp = false
+                  data['showMyBusApp'] = false
+                }else if (name == 'showMySensorApp') {
+                  this.showMySensorApp = false
+                  data['showMySensorApp'] = false
+                }
+                this.storage.set('myApps', data)
+              }
+            })
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+	serviceLicense(name){
+    const confirm = this.alertCtrl.create({
+      message: 'You have successfully subscribed to this service',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            //console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            console.log('Agree clicked');
+            this.showMyApplist = true;
+            this.storage.get("myApps").then(data=>{
+              if (data) {
+                data['showMyApplist'] = true;
+                if (name == 'showMyTrackingApp') {
+                  this.showMyTrackingApp = true
+                  data['showMyTrackingApp'] = true
+                }else if (name == 'showMyBusApp') {
+                  this.showMyBusApp = true
+                  data['showMyBusApp'] = true
+                }else if (name == 'showMySensorApp') {
+                  this.showMySensorApp = true
+                  data['showMySensorApp'] = true
+                }
+                this.storage.set('myApps', data)
+              }
+            })
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
 	
 	mySensors(){
-		this.authService.Login('sam', 'leesmasmalee@gmail.com', 'myhome123', 1).then(resp=>{
+		this.authService.Login('samosamlee', 'samosamlee@gmail.com', 'samosamlee123!@#', 1).then(resp=>{
 			// console.log("resp", resp)
       this.navCtrl.setRoot(UserHomePage);
     })

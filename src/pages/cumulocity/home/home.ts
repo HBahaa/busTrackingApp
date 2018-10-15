@@ -27,6 +27,9 @@ export class UserHomePage {
                "c8y_DistanceMeasurement": "walk",
                "c8y_Mobile": "phone-portrait"
               };
+  
+  measures = ["co2", "pressure", "temperature", "humidity", "bus", "temperaturesensor", "thermostat", "oiltemperature"]
+  
 
   constructor(public navCtrl: NavController, private alertCtrl:AlertController, private viewCtrl: ViewController,
             public storage: Storage, private menuCtrl: MenuController, public dataService : DataServiceProvider) 
@@ -94,8 +97,6 @@ export class UserHomePage {
                       console.log("dataservice error", error)
                     })
                   }
-                
-
               }
             }
           }

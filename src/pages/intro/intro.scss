@@ -1,14 +1,20 @@
+@font-face {
+    font-family: Calibri-bold;
+    src: url(../../assets/custom/fonts/Calibri-Bold.TTF);
+}
+
 page-intro {
 	.content {
-	    background-color: #F08080;
+	    background-color:color($colors, mw3-red);
 
 		h3:first-child{
 			text-decoration: underline;
-			font-family: cursive;
+			font-family: Calibri-bold;
 		}
 	    h3{
 			color:#fff;
-			font-weight: 400
+			font-weight: 400;
+			
 		}
 
 		.scroll-content{
@@ -37,8 +43,8 @@ page-intro {
 					}
 				}
 			}
-			.list.otherApps > .item{
-				cursor: auto;
+			.list .item{
+				cursor: pointer;
 
 				a{
 					color: #0065af;

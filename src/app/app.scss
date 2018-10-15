@@ -1,18 +1,27 @@
-
+@font-face {
+    font-family: Calibri-regular;
+    src: url(../assets/custom/fonts/Calibri.ttf);
+}
 ion-app._gmaps_cdv_ .nav-decor{
   background-color: transparent !important;
+}
+body{
+	font-family: Calibri-regular !important;
 }
  
 .md,
 .ios,
 .wp {
+	.scroll-content{
+		font-family: Calibri-regular !important;
+	}
 	.label{
 		font-size: 19px;
 		// color: #fb881e;
 		color: #444;
 	}
 	.toolbar-background{
-		background-color: #F08080//#fb881e //rgba(251, 136, 30, 0.83);
+		background-color: color($colors, dark-red)
 	}
 	.toolbar-title{
 		color: #fff;
@@ -27,9 +36,6 @@ ion-app._gmaps_cdv_ .nav-decor{
 
 	ion-footer .toolbar{
 		min-height: 20px;
-	}
-	button:focus{
-		// background-color: transparent !important;
 	}
 	.row{
 		margin-bottom: 0px;
