@@ -76,12 +76,15 @@
                   <h3 *ngIf="(sensor.name).toLowerCase() != 'co2'
                             && (sensor.name).toLowerCase() != 'humidity'
                             && (sensor.name).toLowerCase() != 'temperature'
-                            && (sensor.name).toLowerCase() != 'temperaturesensor'" ion-text>
+                            && (sensor.name).toLowerCase() != 'temperaturesensor'
+                            && (sensor.name).toLowerCase() != 'noise'
+                            && (sensor.name).toLowerCase() != 'absolutepressure'
+                            && (sensor.name).toLowerCase() != 'pressure'" ion-text>
                             
                             {{sensor.name}}
                   </h3>
                   
-                  <p>
+                  <p class="reading">
                     <span *ngIf="!sensor.value">
                       <span class="lat">No Reading</span>
                     </span>
@@ -94,7 +97,7 @@
               <!-- <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon> -->
               <!-- <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon> -->
               <span *ngIf="measures.indexOf((sensor.name).toLowerCase()) > -1">
-                <img [ngClass]="(sensor.name).toLowerCase() == 'co2' ? 'pImg': ''" src="assets/imgs/cumulocity/{{(sensor.name).toLowerCase()}}.png" [alt]="sensor.name" >
+                <img [ngClass]="(sensor.name).toLowerCase() == 'co2' ||(sensor.name).toLowerCase() == 'noise' ? 'pImg': ''" src="assets/imgs/cumulocity/{{(sensor.name).toLowerCase()}}.png" [alt]="sensor.name" >
               </span>
             </div>
           </div>

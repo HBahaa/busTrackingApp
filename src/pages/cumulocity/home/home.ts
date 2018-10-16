@@ -30,7 +30,7 @@ export class UserHomePage {
                "bus": "bus"
               };
   
-  measures = ["co2", "pressure", "temperature", "humidity", "temperaturesensor", "thermostat", "oiltemperature"]
+  measures = ["co2", "pressure", "absolutepressure", "noise", "temperature", "humidity", "temperaturesensor", "thermostat", "oiltemperature"]
   
 
   constructor(public navCtrl: NavController, private alertCtrl:AlertController, private viewCtrl: ViewController,
