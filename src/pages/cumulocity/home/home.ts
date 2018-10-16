@@ -20,15 +20,17 @@ export class UserHomePage {
   names:object = {};
   devices:any;
   token:string;
-  icons:any = {"c8y_TemperatureMeasurement": "ios-thermometer",
-               "c8y_LightMeasurement":"md-bulb",
-               "c8y_AccelerationMeasurement":"md-compass",
-               "c8y_Position":"pin",
-               "c8y_DistanceMeasurement": "walk",
-               "c8y_Mobile": "phone-portrait"
+
+  icons:any = {"temperature": "ios-thermometer",
+               "light":"md-bulb",
+               "acceleration":"md-compass",
+               "position":"pin",
+               "distance": "walk",
+               "mobile": "phone-portrait",
+               "bus": "bus"
               };
   
-  measures = ["co2", "pressure", "temperature", "humidity", "bus", "temperaturesensor", "thermostat", "oiltemperature"]
+  measures = ["co2", "pressure", "temperature", "humidity", "temperaturesensor", "thermostat", "oiltemperature"]
   
 
   constructor(public navCtrl: NavController, private alertCtrl:AlertController, private viewCtrl: ViewController,

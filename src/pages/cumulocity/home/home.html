@@ -26,15 +26,21 @@
     <ion-item-group>
       <ion-item-sliding *ngFor="let item of items;let i=index">
         <ion-item class="card horizontal">
-          <ion-icon name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
+          <ion-icon class="removeItem" name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
           <div class="card-content">
             <div class="card-title">
+                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('bus') > -1" name="bus"></ion-icon>
+                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('temperature') > -1" name="ios-thermometer"></ion-icon>
+                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('position') > -1" name="pin"></ion-icon>
+
               {{ names[ids[i]] }}
               <hr>
             </div>
             <div class="measures" *ngFor="let sensor of item;let j=index">
               <span  *ngIf="sensor.type == 'c8y_Position'; else anotherData">
-                <h3 ion-text>{{sensor.name}}</h3>
+                <h3 ion-text>
+                  {{sensor.name}}
+                </h3>
                 <p>
                   <span *ngIf="!sensor.lat">
                     <span class="lat">No Reading</span>
@@ -66,7 +72,14 @@
                   </span>
                 </p>
                 <span *ngIf="sensor.type != 'c8y_Position' && sensor.type != 'custom'">
-                  <h3 ion-text>{{sensor.name}}</h3>
+                  <!-- <h3 ion-text>{{sensor.name}}</h3> -->
+                  <h3 *ngIf="(sensor.name).toLowerCase() != 'co2'
+                            && (sensor.name).toLowerCase() != 'humidity'
+                            && (sensor.name).toLowerCase() != 'temperature'
+                            && (sensor.name).toLowerCase() != 'temperaturesensor'" ion-text>
+                            
+                            {{sensor.name}}
+                  </h3>
                   
                   <p>
                     <span *ngIf="!sensor.value">
@@ -80,7 +93,9 @@
               </ng-template>
               <!-- <ion-icon *ngIf="icons[sensor.type]" name="{{icons[sensor.type]}}" end></ion-icon> -->
               <!-- <ion-icon *ngIf="!icons[sensor.type]" name="information-circle" end></ion-icon> -->
-              <span *ngIf="measures.indexOf((sensor.name).toLowerCase()) > -1"> <img [ngClass]="(sensor.name).toLowerCase() == 'co2' ? 'pImg': ''" src="assets/imgs/cumulocity/{{(sensor.name).toLowerCase()}}.png" [alt]="sensor.name" ></span>
+              <span *ngIf="measures.indexOf((sensor.name).toLowerCase()) > -1">
+                <img [ngClass]="(sensor.name).toLowerCase() == 'co2' ? 'pImg': ''" src="assets/imgs/cumulocity/{{(sensor.name).toLowerCase()}}.png" [alt]="sensor.name" >
+              </span>
             </div>
           </div>
 

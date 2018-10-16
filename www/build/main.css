@@ -51642,7 +51642,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal {
   margin-bottom: 5px;
 }
 
-page-userhome .content ion-item-group ion-item.card.horizontal ion-icon {
+page-userhome .content ion-item-group ion-item.card.horizontal ion-icon.removeItem {
   position: absolute;
   right: 10px;
   font-size: 25px;
@@ -51671,7 +51671,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content .ca
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .measures {
   position: relative;
   border-bottom: 1px solid #888;
-  padding: 20px 0 30px;
+  padding: 28px 0 28px;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .measures h3 {
@@ -51681,6 +51681,7 @@ page-userhome .content ion-item-group ion-item.card.horizontal .card-content .me
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .measures p {
   color: #946a5c;
+  display: inline-block;
 }
 
 page-userhome .content ion-item-group ion-item.card.horizontal .card-content .measures p .val {
@@ -51717,7 +51718,7 @@ page-userhome .content ion-item-group .card-image ion-icon {
 page-userhome img {
   position: absolute;
   right: 10px;
-  bottom: 30px;
+  bottom: 15px;
   width: 50px;
   height: 50px;
 }
