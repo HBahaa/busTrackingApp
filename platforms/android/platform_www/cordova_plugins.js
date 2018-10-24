@@ -260,6 +260,30 @@ module.exports = [
         "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
         "pluginId": "cordova-plugin-geolocation",
         "runs": true
+    },
+    {
+        "id": "cordova-plugin-actionsheet.ActionSheet",
+        "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+        "pluginId": "cordova-plugin-actionsheet",
+        "clobbers": [
+            "window.plugins.actionsheet"
+        ]
+    },
+    {
+        "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+        "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+        "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+        "clobbers": [
+            "launchnavigator"
+        ]
+    },
+    {
+        "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.LaunchNavigator",
+        "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/android/launchnavigator.js",
+        "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+        "merges": [
+            "launchnavigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -276,7 +300,9 @@ module.exports.metadata =
     "cordova-sqlite-storage": "2.1.1",
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-geolocation": "2.4.3"
+    "cordova-plugin-geolocation": "2.4.3",
+    "cordova-plugin-actionsheet": "2.3.3",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
 };
 // BOTTOM OF METADATA
 });

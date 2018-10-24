@@ -22,16 +22,15 @@
 </div>
   <ion-list no-lines>
     <!-- <ion-icon name="trash"></ion-icon> -->
-
     <ion-item-group>
       <ion-item-sliding *ngFor="let item of items;let i=index">
         <ion-item class="card horizontal">
           <ion-icon class="removeItem" name="ios-close-circle-outline" (click)="removeItem(i)"></ion-icon>
           <div class="card-content">
             <div class="card-title">
-                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('bus') > -1" name="bus"></ion-icon>
-                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('temperature') > -1" name="ios-thermometer"></ion-icon>
-                <ion-icon *ngIf="((names[ids[i]].toLowerCase())).indexOf('position') > -1" name="pin"></ion-icon>
+                <ion-icon *ngIf="names[ids[i]] && ((names[ids[i]].toLowerCase())).indexOf('bus') > -1" name="bus"></ion-icon>
+                <ion-icon *ngIf="names[ids[i]] && ((names[ids[i]].toLowerCase())).indexOf('temperature') > -1" name="ios-thermometer"></ion-icon>
+                <ion-icon *ngIf="names[ids[i]] && ((names[ids[i]].toLowerCase())).indexOf('position') > -1" name="pin"></ion-icon>
 
               {{ names[ids[i]] }}
               <hr>

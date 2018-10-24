@@ -7,6 +7,7 @@ import { IntroPage } from '../../intro/intro';
 import { UserLoginPage } from '../userlogin/userlogin';
 import { DevicesPage } from '../devices/devices';
 import { DataServiceProvider } from '../../../providers/data-service/data-service';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'page-userhome',
@@ -14,6 +15,7 @@ import { DataServiceProvider } from '../../../providers/data-service/data-servic
 })
 
 export class UserHomePage {
+  map: GoogleMap;
   items = [];
   item:any;
   ids:any = [];
@@ -38,7 +40,8 @@ export class UserHomePage {
     {
       this.menuCtrl.enable(false);
       this.viewCtrl.showBackButton(false);
-      this.storage.get("devices").then(devices=>{
+      this.storage.get('devices').then(devices=>{
+        console.log("devices", devices)
         this.devices = devices;
         this.diplayItems();
       });
@@ -49,54 +52,25 @@ export class UserHomePage {
           if(this.items.length > 0){
             for(let item of this.items){
               for (let sensor of item ) {
-                // this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
-                //   if (sensor.type.indexOf("Position") >= 0) {
-                //     if (sensor["lat"] != resp["lat"]) {
-                //       sensor["lat"] = resp["lat"]
-                //     }else if (sensor["lng"] != resp["lng"]){
-                //       sensor["lng"] = resp["lng"]
-                //     }
-                //   }
-                //   else{
-                //     if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
-                //       sensor.value = resp[Object.keys(resp)[0]]["value"];
-                //     }
-                //   }
-                // }).catch(error=>{
-                //   console.log("dataservice error", error)
-                // })
-
-
                 
                   if (sensor.type.indexOf("Position") >= 0) {
                     this.dataService.updatePostionData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name).then(resp=>{
                       resp = resp[sensor.type];
-                      if (sensor["lat"] != resp["lat"]) {
-                        sensor["lat"] = resp["lat"]
-                      }
-                      if (sensor["lng"] != resp["lng"]){
-                        sensor["lng"] = resp["lng"]
-                      }
+                      
+                        if (sensor["lat"] != resp["lat"]) {
+                          sensor["lat"] = resp["lat"]
+                        }data
+                        if (sensor["lng"] != resp["lng"]){
+                          sensor["lng"] = resp["lng"]
+                        }
+                       
                     })
                     
-                  }else if (sensor.type.indexOf("custom") >= 0) {
-                    console.log("custom")
+                  }else{
                     this.dataService.updatePostionData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name).then(resp=>{
-                      console.log("custom", resp);
-                      sensor["AbsolutePressure"] = resp["AbsolutePressure"].value;
-                      sensor["CO2"] = resp["CO2"].value;
-                      sensor["Noise"] = resp["Noise"].value;
-                      sensor["Humidity"] = resp["Humidity"].value;
-                    })
-                    
-                  }
-                  else{
-                    this.dataService.updateData(tenant,sensor.deviceID, sensor.type, token, sensor.type, sensor.name ).then((resp)=>{
-                      if (sensor.value != resp[Object.keys(resp)[0]]["value"]) {
-                        sensor.value = resp[Object.keys(resp)[0]]["value"];
+                      if (sensor.value != resp[sensor.type]['value']) {
+                        sensor.value = resp[sensor.type]['value'];
                       }
-                    }).catch(error=>{
-                      console.log("dataservice error", error)
                     })
                   }
               }
@@ -104,28 +78,23 @@ export class UserHomePage {
           }
         })
       }, 3000);
-
     }
-
-  ionViewWillEnter() {
-
-   
-  }
-
-  ionViewDidEnter() {}
 
   diplayItems(){
     this.storage.get('devicesMeasurements').then((data)=>{
-      if(data != null){
+      if(data != null ){
         $.each(data, (i, resp)=>{
           this.ids.push(i);
           this.items.push(resp);
           for(let dev of this.devices){
             if (dev["id"] == i) {
               this.names[i] =dev["name"];
+              dev['disableBTN'] = true;
             }
           }
+          
         });
+        this.storage.set('devices', this.devices)
       }
     })
   }
@@ -178,6 +147,38 @@ export class UserHomePage {
     this.storage.clear().then(()=>{
       this.navCtrl.setRoot(UserLoginPage);
     });
+  }
+
+  loadMap() {
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: 43.0741904,
+          lng: -89.3809802
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };
+    this.map = GoogleMaps.create('map', mapOptions);    
+    this.map.one(GoogleMapsEvent.MAP_READY)
+      .then(() => {
+        this.map.addMarker({
+          title: 'Location',
+          icon: 'red',
+          animation: 'DROP',
+          position: {
+            lat: 43.0741904,
+            lng: -89.3809802
+          }
+        })
+        // .then(marker => {
+        //   marker.on(GoogleMapsEvent.MARKER_CLICK)
+        //     .subscribe(() => {
+        //       alert("clicked")
+        //     });
+        // });
+      });    
   }
 
 }

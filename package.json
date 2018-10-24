@@ -28,6 +28,7 @@
         "@ionic-native/geolocation": "^4.3.3",
         "@ionic-native/google-maps": "^4.4.0",
         "@ionic-native/keyboard": "^3.14.0",
+        "@ionic-native/launch-navigator": "^3.14.0",
         "@ionic-native/local-notifications": "^4.4.2",
         "@ionic-native/splash-screen": "4.3.2",
         "@ionic-native/status-bar": "4.3.2",
@@ -36,6 +37,7 @@
         "@ngx-translate/core": "^8.0.0",
         "@ngx-translate/http-loader": "^2.0.0",
         "cordova-android": "^6.2.3",
+        "cordova-plugin-actionsheet": "^2.3.3",
         "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-device": "^1.1.6",
@@ -55,10 +57,11 @@
         "rxjs": "5.4.3",
         "socket.io-client": "^2.0.4",
         "sw-toolbox": "3.6.0",
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "^3.2.2",
         "zone.js": "0.8.18"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "3.0.1",
+        "@ionic/app-scripts": "^3.2.0",
         "ionic": "3.20.0",
         "typescript": "2.3.4"
     },
@@ -78,7 +81,8 @@
             "cordova-plugin-background-mode": {},
             "de.appplant.cordova.plugin.local-notification": {},
             "cordova-plugin-compat": {},
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-geolocation": {},
+            "uk.co.workingedge.phonegap.plugin.launchnavigator": {}
         },
         "platforms": [
             "android"

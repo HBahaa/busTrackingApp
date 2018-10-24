@@ -7,11 +7,14 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginProvider } from '../../providers/login/login';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
 import { MyDevicesPage } from '../trackingApp/my-devices/my-devices';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+
 
 @Component({
   selector: 'page-intro',
   templateUrl: 'intro.html',
 })
+
 export class IntroPage {
 
 	showMyApplist = false;
@@ -22,7 +25,7 @@ export class IntroPage {
 	constructor(public navCtrl: NavController, private menuCtrl: MenuController, private storage: Storage,
 		private platform: Platform, private authService: AuthServiceProvider,
 		private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider,
-    public alertCtrl: AlertController)
+    public alertCtrl: AlertController, private launchNavigator: LaunchNavigator)
   {
     this.storage.get("myApps").then(data=>{
       console.log("data", data)
@@ -183,6 +186,22 @@ export class IntroPage {
     //     }
     //   });
     // });
+  }
+
+  openExternalApp(){
+    this.launchNavigator.isAppAvailable('GOOGLE_MAPS')
+    .then(()=>{
+      alert("yes")
+    }).catch(()=>{
+      alert("no")
+    })
+
+    this.launchNavigator.navigate('iWUHome')
+    .then(()=>{
+      alert("yes iWUHome")
+    }).catch(()=>{
+      alert("no iWUHome")
+    })
   }
 
 }

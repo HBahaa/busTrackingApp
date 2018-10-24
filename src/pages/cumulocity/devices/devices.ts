@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import * as $ from 'jquery';
 import { DataServiceProvider } from '../../../providers/data-service/data-service';
 import { UserHomePage } from '../home/home';
 
@@ -24,6 +24,8 @@ export class DevicesPage {
     });
   }
 
+
+  
 
   addDevice(device){
 

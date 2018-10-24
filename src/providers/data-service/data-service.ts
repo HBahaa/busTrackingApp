@@ -56,7 +56,6 @@ export class DataServiceProvider {
       }
 
       $.ajax(settings).done(response => {
-        console.log("resp", response)
         resolve(response);
       }).fail(error=>{
         reject()

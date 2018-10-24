@@ -42,7 +42,6 @@ export class AuthServiceProvider {
       }
 
       $.ajax(settings).done(response => {
-        console.log("userDatauserDatauserDataresponse", response)
         if (response.managedObjects.length > 0) {
 
           this.managedDevices = this.managedDevices.concat(response.managedObjects);
@@ -56,7 +55,9 @@ export class AuthServiceProvider {
         for (let i in devices) {
           devices[i]["disableBTN"] = false;
         }
-        this.storage.set('devices', devices)
+        // this.storage.remove('devices').then(()=>{
+          this.storage.set('devices', devices)
+        // })
         this.storage.set("userData", {
           'tenant': tenant,
           'username': username,
