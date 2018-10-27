@@ -19,7 +19,7 @@ page-intro {
 
 		.scroll-content{
 			text-align: center;
-			justify-content: center;
+			// justify-content: center;
 			align-content: center;
 			display: flex;
 			flex-direction: column;
@@ -39,6 +39,7 @@ page-intro {
 						h2{
 							font-size: 1.7rem;
 							color: #fff;
+							padding-top: 5px;
 						}
 					}
 				}
@@ -58,3 +59,6 @@ page-intro {
 
 	}
 }
+.hide {
+	display: none;
+  }

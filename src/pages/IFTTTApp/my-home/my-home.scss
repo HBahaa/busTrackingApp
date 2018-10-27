@@ -8,6 +8,9 @@ page-my-home {
     .item{
         padding-top: 10px;
         padding-bottom: 10px;
+        h2{
+            font-size: 2rem;
+        }
     }
     .item ion-avatar[item-left], .item ion-thumbnail[item-left], .item ion-avatar[item-start], .item ion-thumbnail[item-start]{
         margin: 8px 0px;
@@ -26,4 +29,5 @@ page-my-home {
     .fixed-action-btn ul li{
         margin-bottom: 8px;
     }
+    
 }

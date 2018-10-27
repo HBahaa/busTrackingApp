@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { IntroPage } from './../../intro/intro';
 import { AddBtnPage } from './../add-btn/add-btn';
 import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'page-my-home',
@@ -26,13 +27,25 @@ export class MyHomePage {
   }
 
   itemSelected(item){
-    console.log("item", item)
-    this.presentAlert();
+    let settings = {
+      url: "http://18.220.223.50:3001/iftt/"+item.action,
+      method: 'GET'
+    }
+    
+    $.ajax(settings)
+    .done(response => {
+      this.presentAlert("Congratulations! Your request successfully sent.");
+    })
+    .fail(error=>{
+      this.presentAlert("Sorry! Something goes wrong, please try again later.");
+    })
+
+    
   }
 
-  presentAlert() {
+  presentAlert(msg) {
     let alert = this.alertCtrl.create({
-      subTitle: 'Your request successfully sent.',
+      subTitle: msg,
       buttons: ['Dismiss']
     });
     alert.present();

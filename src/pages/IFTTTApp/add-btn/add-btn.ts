@@ -14,9 +14,19 @@ export class AddBtnPage {
   constructor(public navCtrl: NavController, private storage: Storage) {}
 
   submitForm(){
-    let arr = [];
-    arr.push(this.btn);
-    this.storage.set("IFTTT", arr);
-    this.navCtrl.setRoot(MyHomePage);
+    this.storage.get("IFTTT")
+    .then(data=>{
+      var arr = [];
+      if (data && data !=null) {
+        arr = data;
+      }
+      arr.push(this.btn)
+      this.storage.set("IFTTT", arr);
+      this.navCtrl.setRoot(MyHomePage);
+    })
+    .catch(error=>{
+      console.log("error", error)
+    })
+    
   }
 }

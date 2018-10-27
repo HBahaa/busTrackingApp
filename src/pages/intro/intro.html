@@ -1,7 +1,7 @@
 <ion-content class="content" padding>
-	<h3>MW3 PLATFORM {{showMyAppList}}</h3>
+	<h3>MW3 PLATFORM</h3>
 	<!-- <div *ngIf="showMyAppList"> -->
-		<h3 [hidden]="!showMyAppList">My Apps</h3>
+		<!-- <h3 [class.hide]="showMyAppList">My Apps</h3> -->
 		<ion-list>
 			<ion-item [hidden]="!showMySensorApp">
 				<ion-avatar item-start (click)="mySensors()">
@@ -26,14 +26,14 @@
 			</ion-item>
 			<ion-item [hidden]="!showMyIFTTTApp">
 				<ion-avatar item-start (click)="IFTTTApp()">
-					<img src="assets/imgs/freeTracking.jpeg">
+					<img src="assets/imgs/IFTTT.png">
 				</ion-avatar>
 				<h2>IFTTT</h2>
 				<a class="download" (click)="unsubscribeService('showMyIFTTTApp')">Unsubscribe</a>
 			</ion-item>
 			<ion-item [hidden]="!showMySmartOfficeApp">
 				<ion-avatar item-start (click)="openExternalApp()">
-					<img src="assets/imgs/freeTracking.jpeg">
+					<img src="assets/imgs/workspace.png">
 				</ion-avatar>
 				<h2>Smart Office</h2>
 				<a class="download" (click)="unsubscribeService('showMySmartOfficeApp')">Unsubscribe</a>
@@ -62,13 +62,13 @@
 		</ion-item>
 		<ion-item [hidden]="showMyIFTTTApp" (click)="serviceLicense('showMyIFTTTApp')">
 			<ion-avatar item-start>
-				<img src="assets/imgs/freeTracking.jpeg">
+				<img src="assets/imgs/IFTTT.png">
 			</ion-avatar>
 			<h2>IFTTT</h2>
 		</ion-item>
 		<ion-item [hidden]="showMySmartOfficeApp" (click)="serviceLicense('showMySmartOfficeApp')">
 			<ion-avatar item-start>
-				<img src="assets/imgs/freeTracking.jpeg">
+				<img src="assets/imgs/workspace.png">
 			</ion-avatar>
 			<h2>Smart Office</h2>
 		</ion-item>
@@ -95,4 +95,6 @@
 			<a class="download">Download</a>
 		</ion-item>
 	</ion-list>
+
+	
 </ion-content>

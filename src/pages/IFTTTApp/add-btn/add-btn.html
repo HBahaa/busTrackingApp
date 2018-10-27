@@ -14,11 +14,11 @@
       <ion-card-content>
         <form (ngSubmit)="submitForm()">
           <ion-item>
-            <ion-label floating>Name</ion-label>
+            <ion-label stacked>Name</ion-label>
             <ion-input type="text" [(ngModel)]="btn.name" name="name"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>Action</ion-label>
+            <ion-label stacked>Action</ion-label>
             <ion-input type="text" [(ngModel)]="btn.action" name="action"></ion-input>
           </ion-item>
           <button ion-button type="submit" block>Save</button>
