@@ -41,16 +41,13 @@
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+    "cordova-plugin-app-launcher": {
       "PACKAGE_NAME": "bus.tracking.app"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-app-event": {
       "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-actionsheet": {
-      "PACKAGE_NAME": "bus.tracking.app"
     }
   }
 }

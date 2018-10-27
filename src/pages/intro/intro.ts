@@ -7,7 +7,8 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { LoginProvider } from '../../providers/login/login';
 import { GetChildrenProvider } from '../../providers/get-children/get-children';
 import { MyDevicesPage } from '../trackingApp/my-devices/my-devices';
-import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { MyHomePage } from '../IFTTTApp/my-home/my-home';
+import * as launcher from '../../assets/js/start-app';
 
 
 @Component({
@@ -20,12 +21,13 @@ export class IntroPage {
 	showMyApplist = false;
 	showMySensorApp = false;
 	showMyBusApp = false;
-	showMyTrackingApp = false;
+  showMyTrackingApp = false;
+  showMySmartOfficeApp = false;
+  showMyIFTTTApp = false;
 
 	constructor(public navCtrl: NavController, private menuCtrl: MenuController, private storage: Storage,
-		private platform: Platform, private authService: AuthServiceProvider,
-		private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider,
-    public alertCtrl: AlertController, private launchNavigator: LaunchNavigator)
+		private platform: Platform, private authService: AuthServiceProvider, public alertCtrl: AlertController,
+		private loginProvider: LoginProvider, private getChildrenProvider: GetChildrenProvider)
   {
     this.storage.get("myApps").then(data=>{
       console.log("data", data)
@@ -34,12 +36,16 @@ export class IntroPage {
         this.showMyTrackingApp= data.showMyTrackingApp ? data.showMyTrackingApp : false
         this.showMyBusApp= data.showMyBusApp ? data.showMyBusApp : false
         this.showMySensorApp = data.showMySensorApp ? data.showMySensorApp : false
+        this.showMySmartOfficeApp = data.showMySmartOfficeApp ? data.showMySmartOfficeApp : false;
+        this.showMyIFTTTApp = data.showMyIFTTTApp ? data.showMyIFTTTApp : false;
       }else{
         let myApps = {
           showMyApplist : false,
           showMyTrackingApp : false,
           showMyBusApp : false,
-          showMySensorApp : false
+          showMySensorApp : false,
+          showMySmartOfficeApp: false,
+          showMyIFTTTApp: false
         }
         this.storage.set("myApps", myApps)
       }
@@ -77,6 +83,12 @@ export class IntroPage {
                 }else if (name == 'showMySensorApp') {
                   this.showMySensorApp = false
                   data['showMySensorApp'] = false
+                }else if (name == 'showMySmartOfficeApp') {
+                  this.showMySmartOfficeApp = false
+                  data['showMySmartOfficeApp'] = false
+                }else if (name == 'showMyIFTTTApp') {
+                  this.showMyIFTTTApp = false
+                  data['showMyIFTTTApp'] = false
                 }
                 this.storage.set('myApps', data)
               }
@@ -115,6 +127,12 @@ export class IntroPage {
                 }else if (name == 'showMySensorApp') {
                   this.showMySensorApp = true
                   data['showMySensorApp'] = true
+                }else if (name == 'showMySmartOfficeApp') {
+                  this.showMySmartOfficeApp = true
+                  data['showMySmartOfficeApp'] = true
+                }else if (name == 'showMyIFTTTApp') {
+                  this.showMyIFTTTApp = true
+                  data['showMyIFTTTApp'] = true
                 }
                 this.storage.set('myApps', data)
               }
@@ -146,6 +164,10 @@ export class IntroPage {
 
 	trackingApp(){
 		this.navCtrl.setRoot(MyDevicesPage);
+  }
+  
+  IFTTTApp(){
+		this.navCtrl.setRoot(MyHomePage);
 	}
 
 	busTrackingApp(){
@@ -189,19 +211,7 @@ export class IntroPage {
   }
 
   openExternalApp(){
-    this.launchNavigator.isAppAvailable('GOOGLE_MAPS')
-    .then(()=>{
-      alert("yes")
-    }).catch(()=>{
-      alert("no")
-    })
-
-    this.launchNavigator.navigate('iWUHome')
-    .then(()=>{
-      alert("yes iWUHome")
-    }).catch(()=>{
-      alert("no iWUHome")
-    })
+    launcher.packageLaunch("com.gwcd.airplug");
   }
 
 }

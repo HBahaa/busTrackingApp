@@ -29,8 +29,8 @@ export class GetChildrenProvider {
 				"method": "POST",
 				"headers": {
 					"content-type": "application/json",
-					"cache-control": "no-cache",
-					"postman-token": "4935ed16-98ed-c035-1572-aeb484e2838a",
+					// "cache-control": "no-cache",
+					// "postman-token": "4935ed16-98ed-c035-1572-aeb484e2838a",
 					"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 					"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
 					"Access-Control-Allow-Origin":"*",

@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Button</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  
+  <ion-card>
+      <ion-card-title> Add New Button </ion-card-title>
+      <ion-card-content>
+        <form (ngSubmit)="submitForm()">
+          <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" [(ngModel)]="btn.name" name="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Action</ion-label>
+            <ion-input type="text" [(ngModel)]="btn.action" name="action"></ion-input>
+          </ion-item>
+          <button ion-button type="submit" block>Save</button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -26,8 +26,8 @@ export class GetNotificationProvider {
 					"url": "http://ec2-18-220-223-50.us-east-2.compute.amazonaws.com:9876/notification/"+child.tag+"/10/0?token="+token,
 					"method": "POST",
 					"headers": {
-						"cache-control": "no-cache",
-						"postman-token": "0de21fdb-9125-bb9b-15bd-e4fb1736e465",
+						// "cache-control": "no-cache",
+						// "postman-token": "0de21fdb-9125-bb9b-15bd-e4fb1736e465",
 					    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 				        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Key",
 				        "Access-Control-Allow-Origin":"*",

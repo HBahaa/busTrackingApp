@@ -111,5 +111,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <allow-navigation href="http://172.18.0.1:8100" />
     <engine name="android" spec="^6.2.3" />
-    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^3.2.2" />
+    <plugin name="cordova-plugin-app-launcher" spec="^0.4.0" />
 </widget>

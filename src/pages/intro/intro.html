@@ -24,6 +24,20 @@
 				<h2>Tracking</h2>
 				<a class="download" (click)="unsubscribeService('showMyTrackingApp')">Unsubscribe</a>
 			</ion-item>
+			<ion-item [hidden]="!showMyIFTTTApp">
+				<ion-avatar item-start (click)="IFTTTApp()">
+					<img src="assets/imgs/freeTracking.jpeg">
+				</ion-avatar>
+				<h2>IFTTT</h2>
+				<a class="download" (click)="unsubscribeService('showMyIFTTTApp')">Unsubscribe</a>
+			</ion-item>
+			<ion-item [hidden]="!showMySmartOfficeApp">
+				<ion-avatar item-start (click)="openExternalApp()">
+					<img src="assets/imgs/freeTracking.jpeg">
+				</ion-avatar>
+				<h2>Smart Office</h2>
+				<a class="download" (click)="unsubscribeService('showMySmartOfficeApp')">Unsubscribe</a>
+			</ion-item>
 		</ion-list>
 	<!-- </div> -->
 	<h3>Other Apps</h3>
@@ -46,7 +60,18 @@
 			</ion-avatar>
 			<h2>Tracking</h2>
 		</ion-item>
-
+		<ion-item [hidden]="showMyIFTTTApp" (click)="serviceLicense('showMyIFTTTApp')">
+			<ion-avatar item-start>
+				<img src="assets/imgs/freeTracking.jpeg">
+			</ion-avatar>
+			<h2>IFTTT</h2>
+		</ion-item>
+		<ion-item [hidden]="showMySmartOfficeApp" (click)="serviceLicense('showMySmartOfficeApp')">
+			<ion-avatar item-start>
+				<img src="assets/imgs/freeTracking.jpeg">
+			</ion-avatar>
+			<h2>Smart Office</h2>
+		</ion-item>
 		<!-- other apps -->
 		<ion-item>
 			<ion-avatar item-start>

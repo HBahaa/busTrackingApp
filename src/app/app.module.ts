@@ -45,8 +45,6 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 import { UserHomePage } from '../pages/cumulocity/home/home';
 import { UserLoginPage } from '../pages/cumulocity/userlogin/userlogin';
 import { DevicesPage } from '../pages/cumulocity/devices/devices';
-// import { DeviceDataPage } from '../pages/cumulocity/device-data/device-data';
-// import { ItemDataPage } from '../pages/cumulocity/item-data/item-data';
 
 /** wialon **/
 import { GetNotificationProvider } from '../providers/get-notification/get-notification';
@@ -57,6 +55,12 @@ import { RegisterProvider } from '../providers/register/register';
 import { DatePipe } from '../pipes/date/date'
 import { ResetPasswordProvider } from '../providers/reset-password/reset-password';
 import { EditProfileProvider } from '../providers/edit-profile/edit-profile';
+
+
+//  IFTTT App
+import { MyHomePage } from '../pages/IFTTTApp/my-home/my-home';
+import { AddBtnPage } from '../pages/IFTTTApp/add-btn/add-btn';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -86,11 +90,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserLoginPage,
     UserHomePage,
     DevicesPage,
-    // DeviceDataPage,
-    // ItemDataPage,
     PopoverComponent,
     MyDevicesPage,
-    DeviceTrackPage
+    DeviceTrackPage,
+    MyHomePage,
+    AddBtnPage
   ],
   imports: [
     BrowserModule,
@@ -130,9 +134,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserHomePage,
     DevicesPage,
     MyDevicesPage,
-    DeviceTrackPage
-    // DeviceDataPage,
-    // ItemDataPage
+    DeviceTrackPage,
+    MyHomePage,
+    AddBtnPage
   ],
   providers: [
     StatusBar,
