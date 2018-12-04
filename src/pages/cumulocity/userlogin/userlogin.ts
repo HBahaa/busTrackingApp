@@ -43,7 +43,7 @@ export class UserLoginPage {
   login(){
     this.presentLoading();
     // this.authService.Login(this.tenant, this.username, this.password, 1).then(resp=>{
-    this.authService.Login('sam', 'leesmasmalee@gmail.com', 'myhome123', 1).then(resp=>{
+    this.authService.Login('mw3ilamw3ila', 'mw3ila@yahoo.com', 'P$$w0rd@123', 1).then(resp=>{
       if (resp) {
         this.navCtrl.push(UserHomePage);
         this.loader.dismiss();
