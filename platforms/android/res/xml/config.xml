@@ -72,6 +72,9 @@
     <feature name="Launcher">
         <param name="android-package" value="com.hutchind.cordova.plugins.launcher.Launcher" />
     </feature>
+    <feature name="ActionSheet">
+        <param name="android-package" value="nl.xservices.plugins.actionsheet.ActionSheet" />
+    </feature>
     <name>MW3 Platform</name>
     <description>Bus Tracking App</description>
     <author email="" href="" />

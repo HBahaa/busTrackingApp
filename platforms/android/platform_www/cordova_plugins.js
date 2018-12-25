@@ -268,6 +268,14 @@ module.exports = [
         "clobbers": [
             "plugins.launcher"
         ]
+    },
+    {
+        "id": "cordova-plugin-actionsheet.ActionSheet",
+        "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+        "pluginId": "cordova-plugin-actionsheet",
+        "clobbers": [
+            "window.plugins.actionsheet"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -285,7 +293,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-app-launcher": "0.4.0"
+    "cordova-plugin-app-launcher": "0.4.0",
+    "cordova-plugin-actionsheet": "2.3.3"
 };
 // BOTTOM OF METADATA
 });

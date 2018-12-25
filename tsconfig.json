@@ -11,8 +11,8 @@
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "./built",
     "allowJs": true,
+    "outDir": "./built",
     "target": "es5"
   },
   "include": [

@@ -146,7 +146,7 @@ export class IntroPage {
 
 	
 	mySensors(){
-		this.authService.Login('samosamlee', 'samosamlee@gmail.com', 'samosamlee123!@#', 1).then(resp=>{
+    this.authService.Login('mw3ilamw3ila', 'mw3ila@yahoo.com', 'P@$$w0rd@123', 1).then(resp=>{
 			// console.log("resp", resp)
       this.navCtrl.setRoot(UserHomePage);
     })

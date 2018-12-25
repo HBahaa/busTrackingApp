@@ -7,47 +7,47 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-background-mode": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-app-launcher": {
+      "PACKAGE_NAME": "bus.tracking.app"
     },
-    "cordova-plugin-compat": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-plugin-googlemaps": {
       "API_KEY_FOR_ANDROID": "AIzaSyCu56D4qgNvIbI0DOHf-a5VSTMadDVPOhA",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "de.appplant.cordova.plugin.local-notification": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     },
     "ionic-plugin-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-app-launcher": {
       "PACKAGE_NAME": "bus.tracking.app"
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "bus.tracking.app"
+    },
     "cordova-plugin-app-event": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "bus.tracking.app"
     }
   }
 }

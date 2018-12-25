@@ -103,6 +103,10 @@
             {
               "xml": "<feature name=\"Launcher\"><param name=\"android-package\" value=\"com.hutchind.cordova.plugins.launcher.Launcher\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"ActionSheet\"><param name=\"android-package\" value=\"nl.xservices.plugins.actionsheet.ActionSheet\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -250,6 +254,9 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-app-launcher": {
+      "PACKAGE_NAME": "bus.tracking.app"
+    },
+    "cordova-plugin-actionsheet": {
       "PACKAGE_NAME": "bus.tracking.app"
     }
   },
@@ -523,6 +530,14 @@
       "clobbers": [
         "plugins.launcher"
       ]
+    },
+    {
+      "id": "cordova-plugin-actionsheet.ActionSheet",
+      "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+      "pluginId": "cordova-plugin-actionsheet",
+      "clobbers": [
+        "window.plugins.actionsheet"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -538,6 +553,7 @@
     "de.appplant.cordova.plugin.local-notification": "0.8.5",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-app-launcher": "0.4.0"
+    "cordova-plugin-app-launcher": "0.4.0",
+    "cordova-plugin-actionsheet": "2.3.3"
   }
 }
